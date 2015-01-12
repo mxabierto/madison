@@ -151,5 +151,5 @@ return array(
 'alldocs' => 'All Documents',
 'reqindiesponsor' => 'Request Independent Sponsor',
 'provideinfoindie' => 'Please provide the following information to request becoming an Independent Sponsor',
-
+'discussion' => 'Discussion',
 );

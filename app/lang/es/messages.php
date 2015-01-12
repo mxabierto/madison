@@ -152,4 +152,5 @@ return array(
 'alldocs' => 'Todos los Documentos',
 'reqindiesponsor' => 'Solicitar Promotor Independiente',
 'provideinfoindie' => 'Por favor proporciona la siguiente información para solicitar ser un Promotor Independiente',
+'discussion' => 'Foro',
 );
