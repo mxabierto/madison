@@ -57,9 +57,9 @@ angular.module('madisonApp.services', [])
 
       return function LoginPopup(event) {
         console.log(event);
-        var popup = $('<div class="popup unauthed-popup"><p>Please log in.</p>' +
-          '<input type="button" id="login" value="Login" class="btn btn-primary"/>' +
-          '<input type="button" id="signup" value="Sign up" class="btn btn-primary" /></div>');
+        var popup = $('<div class="popup unauthed-popup"><p>Por favor ingresa.</p>' +
+          '<input type="button" id="login" value="Ingresar" class="btn btn-primary"/>' +
+          '<input type="button" id="signup" value="Registrarse" class="btn btn-primary" /></div>');
 
 
         popup.on('click.popup', function (event) {
@@ -161,10 +161,10 @@ angular.module('madisonApp.services', [])
       };
 
       var modalOptions = {
-        closeButtonText: 'Close',
+        closeButtonText: 'Cerrar',
         actionButtonText: false,
         headerText: 'Notice',
-        bodyText: 'Hmm... someone forgot the content here...'
+        bodyText: 'Hmm... alguien olvido el contenido aquí...'
       };
 
       this.showModal = function (customModalDefaults, customModalOptions) {
