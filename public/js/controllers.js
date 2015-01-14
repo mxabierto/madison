@@ -1,11 +1,19 @@
 /*global user*/
 /*global doc*/
-angular.module('madisonApp.controllers', [])
+angular.module('madisonApp.controllers', ['pascalprecht.translate'])
   /**
   * Global controller, attached to the <body> tag
   * 
   * Handles global scope variables
   */
+  .config(function($translateProvider){
+    $translateProvider
+    .translations('es', {
+      POSTED: 'Publicado',
+      UPDATED: 'Actualizado'
+      });
+    $translateProvider.use('es');
+    })
   .controller('AppController', ['$rootScope', '$scope', 'ipCookie', 'UserService',
     function ($rootScope, $scope, ipCookie, UserService) {
       //Update page title
@@ -23,11 +31,11 @@ angular.module('madisonApp.controllers', [])
 
       //Set up Angular Tour
       $scope.step_messages = {
-        step_0: 'Welcome to Madison!  Help create better policy in your community.  Click Next to continue.',
-        step_1: 'Getting Started:  Choose a policy document.  You can browse, or filter by title, category, sponsor, or status. Go ahead, choose one!',
-        step_2: 'Next, dive in! Scroll or use the Table of Contents to get to the good stuff.',
-        step_3: 'Share ideas and questions with the document sponsor and other users in the Discussion tab.',
-        step_4: 'Suggest specific changes to the text.  Just highlight part of the document and add your thoughts!'
+        step_0: '¡Bienvenido! Ayuda a crear mejores políticas para tu comunidad. Siguiente para continuar.',
+        step_1: 'Para empezar: Elige un documento. Puedes navegar o filtrar por título, categoría, promotor, o estado. ¡Vamos, escoge uno!',
+        step_2: 'A continuación, Desplázate o utiliza la tabla de contenido para llegar a lo bueno.',
+        step_3: 'Comparte ideas y preguntas con el promotor del documento y otros usuarios en la pestaña de Foro.',
+        step_4: 'Sugiere cambios específicos en el texto. ¡Solo marca la parte del documento y agrega tus ideas!'
       };
 
       $scope.currentStep = ipCookie('myTour') || 0;
@@ -90,12 +98,12 @@ angular.module('madisonApp.controllers', [])
       $scope.select2Config = {
         multiple: true,
         allowClear: true,
-        placeholder: "Filter documents by category, sponsor, or status"
+        placeholder: "Filtrar documentos por categoría, promotor o estado"
       };
 
       $scope.dateSortConfig = {
         allowClear: true,
-        placeholder: "Sort By Date"
+        placeholder: "Ordenar por Fecha"
       };
 
       $scope.parseDocs = function (docs) {
