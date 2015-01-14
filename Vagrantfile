@@ -94,10 +94,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         end
     end
 
-    if environment == 'do'
-      config.vm.box = "digital_ocean"
-      config.ssh.private_key_path = "~/.ssh/id_rsa"
-      config.vm.provider :digital_ocean do |provider|
+    config.vm.define "digital_ocean", autostart: false do |digital_ocean|
+
+      digital_ocean.vm.provider :digital_ocean do |provider, override|
+        override.ssh.private_key_path = "~/.ssh/id_rsa"
+        override.vm.box = "digital_ocean"
+        override.vm.box_url = "https://github.com/smdahlen/vagrant-digitalocean/raw/master/box/digital_ocean.box"
+
         provider.client_id = localConf['do']['clientId']
         provider.api_key = localConf['do']['apiKey']
         provider.image = localConf['do']['image']
@@ -105,5 +108,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         provider.size = localConf['do']['size']
         provider.ssh_key_name = localConf['do']['sshKeyName']
       end
+
     end
 end
