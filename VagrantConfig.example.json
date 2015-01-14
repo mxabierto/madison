@@ -13,5 +13,13 @@
         "ami" : "ami-d0f89fb9",
         "keyPair" : "example",
         "securityGroups" : []
+    },
+    "do" : {
+      "clientId": "",
+      "apiKey": "",
+      "image": "ubuntu-14-04-x64",
+      "region": "nyc2",
+      "size": "512mb",
+      "sshKeyName": "Vagrant"
     }
 }
