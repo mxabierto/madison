@@ -16,27 +16,27 @@ end
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.provision :shell, :path => "puppet_bootstrap.sh"
-    
+
     if environment == 'development'
       config.vm.box = "precise64"
       config.vm.box_url = "http://files.vagrantup.com/precise64.box"
-    
+
       config.vm.network :forwarded_port, guest: 80,    host: 10080    # apache http
       config.vm.network :forwarded_port, guest: 3306,  host: 3306  # mysql
       config.vm.network :forwarded_port, guest: 10081, host: 10081 # zend http
       config.vm.network :forwarded_port, guest: 10082, host: 10082 # zend https
-    
+
       config.vm.network :private_network, ip: localConf['ipAddress']
-    
+
         config.vm.provider :virtualbox do |vb, override|
-            
+
             vb.gui = false
             vb.customize ["modifyvm", :id, "--memory", localConf['vmMemory']]
             vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/vagrant-root", "1"]
-            
+
             config.vm.synced_folder ".", "/vagrant", :group => "www-data", :mount_options => [ "dmode=775", "fmode=775" ]
         end
-    
+
         config.vm.provision :puppet do |puppet|
             puppet.options        = "--verbose --debug"
             puppet.manifests_path = "puppet/manifests"
@@ -53,7 +53,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             }
         end
     end
-    
+
     if environment == 'ec2'
         config.vm.provision :shell, :path => "aws_bootstrap.sh"
         config.vm.box = "dummy"
@@ -92,5 +92,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                 "php_version" => localConf['phpVersion']
             }
         end
+    end
+
+    if environment == 'do'
+      config.vm.box = "digital_ocean"
+      config.ssh.private_key_path = "~/.ssh/id_rsa"
+      config.vm.provider :digital_ocean do |provider|
+        provider.client_id = localConf['do']['clientId']
+        provider.api_key = localConf['do']['apiKey']
+        provider.image = localConf['do']['image']
+        provider.region = localConf['do']['region']
+        provider.size = localConf['do']['size']
+        provider.ssh_key_name = localConf['do']['sshKeyName']
+      end
     end
 end
