@@ -2,15 +2,12 @@
 @section('content')
 	<div class="content col-md-12">
 		<div class="row">
-			<div class="md-col-12">
-				<h1>{{ trans('messages.editcreategroup')}}</h1>
+			<div class="col-md-12">
+				<h2>{{ trans('messages.editcreategroup')}}</h2>
 				@if($group->id > 0)
 				<p>{{ trans('messages.managemembers') }}<a href="/groups/members/{{ $group->id }}">{{ trans('messages.clickhere') }}</a></p>
 				@endif
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-10 col-md-offset-1">
+
 				{{ Form::open(array('url' => 'groups/edit', 'method'=>'PUT' )) }}
 					
 					@if($group->id > 0)
