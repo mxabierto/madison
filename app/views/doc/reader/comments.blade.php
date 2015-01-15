@@ -5,7 +5,6 @@
   @if(Auth::user()->hasRole('Admin'))
     <div ng-init="admin=true"></div>
   @endif
-
   @else
   <div id="participate-comment" class="participate-comment">
   	<p>{{ trans('messages.please') }} <a href="{{ url('/user/login', $parameters = array(), $secure = null) }}" target="_self">{{ trans('messages.login') }}</a> {{ trans('messages.tocomment') }}.</p>
