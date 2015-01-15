@@ -747,6 +747,215 @@ angular.module('madisonApp.controllers', [])
           return Date.parse(activity.created_at);
         };
 
+        $scope.getDocComments = function (docId) {
+
+          // Get all doc comments, regardless of nesting level
+          $http({
+            method: 'GET',
+            url: '/api/docs/' + docId + '/comments'
+          })
+              .success(function (data) {
+
+                // Build child-parent relationships for each comment
+                angular.forEach(data, function (comment) {
+
+                  // If this isn't a parent comment, we need to find the parent and push this comment there
+                  if (comment.parent_id !== null) {
+                    var parent = $scope.parentSearch(data, comment.parent_id);
+                    comment.parentpointer = data[parent];
+                    data[parent].comments.push(comment);
+                  }
+
+                  // If this is the comment being linked to, save it
+                  if (comment.id == $scope.subCommentId) {
+                    $scope.collapsed_comment = comment;
+                  }
+
+                  comment.commentsCollapsed = true;
+                  comment.label = 'comment';
+                  comment.link = 'comment_' + comment.id;
+
+                  // We only want to push top-level comments, they will include
+                  // subcomments in their comments array(s)
+                  if (comment.parent_id === null) {
+                    $scope.comments.push(comment);
+                  }
+                });
+
+                // If we are linking directly to a comment, we need to expand comments
+                if ($scope.subCommentId) {
+                  var not_parent = true;
+                  // Expand comments, moving up towards the parent, until all are expanded
+                  do {
+                    $scope.collapsed_comment.commentsCollapsed = false;
+                    if ($scope.collapsed_comment.parent_id !== null) {
+                      $scope.collapsed_comment = $scope.collapsed_comment.parentpointer;
+                    } else {
+                      // We have reached the first sublevel of comments, so set the top level
+                      // parent to expand and exit
+                      not_parent = false;
+                    }
+                  } while (not_parent === true);
+                }
+              })
+              .error(function (data) {
+                console.error("Error loading comments: %o", data);
+              });
+
+        };
+
+        $scope.parentSearch = function (arr, val) {
+          for (var i=0; i<arr.length; i++)
+            if (arr[i].id === val)
+              return i;
+          return false;
+        };
+
+        $scope.visibleall = function(comment,index){
+          console.log(index);
+          console.log(comment);
+          //var comment = angular.copy($scope.comment);
+          comment.user = $scope.user;
+          comment.doc = $scope.doc;
+          $scope.indexcomentup = index;
+          $http.post('/api/docs/' + comment.doc.id + '/visible', {
+            'comment': comment
+          })
+              .success(function (data,index) {
+                $scope.comments[$scope.indexcomentup].visiblec = data.visiblec;
+                console.log($scope.comments);
+                //comment = data;
+              })
+              .error(function (data) {
+                console.error("Error posting comment: %o", data);
+              });
+
+          $scope.commentSubmit = function (comment) {
+            console.log(comment);
+            //var comment = comment;
+            comment.user = $scope.user;
+            comment.doc = $scope.doc;
+
+            $http.post('/api/docs/' + comment.doc.id + '/comments', {
+              'comment': comment
+            })
+                .success(function (data) {
+                  data[0].label = 'comment';
+                  $scope.comments.push(data[0]);
+                  $scope.comment.text = '';
+                })
+                .error(function (data) {
+                  console.error("Error posting comment: %o", data);
+                });
+          };
+
+          $scope.activityOrder = function (activity) {
+            var popularity = activity.likes - activity.dislikes;
+
+            return popularity;
+          };
+
+          $scope.addAction = function (activity, action, $event) {
+            if ($scope.user.id !== '') {
+              $http.post('/api/docs/' + $scope.doc.id + '/' + activity.label + 's/' + activity.id + '/' + action)
+                  .success(function (data) {
+                    activity.likes = data.likes;
+                    activity.dislikes = data.dislikes;
+                    activity.flags = data.flags;
+                  }).error(function (data) {
+                    console.error(data);
+                  });
+            } else {
+              createLoginPopup($event);
+            }
+
+          };
+
+          $scope.collapseComments = function (activity) {
+            activity.commentsCollapsed = !activity.commentsCollapsed;
+          };
+
+          $scope.subcommentSubmit = function (activity, subcomment) {
+            subcomment.user = $scope.user;
+
+            $.post('/api/docs/' + $scope.doc.id + '/' + activity.label + 's/' + activity.id + '/comments', {
+              'comment': subcomment
+            })
+                .success(function (data) {
+                  data.comments = [];
+                  data.label = 'comment';
+                  activity.comments.push(data);
+                  subcomment.text = '';
+                  subcomment.user = '';
+                  $scope.$apply();
+                }).error(function (data) {
+                  console.error(data);
+                });
+          };
+        };
+      }])
+    .controller('UserPageController', ['$scope', '$http', '$location',
+      function ($scope, $http, $location) {
+        $scope.user = {};
+        $scope.meta = '';
+        $scope.docs = [];
+        $scope.activities = [];
+        $scope.verified = false;
+
+        $scope.init = function () {
+          $scope.getUser();
+        };
+
+        $scope.getUser = function () {
+          var abs = $location.absUrl();
+          var id = abs.match(/.*\/(\d+)$/);
+          id = id[1];
+
+          $http.get('/api/user/' + id)
+              .success(function (data) {
+                $scope.user = angular.copy(data);
+                $scope.meta = angular.copy(data.user_meta);
+
+                angular.forEach(data.docs, function (doc) {
+                  $scope.docs.push(doc);
+                });
+
+                angular.forEach(data.comments, function (comment) {
+                  comment.label = 'comment';
+                  $scope.activities.push(comment);
+                });
+
+                angular.forEach(data.annotations, function (annotation) {
+                  annotation.label = 'annotation';
+                  $scope.activities.push(annotation);
+                });
+
+                angular.forEach($scope.user.user_meta, function (meta) {
+                  var cont = true;
+
+                  if (meta.meta_key === 'verify' && meta.meta_value === 'verified' && cont) {
+                    $scope.verified = true;
+                    cont = false;
+                  }
+                });
+
+              }).error(function (data) {
+                console.error("Unable to retrieve user: %o", data);
+              });
+        };
+
+        $scope.showVerified = function () {
+          if ($scope.user.docs && $scope.user.docs.length > 0) {
+            return true;
+          }
+
+          return false;
+        };
+
+        $scope.activityOrder = function (activity) {
+          return Date.parse(activity.created_at);
+        };
+
       }
     ])
     .controller('DocumentTocController', ['$scope',

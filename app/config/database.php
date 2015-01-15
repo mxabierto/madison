@@ -65,6 +65,7 @@ return array(
 			'database'  => $creds['database'],
 			'username'  => $creds['username'],
 			'password'  => $creds['password'],
+			'unix_socket' => '/tmp/mysql.sock',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

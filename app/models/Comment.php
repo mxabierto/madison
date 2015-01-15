@@ -107,36 +107,24 @@ class Comment extends Eloquent implements ActivityInterface
         if(isset($comment['id'])) {
             $obj->id = $comment['id'];
         }
-        
+
         $obj->parent_id = $this->id;
-        
+
         $obj->save();
         $obj->load('user');
 
         return $obj;
     }
 
-    public function UpdateComment($comment) {
-        //Log::info($comment);
-        $obj = Comment::where('id', '=', $comment)->first();
-        Log::info(Comment::where('id', '=', $comment)->first());
-        /*$obj->text = $comment['text'];
-        $obj->user_id = $comment['user']['id'];*/
-        //$obj->doc_id = $this->doc_id;
-        //$obj->visiblec=$comment["visiblec"];
-        if($obj["visiblec"]==1)
-           $obj["visiblec"] = 0;
-        else
-            $obj["visiblec"] = 1;
+    public function flipVisibleFlag() {
+      if($this->visiblec == 1)
+        $this->visiblec = 0;
+      else
+        $this->visiblec = 1;
 
-        //$obj->parent_id = $this->id;
+      $this->save();
 
-        $obj->save();
-        $obj->load('user');
-        //$c = Comment::where('id', '=', $comment)->first();
-        //Log::info($c);
-        return $obj ;
-
+      return $this;
     }
 
     /**
