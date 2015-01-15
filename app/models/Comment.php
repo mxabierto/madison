@@ -101,19 +101,31 @@ class Comment extends Eloquent implements ActivityInterface
         $obj = new Comment();
         $obj->text = $comment['text'];
         $obj->user_id = $comment['user']['id'];
+        $obj->visiblec = 1;
         $obj->doc_id = $this->doc_id;
 
         if(isset($comment['id'])) {
             $obj->id = $comment['id'];
         }
-        
+
         $obj->parent_id = $this->id;
-        
+
         $obj->save();
         $obj->load('user');
 
         return $obj;
-    }   
+    }
+
+    public function flipVisibleFlag() {
+      if($this->visiblec == 1)
+        $this->visiblec = 0;
+      else
+        $this->visiblec = 1;
+
+      $this->save();
+
+      return $this;
+    }
 
     /**
     *   Construct link for Comment
