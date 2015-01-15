@@ -14,7 +14,7 @@
   <div id="participate-activity" class="participate-activity">
   	<h3>{{ trans('messages.comments') }}</h3>
   	<div class="activity-thread">
-      <div id="@{{ 'comment_' + comment.id }}" class="activity-item" ng-repeat="comment in comments | orderBy:activityOrder:true track by $id(comment)" ng-class="comment.label" ng-show="admin || comment.visiblec===1">
+      <div id="@{{ 'comment_' + comment.id }}" class="activity-item" ng-repeat="comment in comments track by $id(comment)" ng-class="comment.label" ng-show="admin || comment.visiblec===1">
         <div comment-item activity-item-link="@{{ comment.link }}"></div>
       </div>
   	</div>
