@@ -439,24 +439,28 @@ angular.module('madisonApp.controllers', [])
 
         };
 
-        $scope.visibleall = function(comment,index){
+        $scope.visibleall = function(comment,index) {
           console.log(index);
           console.log(comment);
-          //var comment = angular.copy($scope.comment);
           comment.user = $scope.user;
           comment.doc = $scope.doc;
           $scope.indexcomentup = index;
+          if (comment.comments){
+            $scope.commentsb = comment.comments;
+            comment.comments = null;
+          }
           $http.post('/api/docs/' + comment.doc.id + '/visible', {
-            'comment': comment
+            'comment': comment.id
           })
-              .success(function (data,index) {
-                $scope.comments[$scope.indexcomentup].visiblec = data.visiblec;
-                console.log($scope.comments);
-                //comment = data;
-              })
-              .error(function (data) {
-                console.error("Error posting comment: %o", data);
-              });
+          .success(function (data, index) {
+            $scope.comments[$scope.indexcomentup] = data;
+            if($scope.commentsb)
+              $scope.comments[$scope.indexcomentup].comments=$scope.commentsb;
+          })
+          .error(function (data) {
+            console.error("Error posting comment: %o", data);
+          });
+        };
 
           $scope.collapseComments = function (activity) {
             activity.commentsCollapsed = !activity.commentsCollapsed;
@@ -476,8 +480,8 @@ angular.module('madisonApp.controllers', [])
                 }).error(function (data) {
                   console.error(data);
                 });
-          };
         };
+
       }])
     .controller('CommentController', ['$scope', '$sce', '$http', 'annotationService', 'createLoginPopup', 'growl', '$location', '$filter', '$timeout',
       function ($scope, $sce, $http, annotationService, createLoginPopup, growl, $location, $filter, $timeout) {
