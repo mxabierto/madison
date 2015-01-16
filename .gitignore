@@ -6,6 +6,7 @@ public/private/*
 public/bower_components/
 app/config/creds.yml
 app/config/oauth_creds.yml
+app/config/site.yml
 app/config/smtp.yml
 app/config/remote.php
 app/config/socials.php
