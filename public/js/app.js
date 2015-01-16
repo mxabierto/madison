@@ -41,6 +41,18 @@ app.config(['growlProvider', '$httpProvider', '$routeProvider', function (growlP
     });
 }]);
 
+// Add a prefix to all http calls
+app.config(function ($httpProvider) {
+  $httpProvider.interceptors.push(function ($q) {
+    return {
+      request: function (request) {
+        request.url = "/participa/" + request.url;
+        return request || $q.when(request);
+      }
+    };
+  });
+});
+
 app.config(function ($locationProvider) {
   $locationProvider.html5Mode(true);
 });
