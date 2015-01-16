@@ -1,5 +1,6 @@
 <?php
   $activeGroupId = Session::get('activeGroupId');
+  $baseurl = Config::get('site.baseurl');
 ?>
 
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -12,7 +13,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="/">
-        <img src="/svg/gob-mx-logo.svg" width="75" height="23" alt="gob.mx">
+        <img src="{{$baseurl}}/svg/gob-mx-logo.svg" width="75" height="23" alt="gob.mx">
       </a>
     </div>
     <div class="collapse navbar-collapse" id="navbarMainCollapse">
