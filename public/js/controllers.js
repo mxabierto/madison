@@ -580,26 +580,33 @@ angular.module('madisonApp.controllers', [])
           return false;
         };
 
-        $scope.visibleall = function(comment,index) {
-          console.log(index);
-          console.log(comment);
-          comment.user = $scope.user;
-          comment.doc = $scope.doc;
-          $scope.indexcomentup = index;
-          if (comment.comments){
+        $scope.visibleall=function(comment,index){
+          comment.user=$scope.user;
+          comment.doc=$scope.doc;
+          $scope.indexcomentup=index;
+          if(comment.comments) {
             $scope.commentsb = comment.comments;
             comment.comments = null;
           }
-          $http.post('/api/docs/' + comment.doc.id + '/visible', {
-            'comment': comment.id
-          })
-              .success(function (data, index) {
-                $scope.comments[$scope.indexcomentup] = data;
-                if($scope.commentsb)
+          $http.post("/api/docs/"+comment.doc.id+"/visible",{comment:comment.id})
+              .success(function(data){
+                var i=0;
+                if(data.parent_id>0){
+                  for(var x=0;x<$scope.comments.length;x++)
+                    if(data.parent_id === $scope.comments[x].id) {
+                      i = x;
+                    }
+                  console.log(data);
+                  $scope.comments[i].comments[$scope.indexcomentup]=data;
+                }
+                else
+                  $scope.comments[$scope.indexcomentup]=data;
+                if($scope.commentsb && data.parent_id===null)
                   $scope.comments[$scope.indexcomentup].comments=$scope.commentsb;
+                console.log($scope.comments);
               })
-              .error(function (data) {
-                console.error("Error posting comment: %o", data);
+              .error(function(data){
+                console.error("Error posting comment: %o",data);
               });
         };
 
