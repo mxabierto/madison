@@ -49,6 +49,7 @@ module.exports = function (grunt) {
           'public/build/app.js': [
             'public/vendor/jquery/jquery-1.10.2.js',
             'public/vendor/select2/select2.js',
+            'public/bower_components/select2/select2_locale_es.js',
             'public/vendor/underscore.min.js',
             'public/bower_components/google-diff-match-patch-js/diff_match_patch.js',
             'public/bower_components/angular/angular.min.js',
@@ -79,6 +80,7 @@ module.exports = function (grunt) {
             'public/vendor/datetimepicker/datetimepicker.js',
             'public/bower_components/moment/min/moment.min.js',
             'public/bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js',
+            'public/bower_components/moment/locale/es.js',
 
             //Annotator JS
             'public/vendor/annotator/annotator-full.min.js',
