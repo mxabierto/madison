@@ -431,7 +431,7 @@ angular.module('madisonApp.dashboardControllers', [])
 
       $scope.setSelectOptions = function () {
         $scope.categoryOptions = {
-          placeholder: "Add document categories",
+          placeholder: "Agrega categorías de documentos",
           multiple: true,
           simple_tags: true,
           tokenSeparators: [","],
@@ -453,7 +453,7 @@ angular.module('madisonApp.dashboardControllers', [])
 
         /*jslint unparam: true*/
         $scope.statusOptions = {
-          placeholder: "Select Document Status",
+          placeholder: "Selecciona estado del Documento",
           ajax: {
             url: "/api/docs/statuses",
             dataType: 'json',
@@ -513,7 +513,7 @@ angular.module('madisonApp.dashboardControllers', [])
                 
                 switch(sponsor.sponsorType) {
                     case 'group':
-                        text = "[Group] " + sponsor.name;
+                        text = "[Grupo] " + sponsor.name;
                         break;
                     case 'user':
                         text = sponsor.fname + " " + sponsor.lname + " - " + sponsor.email;
@@ -699,7 +699,7 @@ angular.module('madisonApp.dashboardControllers', [])
 
             switch(data.sponsorType.toLowerCase()) {
                 case 'group':
-                    text = "[Group] " + data.name;
+                    text = "[Grupo] " + data.name;
                     break;
                 case 'user':
                     text = data.fname + " " + data.lname + " - " + data.email;
