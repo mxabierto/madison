@@ -51,7 +51,7 @@
 								<label for="slug" class="col-sm-2 control-label">Slug: </label>
 								<div class="col-sm-10">
 									<input type="text" name="slug" id="slug" value="{{{ $doc->slug }}}" ng-model="doc.slug" class="form-control"/>
-									<p class="help-block">a-z (lowercase), 0-9, and "-" only.</p>
+									<p class="help-block">{{ trans('messages.slughelpblock') }}</p>
 								</div>
 							</div>
 							<div class="form-group">

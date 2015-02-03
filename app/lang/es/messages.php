@@ -136,8 +136,8 @@ return array(
 'anncommsuppopp' => 'Anota, Comenta, Apoya u Oponte!',
 'publicview' => 'Vista Pública',
 'docinfo' => 'Información del Documento',
-'cagegories' => 'Categorias',
-'introtext' => 'Intro Text',
+'categories' => 'Categorias',
+'introtext' => 'Texto Introductorio',
 'existingdates' => 'Fechas Existentes',
 'update' => 'Actualizar',
 'shorturl' => 'Url corta',
@@ -168,4 +168,8 @@ return array(
 'sendpassreset' => 'Enviar correo para restablecer contraseña',
 'resendconfemail' => 'Reenviar correo de confirmación',
 'resendmyconfemail' => 'Reenviar mi correo de confirmación',
+'documentcontent' => 'Contenido del Documento',
+'documentinfo' => 'Información del Documento',
+'embeddoc' => 'Embeber Documento',
+'slughelpblock' => 'únicamente a-z (minúsculas), 0-9, y "-" '
 );

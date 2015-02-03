@@ -16,7 +16,7 @@
       
       {{ Form::open(array('url' => '/documents/edit/' . $doc->id, 'method' => 'put', 'id'=>'doc_content_form', 'style' => 'style="padding: 0 50px; border: 1px dotted lightgray;"')) }}
         <tabset>
-          <tab heading="Document Content">
+          <tab heading="{{ trans('messages.documentcontent') }}">
             <input type="hidden" name="content_id" value="{{{ $contentItem->id }}}"/>
             <input type="hidden" name="content_id" value="{{{ $contentItem->id }}}" ng-model="doc.content.id"/>
             <div class="doc_item_content">
@@ -39,7 +39,7 @@
             <div id="save_message" class="alert hidden"></div>
             {{ Form::token() . Form::close() }}
           </tab>
-          <tab heading="Document Information">
+          <tab heading="{{ trans('messages.documentinfo') }}">
             <div class="row">
               <div class="col-md-8">
                 <form class="mt">
@@ -50,7 +50,7 @@
                   <div class="form-group">
                     <label for="slug">Slug: </label>
                     <input type="text" name="slug" id="slug" value="{{{ $doc->slug }}}" ng-model="doc.slug" class="form-control"/>
-                    <small class="help-block">a-z (lowercase), 0-9, and "-" only.</small>
+                    <small class="help-block">{{ trans('messages.slughelpblock') }}</small>
                   </div>
                   <div class="form-group">
                     <label for="short-url">{{ trans('messages.shorturl') }}:</label>
@@ -118,7 +118,7 @@
               </div>
             </div>
           </tab>
-          <tab heading="Embed Document">
+          <tab heading="{{ trans('messages.embeddoc') }}">
             <div class="mt">
               <p>{{ trans('messages.pastetoembed') }}</p>
               <textarea class="form-control" rows="5" cols="80"/>{{ $doc->getEmbedCode() }}</textarea>
