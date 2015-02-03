@@ -128,7 +128,7 @@ class Doc extends Eloquent{
 	static public function createEmptyDocument(array $params)
 	{
 		$defaults = array(
-			'content' => "New Document Content",
+			'content' => "Nuevo Contenido del Documento",
 			'sponsor' => null,
 			'sponsorType' => null
 		);
@@ -158,7 +158,7 @@ class Doc extends Eloquent{
 			
 			$template = new DocContent();
 			$template->doc_id = $document->id;
-			$template->content = "New Document Content";
+			$template->content = "Nuevo Contenido del Documento";
 			$template->save();
 				
 			$document->init_section = $template->id;

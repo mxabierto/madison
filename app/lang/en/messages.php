@@ -167,4 +167,11 @@ return array(
 'sendpassreset' => 'Send Password Reset',
 'resendconfemail' => 'Resend confirmation email',
 'resendmyconfemail' => 'Resend my confirmation email',
+'documentcontent' => 'Document Content',
+'documentinfo' => 'Document Information',
+'embeddoc' => 'Embed Document',
+'slughelpblock' => 'a-z (lowercase), 0-9, and "-" only.',
+'savedoc' => 'Save Doc',
+'textintrohelpblock' => 'Markdown Friendly.  Auto-saves 3 seconds after you\'re done editing.',
+'datelabel' => 'Date Label'
 );
