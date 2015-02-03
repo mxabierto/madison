@@ -171,5 +171,8 @@ return array(
 'documentcontent' => 'Contenido del Documento',
 'documentinfo' => 'Información del Documento',
 'embeddoc' => 'Embeber Documento',
-'slughelpblock' => 'únicamente a-z (minúsculas), 0-9, y "-" '
+'slughelpblock' => 'únicamente a-z (minúsculas), 0-9, y "-" ',
+'savedoc' => 'Guardar Documento',
+'textintrohelpblock' => 'Markdown Friendly. Guarda automáticamente 3 segundos después de que hayas terminado de editar.',
+'datelabel' => 'Etiqueta con la Fecha'
 );

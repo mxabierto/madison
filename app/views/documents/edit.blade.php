@@ -34,7 +34,7 @@
             </div>
             {{ Form::hidden('doc_id', $doc->id) }}
             <div class="form_actions">
-              {{ Form::submit('Save Doc', array('name' => 'submit', 'id' => 'submit', 'class'=>'btn btn-primary')) }}
+              {{ Form::submit( Lang::get('messages.savedoc'), array('name' => 'submit', 'id' => 'submit', 'class'=>'btn btn-primary')) }}
             </div>
             <div id="save_message" class="alert hidden"></div>
             {{ Form::token() . Form::close() }}
@@ -78,7 +78,7 @@
                   <div class="form-group">
                     <label for="intro-text">{{ trans('messages.introtext') }}:</label>
                     <textarea class="form-control" rows="10" ng-model="introtext" ng-change="updateIntroText(introtext)"></textarea>
-                    <small class="help-block">Markdown Friendly.  Auto-saves 3 seconds after you're done editing.</small>
+                    <small class="help-block">{{ trans('messages.textintrohelpblock') }}</small>
                   </div>
                 </form>
               </div>
@@ -109,7 +109,7 @@
                   <form>
                     <div class="form-group">
                       <div class="new-date">
-                        <input name="newdate-label" class="form-control" ng-model="newdate.label" type="text" placeholder="Date Label" />
+                        <input name="newdate-label" class="form-control" ng-model="newdate.label" type="text" placeholder="{{ trans('messages.datelabel') }}" />
                         <datetimepicker ng-model="newdate.date" on-set-time="createDate"></datetimepicker>
                       </div>
                     </div>
