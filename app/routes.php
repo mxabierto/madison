@@ -1,5 +1,9 @@
 <?php
 
+Route::group(array('prefix' => 'participa'), function()
+{
+
+
 /**
 *   Include all partials in app/routes/
 */
@@ -194,3 +198,7 @@ Route::get('logout', function(){
 	Session::flush(); //delete the session
 	return Redirect::to('/')->with('message', 'Has salido exitosamente.');
 });
+
+
+});
+
