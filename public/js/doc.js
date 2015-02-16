@@ -158,7 +158,7 @@ $(document).ready(function () {
       'uri': window.location.pathname,
       'comments': []
     },
-    prefix: '/api/docs/' + doc.id + '/annotations',
+    prefix: '/participa/api/docs/' + doc.id + '/annotations',
     urls: {
       create: '',
       read: '/:id',
