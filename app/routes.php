@@ -45,7 +45,7 @@ Route::get('modals/annotation_thanks', array(
 Route::post('modals/annotation_thanks', 'ModalController@seenAnnotationThanksModal');
 
 
-Route::get('groups', 'GroupsController@getIndex');
+Route::get('groups', ['as' => 'groups', 'uses' => 'GroupsController@getIndex']);
 Route::put('groups/edit', 'GroupsController@putEdit');
 Route::get('groups/edit/{groupId?}', 'GroupsController@getEdit');
 Route::get('groups/members/{groupId}', 'GroupsController@getMembers');
@@ -56,7 +56,7 @@ Route::put('groups/invite/{groupId}', 'GroupsController@processMemberInvite');
 Route::get('groups/active/{groupId}', 'GroupsController@setActiveGroup');
 
 //Static Pages
-Route::get('about', 'PageController@getAbout');
+Route::get('about', ['as' => 'about', 'uses' => 'PageController@getAbout']);
 Route::get('faq', 'PageController@faq');
 Route::get('privacy-policy', 'PageController@privacyPolicy');
 Route::get('terms-and-conditions', 'PageController@terms');
@@ -69,7 +69,7 @@ Route::get('docs/{slug}', 'DocController@index');
 Route::get('docs/embed/{slug}', 'DocController@getEmbedded');
 Route::get('docs/{slug}/feed', 'DocController@getFeed');
 Route::get('documents/search', 'DocumentsController@getSearch');
-Route::get('documents', 'DocumentsController@listDocuments');
+Route::get('documents', ['as' => 'documents', 'uses' => 'DocumentsController@listDocuments']);
 Route::get('documents/view/{documentId}', 'DocumentsController@viewDocument');
 Route::get('documents/edit/{documentId}', 'DocumentsController@editDocument');
 Route::put('documents/edit/{documentId}', 'DocumentsController@saveDocumentEdits');
@@ -81,10 +81,12 @@ Route::post('/documents/sponsor/request', 'SponsorController@postRequest');
 
 //User Routes
 Route::get('user/{user}', 'UserController@getIndex');
-Route::get('user/edit/{user}', 'UserController@getEdit');
+Route::get('user/edit/{user}', ['as' => 'editUser', 'uses' => 'UserController@getEdit']);
 Route::put('user/edit/{user}', 'UserController@putEdit');
-Route::get('user/edit/{user}/notifications', 'UserController@editNotifications');
+Route::get('user/edit/{user}/notifications', ['as' => 'editNotifications', 'uses' => 'UserController@editNotifications']);
 Route::controller('user', 'UserController');
+Route::get('user/login', ['as' => 'user/login', 'uses' => 'UserController@getLogin']);
+Route::get('user/signup', ['as' => 'user/signup', 'uses' => 'UserController@getSignup']);
 
 //Password Routes
 Route::get( 'password/remind', 'RemindersController@getRemind');
@@ -101,6 +103,7 @@ Route::get('annotation/{annotation}', 'AnnotationController@getIndex');
 
 //Dashboard Routes
 Route::controller('dashboard', 'DashboardController');
+Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@getIndex']);
 
 //Api Routes
 	// Document API Routes
@@ -193,11 +196,11 @@ Route::controller('dashboard', 'DashboardController');
 
 
 //Logout Route
-Route::get('logout', function(){
+Route::get('logout', ['as' => 'logout', function(){
 	Auth::logout();	//Logout the current user
 	Session::flush(); //delete the session
-	return Redirect::to('/')->with('message', 'Has salido exitosamente.');
-});
+	return Redirect::route('home')->with('message', 'Has salido exitosamente.');
+}]);
 
 
 });

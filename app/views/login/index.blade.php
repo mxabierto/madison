@@ -5,7 +5,7 @@
 			<div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3">
 				<div class="content">
 					<h1>{{ trans('messages.login') }}</h1>
-					{{ Form::open(array('url'=>'user/login', 'method'=>'post')) }}
+					{{ Form::open(array('url'=>URL::route('user/login'), 'method'=>'post')) }}
 					<!-- Email -->
 					<div class="form-group">
 						{{ Form::label('email', 'Email') . Form::text('email', Input::old('email'), array('placeholder'=>'Email', 'class'=>'form-control')) }}
@@ -29,7 +29,7 @@
 							<a class="forgot-password" href="{{ URL::to('verification/remind') }}">{{ trans('messages.resend') }}</a>
 						</li>
 						<li>
-							<a class="forgot-password" href="{{ URL::to('user/signup') }}" target="_self">{{ trans('messages.signup') }}</a>
+							<a class="forgot-password" href="{{ URL::route('user/signup') }}" target="_self">{{ trans('messages.signup') }}</a>
 						</li>
 					</ul>
 			
