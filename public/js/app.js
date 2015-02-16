@@ -24,6 +24,23 @@ var imports = [
 
 var app = angular.module('madisonApp', imports);
 
+// Add a prefix to all http calls
+app.config(function ($httpProvider) {
+  $httpProvider.interceptors.push(function ($q) {
+    return {
+      request: function (request) {
+        // Except for filepaths
+        if (request.url.indexOf("templates/") < 0 &&
+            request.url.indexOf("tour/") < 0) {
+          request.url = "/participa/" + request.url;
+          request.url = request.url.replace(/\/\//g, "/");
+        }
+        return request || $q.when(request);
+      }
+    };
+  });
+});
+
 app.config(['growlProvider', '$httpProvider', '$routeProvider', function (growlProvider, $httpProvider, $routeProvider) {
     //Set up growl notifications
   growlProvider.messagesKey("messages");
