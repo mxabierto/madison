@@ -446,9 +446,9 @@ class UserController extends BaseController{
 
 			Auth::login($user);
 
-			return Redirect::to('/')->with('success_message', 'Tu email ha sido verificado y ahora estás conectado.  Bienvenida/o ' . $user->fname);
+			return Redirect::route('home')->with('success_message', 'Tu email ha sido verificado y ahora estás conectado.  Bienvenida/o ' . $user->fname);
 		}else{
-			return Redirect::to('user/login')->with('error', 'El enlace de verificación no es válido.');
+			return Redirect::route('user/login')->with('error', 'El enlace de verificación no es válido.');
 		}
 
 	}
@@ -631,7 +631,7 @@ class UserController extends BaseController{
 				if(isset($existing_user)){
 					Auth::login($existing_user);
 
-					return Redirect::to('/')->with('success_message', 'Conectado con dirección de email ' . $existing_user->email);
+					return Redirect::route('home')->with('success_message', 'Conectado con dirección de email ' . $existing_user->email);
 				}
 			}
 
@@ -674,6 +674,6 @@ class UserController extends BaseController{
 			$message = 'Benvenido de nuevo, ' . $user->fname;
 		}
 
-		return Redirect::to('/')->with('success_message', $message);
+		return Redirect::route('home')->with('success_message', $message);
 	}
 }
