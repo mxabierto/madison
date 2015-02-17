@@ -14,7 +14,7 @@
 
       <a href="/docs/{{ $doc->slug }}" style="float:right" class="public-link" target="_self"><span class="glyphicon glyphicon-eye-open"></span> {{ trans('messages.publicview') }}</a>
       
-      {{ Form::open(array('url' => '/documents/edit/' . $doc->id, 'method' => 'put', 'id'=>'doc_content_form', 'style' => 'style="padding: 0 50px; border: 1px dotted lightgray;"')) }}
+      {{ Form::open(array('url' => URL::route('saveDocumentEdits', $doc->id), 'method' => 'put', 'id'=>'doc_content_form', 'style' => 'style="padding: 0 50px; border: 1px dotted lightgray;"')) }}
         <tabset>
           <tab heading="Document Content">
             <input type="hidden" name="content_id" value="{{{ $contentItem->id }}}"/>

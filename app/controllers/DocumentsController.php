@@ -36,14 +36,14 @@ class DocumentsController extends Controller
 	public function saveDocumentEdits($documentId)
 	{
 		if(!Auth::check()) {
-			return Redirect::to('documents')->with('error', 'You must be logged in');
+			return Redirect::route('documents')->with('error', 'You must be logged in');
 		}
 		
 		$content = Input::get('content');
 		$contentId = Input::get('content_id');
 		
 		if(empty($content)) {
-			return Redirect::to('documents')->with('error', "You must provide content to save");
+			return Redirect::route('documents')->with('error', "You must provide content to save");
 		}
 		
 		if(!empty($contentId)) {
@@ -53,17 +53,17 @@ class DocumentsController extends Controller
 		}
 		
 		if(!$docContent instanceof DocContent) {
-			return Redirect::to('documents')->with('error', 'Could not locate document to save');
+			return Redirect::route('documents')->with('error', 'Could not locate document to save');
 		}
 		
 		$document = Doc::find($documentId);
 		
 		if(!$document instanceof Doc) {
-			return Redirect::to('documents')->with('error', "Could not locate the document");
+			return Redirect::route('documents')->with('error', "Could not locate the document");
 		}
 		
 		if(!$document->canUserEdit(Auth::user())) {
-			return Redirect::to('documents')->with('error', 'You are not authorized to save that document.');
+			return Redirect::route('documents')->with('error', 'You are not authorized to save that document.');
 		}
 		
 		$docContent->doc_id = $documentId;
@@ -74,7 +74,7 @@ class DocumentsController extends Controller
 				$docContent->save();
 			});
 		} catch(\Exception $e) {
-			return Redirect::to('documents')->with('error', "There was an error saving the document: {$e->getMessage()}");
+			return Redirect::route('documents')->with('error', "There was an error saving the document: {$e->getMessage()}");
 		}
 
 		//Fire document edited event for admin notifications
@@ -84,26 +84,26 @@ class DocumentsController extends Controller
 		try {
 			$document->indexContent($docContent);
 		} catch(\Exception $e) {
-			return Redirect::to('documents')->with('error', "Document saved, but there was an error with Elasticsearch: {$e->getMessage()}");
+			return Redirect::route('documents')->with('error', "Document saved, but there was an error with Elasticsearch: {$e->getMessage()}");
 		}
 
-		return Redirect::to('documents')->with('success_message', 'Document Saved Successfully');
+		return Redirect::route('documents')->with('success_message', 'Document Saved Successfully');
 	}
 	
 	public function editDocument($documentId)
 	{
 		if(!Auth::check()) {
-			return Redirect::to('/')->with('error', 'You must be logged in');
+			return Redirect::route('home')->with('error', 'You must be logged in');
 		}
 		
 		$doc = Doc::find($documentId);
 		
 		if(is_null($doc)) {
-			return Redirect::to('documents')->with('error', 'Document not found.');
+			return Redirect::route('documents')->with('error', 'Document not found.');
 		}
 		
 		if(!$doc->canUserEdit(Auth::user())) {
-			return Redirect::to('documents')->with('error', 'You are not authorized to view that document.');
+			return Redirect::route('documents')->with('error', 'You are not authorized to view that document.');
 		}
 		
 		return View::make('documents.edit', array(

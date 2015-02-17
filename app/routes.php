@@ -72,7 +72,7 @@ Route::get('documents/search', 'DocumentsController@getSearch');
 Route::get('documents', ['as' => 'documents', 'uses' => 'DocumentsController@listDocuments']);
 Route::get('documents/view/{documentId}', 'DocumentsController@viewDocument');
 Route::get('documents/edit/{documentId}', 'DocumentsController@editDocument');
-Route::put('documents/edit/{documentId}', 'DocumentsController@saveDocumentEdits');
+Route::put('documents/edit/{documentId}', ['as' => 'saveDocumentEdits', 'uses' => 'DocumentsController@saveDocumentEdits']);
 Route::post('documents/create', 'DocumentsController@createDocument');
 Route::post('documents/save', 'DocumentsController@saveDocument');
 Route::delete('/documents/delete/{slug}', 'DocumentsController@deleteDocument');
