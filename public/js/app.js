@@ -29,9 +29,11 @@ app.config(function ($httpProvider) {
   $httpProvider.interceptors.push(function ($q) {
     return {
       request: function (request) {
-        // Except for filepaths
-        if (request.url.indexOf("templates/") < 0 &&
-            request.url.indexOf("tour/") < 0) {
+        if (request.url.indexOf("template/") > -1) {
+          // e.g. the ones included by angular-bootstrap
+          // angular.module("template/tabs/tabset.html",[])
+        } else if (request.url.indexOf("templates/") < 0 &&
+                   request.url.indexOf("tour/") < 0) {
           request.url = "/participa/" + request.url;
           request.url = request.url.replace(/\/\//g, "/");
         } else {
