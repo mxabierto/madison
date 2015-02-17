@@ -17,7 +17,7 @@
 					</div>
 					<!-- Email -->
 					<div class="form-group">
-						{{ Form::label('email', 'Email') . Form::text('email', Input::old('email'), array('placeholder'=>'Email', 'class'=>'form-control')) }}
+						{{ Form::label('email', Lang::get('messages.email')) . Form::text('email', Input::old('email'), array('placeholder'=>Lang::get('messages.email'), 'class'=>'form-control')) }}
 					</div>
 					<!-- Password -->
 					<div class="form-group">

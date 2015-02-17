@@ -31,9 +31,9 @@ angular.module('madisonApp.controllers', [])
       //Set up Angular Tour
       $scope.step_messages = {
         step_0: '¡Bienvenido! Participa de manera dinámica y abierta en la mejora de políticas públicas de nuestro país.',
-        step_1: 'Comienza aquí:  Elige un documento.  Puedes navegar o filtrar por título, categoría, autor o estatus. ¡Elige uno que te interese!',
-        step_2: '¡Adéntrate en Participa.gob.mx! Explora el documento o utiliza la tabla de contenido para llegar a lo bueno.',
-        step_3: 'Comparte ideas, comentarios o preguntas con el autor y otros usuarios en el Foro.',
+        step_1: 'Comienza aquí:  elige un documento.  Puedes navegar o filtrar por título, categoría, autor o estatus. ¡Elige uno que te interese!',
+        step_2: '¡Adéntrate en gob.mx/participa! Explora el documento o utiliza la tabla de contenido para encontrar lo que te interesa.',
+        step_3: 'Comparte ideas, comentarios o preguntas con el autor y otros usuarios en la pestaña de Foro.',
         step_4: 'Sugiere cambios específicos al texto. Sólo selecciona un fragmento del documento y agrega tus sugerencias.'
       };
 

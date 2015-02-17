@@ -6,7 +6,7 @@
         gob.mx/participa es una propuesta del Gobierno de la República para fomentar la participación ciudadana por medios digitales, como vía para mejorar las políticas públicas, hacerlas más efectivas y lograr un mayor impacto en la vida diaria de las personas.
       </p>
       <p>
-        La versión alpha de participa.gob.mx cuenta con 3 herramientas: encuesta, foro y co-edición que permitirán a cualquier ciudadano con acceso a internet participar de manera dinámica y abierta.
+        La versión alfa de gob.mx/participa cuenta con 3 herramientas: encuesta, foro y co-edición que permitirán a cualquier ciudadano con acceso a internet participar de manera dinámica y abierta.
       </p>
       <p>
         El modelo está basado en las mejores prácticas a nivel internacional, con el objetivo de disminuir las barreras de entrada a la consulta, participación y colaboración ciudadana; al tiempo que se generan nuevas oportunidades para integrar más voces al proceso de política pública y se construyen comunidades alrededor de temas de interés público.
