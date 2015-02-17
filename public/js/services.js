@@ -70,7 +70,7 @@ angular.module('madisonApp.services', [])
           event.stopPropagation();
           event.preventDefault();
 
-          $.get('/api/user/login/', {}, function (data) {
+          $.get('/participa/api/user/login/', {}, function (data) {
             data = $(data);
 
             ajaxify_form(data.find('form'), function () {
@@ -87,7 +87,7 @@ angular.module('madisonApp.services', [])
           event.stopPropagation();
           event.preventDefault();
 
-          $.get('/api/user/signup/', {}, function (data) {
+          $.get('/participa/api/user/signup/', {}, function (data) {
             data = $(data);
 
             ajaxify_form(data.find('form'), function (result) {
