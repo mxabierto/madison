@@ -28,7 +28,7 @@
 		@include('layouts.socials')
 		@include('layouts.assets')
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-    <script src="/bower_components/angular-i18n/angular-locale_es-mx.js"></script>
+    <script src="/participa-assets/bower_components/angular-i18n/angular-locale_es-mx.js"></script>
 	</head>
 	<body>
     <div class="alert alert-info">Ésta es una plataforma de prueba. La información en este sitio no refleja una postura o información oficial.</div>

@@ -34,6 +34,9 @@ app.config(function ($httpProvider) {
             request.url.indexOf("tour/") < 0) {
           request.url = "/participa/" + request.url;
           request.url = request.url.replace(/\/\//g, "/");
+        } else {
+          request.url = "/participa-assets/" + request.url;
+          request.url = request.url.replace(/\/\//g, "/");
         }
         return request || $q.when(request);
       }
