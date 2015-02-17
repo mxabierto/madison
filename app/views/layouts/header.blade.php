@@ -12,7 +12,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="{{ URL::route('home') }}">
-        <img src="/svg/gob-mx-logo.svg" width="75" height="23" alt="gob.mx">
+        <img src="/participa-assets/svg/gob-mx-logo.svg" width="75" height="23" alt="gob.mx">
       </a>
     </div>
     <div class="collapse navbar-collapse" id="navbarMainCollapse">
