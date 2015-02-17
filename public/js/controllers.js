@@ -631,7 +631,7 @@ angular.module('madisonApp.controllers', [])
       $scope.subcommentSubmit = function (activity, subcomment) {
         subcomment.user = $scope.user;
 
-        $.post('/api/docs/' + $scope.doc.id + '/' + activity.label + 's/' + activity.id + '/comments', {
+        $.post('/participa/api/docs/' + $scope.doc.id + '/' + activity.label + 's/' + activity.id + '/comments', {
           'comment': subcomment
         })
           .success(function (data) {
