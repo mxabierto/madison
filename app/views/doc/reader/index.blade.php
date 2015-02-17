@@ -25,7 +25,7 @@
   $.showAnnotationThanks = false;
   @endif
 </script>
-{{ HTML::script('js/doc.js') }}
+<script src="/participa-assets/js/doc.js"></script>
 
 <div class="modal fade" id="annotationThanks" tabindex="-1" role="dialog" aria-labelledby="annotationThanks" aria-hidden="true">
   <div class="modal-dialog modal-lg">
@@ -70,7 +70,7 @@
         <ul class="nav nav-tabs" role="tablist" tourtip="@{{ step_messages.step_3 }}" tourtip-step="3" tourtip-next-label="Siguiente">
           <li ng-class="{'active':secondtab == false}"><a href="#tab-activity" target="_self" role="tab" data-toggle="tab">{{ trans('messages.bill') }}</a></li>
           <li ng-class="{'active':secondtab == true}"><a href="#tab-discussion" target="_self" role="tab" data-toggle="tab">{{ trans('messages.discussion') }}</a></li>
-          <a href="{{ $doc->slug }}/feed" class="rss-link" target="_self"><img src="/img/rss-fade.png" class="rss-icon" alt="RSS Icon"></a>
+          <a href="{{ $doc->slug }}/feed" class="rss-link" target="_self"><img src="/participa-assets/img/rss-fade.png" class="rss-icon" alt="RSS Icon"></a>
         </ul>
 
         <div class="tab-content">
@@ -100,7 +100,7 @@
               <li>{{ trans('messages.signupnaddvoice') }}</li>
               <li>{{ trans('messages.anncommsuppopp') }}</li>
             </ol>
-            <img src="/img/como-comentar.gif" class="how-to-annotate-img img-responsive" />
+            <img src="/participa-assets/img/como-comentar.gif" class="how-to-annotate-img img-responsive" />
           </div>
           
           <div class="sidebar-unit" ng-controller="DocumentTocController" ng-show="headings.length > 0">

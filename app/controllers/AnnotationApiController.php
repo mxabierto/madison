@@ -117,7 +117,7 @@ class AnnotationApiController extends ApiController{
 
 		Event::fire(MadisonEvent::DOC_ANNOTATED, $annotation);
 
-		return Redirect::to('/api/docs/' . $doc . '/annotations/' . $id, 303);
+		return Redirect::route('getAnnotation', [$doc, $id, 303]);
 	}
 
 	public function postSeen($docId, $annotationId) {

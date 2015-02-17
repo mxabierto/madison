@@ -289,7 +289,7 @@ $.extend(Annotator.Plugin.Madison.prototype, new Annotator.Plugin(), {
     };
 
     //POST request to add user's comment
-    $.post('/api/docs/' + doc.id + '/annotations/' + annotation.id + '/comments', {
+    $.post('/participa/api/docs/' + doc.id + '/annotations/' + annotation.id + '/comments', {
       comment: comment
     }, function () {
       annotation.comments.push(comment);
@@ -298,7 +298,7 @@ $.extend(Annotator.Plugin.Madison.prototype, new Annotator.Plugin(), {
     }.bind(this));
   },
   addLike: function (annotation, element) {
-    $.post('/api/docs/' + doc.id + '/annotations/' + annotation.id + '/likes', function (data) {
+    $.post('/participa/api/docs/' + doc.id + '/annotations/' + annotation.id + '/likes', function (data) {
       element = $(element);
       element.children('.action-count').text(data.likes);
       element.siblings('.glyphicon').removeClass('selected');
@@ -320,7 +320,7 @@ $.extend(Annotator.Plugin.Madison.prototype, new Annotator.Plugin(), {
     });
   },
   addDislike: function (annotation, element) {
-    $.post('/api/docs/' + doc.id + '/annotations/' + annotation.id + '/dislikes', function (data) {
+    $.post('/participa/api/docs/' + doc.id + '/annotations/' + annotation.id + '/dislikes', function (data) {
       element = $(element);
       element.children('.action-count').text(data.dislikes);
       element.siblings('.glyphicon').removeClass('selected');
@@ -342,7 +342,7 @@ $.extend(Annotator.Plugin.Madison.prototype, new Annotator.Plugin(), {
     });
   },
   addFlag: function (annotation, element) {
-    $.post('/api/docs/' + doc.id + '/annotations/' + annotation.id + '/flags', function (data) {
+    $.post('/participa/api/docs/' + doc.id + '/annotations/' + annotation.id + '/flags', function (data) {
       element = $(element);
       element.children('.action-count').text(data.flags);
       element.siblings('.glyphicon').removeClass('selected');

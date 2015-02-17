@@ -7,7 +7,7 @@
 --}}
 <div class="row">
 	<div class="col-md-10 col-md-offset-1">
-		{{ Form::open(array('url'=>'api/user/signup', 'method'=>'post')) }}
+		{{ Form::open(array('url'=>URL::route('api/user/signup'), 'method'=>'post')) }}
 		<div class="errors"></div>
 		<!-- First Name -->
 		<div class="form-group">
@@ -34,20 +34,20 @@
 	<div class="col-md-12 social-login-wrapper">
 	  <div class="row">
 	    <div class="col-md-12">
-	      <a href="/user/facebook-login" class="btn social-login-btn facebook-login-btn">
-	        <img src="/img/icon-facebook.png" alt="facebook icon" />
+	      <a href="/participa/user/facebook-login" class="btn social-login-btn facebook-login-btn">
+	        <img src="/participa-assets/img/icon-facebook.png" alt="facebook icon" />
 	        {{ trans('messages.signupwith') }} Facebook
 	      </a>
 	    </div> 
 	    <div class="col-md-12">
-	      <a href="/user/twitter-login" class="btn social-login-btn twitter-login-btn">
-	        <img src="/img/icon-twitter.png" alt="twitter icon" />
+	      <a href="/participa/user/twitter-login" class="btn social-login-btn twitter-login-btn">
+	        <img src="/participa-assets/img/icon-twitter.png" alt="twitter icon" />
 	        {{ trans('messages.signupwith') }} Twitter
 	      </a>
 	    </div>
 	    <div class="col-md-12">
-	      <a href="/user/linkedin-login" class="btn social-login-btn linkedin-login-btn">
-	        <img src="/img/icon-linkedin.png" alt="linkedin icon" />
+	      <a href="/participa/user/linkedin-login" class="btn social-login-btn linkedin-login-btn">
+	        <img src="/participa-assets/img/icon-linkedin.png" alt="linkedin icon" />
 	        {{ trans('messages.signupwith') }} LinkedIn
 	      </a>
 	    </div>

@@ -1,5 +1,9 @@
 <?php
 
+Route::group(array('prefix' => 'participa'), function()
+{
+
+
 /**
 *   Include all partials in app/routes/
 */
@@ -41,7 +45,7 @@ Route::get('modals/annotation_thanks', array(
 Route::post('modals/annotation_thanks', 'ModalController@seenAnnotationThanksModal');
 
 
-Route::get('groups', 'GroupsController@getIndex');
+Route::get('groups', ['as' => 'groups', 'uses' => 'GroupsController@getIndex']);
 Route::put('groups/edit', 'GroupsController@putEdit');
 Route::get('groups/edit/{groupId?}', 'GroupsController@getEdit');
 Route::get('groups/members/{groupId}', 'GroupsController@getMembers');
@@ -52,7 +56,7 @@ Route::put('groups/invite/{groupId}', 'GroupsController@processMemberInvite');
 Route::get('groups/active/{groupId}', 'GroupsController@setActiveGroup');
 
 //Static Pages
-Route::get('about', 'PageController@getAbout');
+Route::get('about', ['as' => 'about', 'uses' => 'PageController@getAbout']);
 Route::get('faq', 'PageController@faq');
 Route::get('privacy-policy', 'PageController@privacyPolicy');
 Route::get('terms-and-conditions', 'PageController@terms');
@@ -60,15 +64,15 @@ Route::get('copyright', 'PageController@copyright');
 Route::get('/', array('as' => 'home', 'uses' => 'PageController@home'));
 
 //Document Routes
-Route::get('docs', 'DocController@index');
+Route::get('docs', ['as' => 'docs', 'uses' => 'DocController@index']);
 Route::get('docs/{slug}', 'DocController@index');
 Route::get('docs/embed/{slug}', 'DocController@getEmbedded');
 Route::get('docs/{slug}/feed', 'DocController@getFeed');
 Route::get('documents/search', 'DocumentsController@getSearch');
-Route::get('documents', 'DocumentsController@listDocuments');
+Route::get('documents', ['as' => 'documents', 'uses' => 'DocumentsController@listDocuments']);
 Route::get('documents/view/{documentId}', 'DocumentsController@viewDocument');
 Route::get('documents/edit/{documentId}', 'DocumentsController@editDocument');
-Route::put('documents/edit/{documentId}', 'DocumentsController@saveDocumentEdits');
+Route::put('documents/edit/{documentId}', ['as' => 'saveDocumentEdits', 'uses' => 'DocumentsController@saveDocumentEdits']);
 Route::post('documents/create', 'DocumentsController@createDocument');
 Route::post('documents/save', 'DocumentsController@saveDocument');
 Route::delete('/documents/delete/{slug}', 'DocumentsController@deleteDocument');
@@ -77,26 +81,31 @@ Route::post('/documents/sponsor/request', 'SponsorController@postRequest');
 
 //User Routes
 Route::get('user/{user}', 'UserController@getIndex');
-Route::get('user/edit/{user}', 'UserController@getEdit');
+Route::get('user/edit/{user}', ['as' => 'editUser', 'uses' => 'UserController@getEdit']);
 Route::put('user/edit/{user}', 'UserController@putEdit');
-Route::get('user/edit/{user}/notifications', 'UserController@editNotifications');
+Route::get('user/edit/{user}/notifications', ['as' => 'editNotifications', 'uses' => 'UserController@editNotifications']);
 Route::controller('user', 'UserController');
+Route::get('user/login', ['as' => 'user/login', 'uses' => 'UserController@getLogin']);
+Route::get('user/signup', ['as' => 'user/signup', 'uses' => 'UserController@getSignup']);
+Route::post('user/login', ['as' => 'user/login', 'uses' => 'UserController@postLogin']);
+Route::post('user/signup', ['as' => 'user/signup', 'uses' => 'UserController@postSignup']);
 
 //Password Routes
-Route::get( 'password/remind', 'RemindersController@getRemind');
+Route::get( 'password/remind', ['as' => 'password/remind', 'uses' => 'RemindersController@getRemind']);
 Route::post('password/remind', 'RemindersController@postRemind');
 Route::get( 'password/reset/{token}',  'RemindersController@getReset');
 Route::post('password/reset',  'RemindersController@postReset');
 
 // Confirmation email resend
-Route::get('verification/remind',  'RemindersController@getConfirmation');
-Route::post('verification/remind',  'RemindersController@postConfirmation');
+Route::get('verification/remind',  ['as' => 'verification/remind', 'uses' => 'RemindersController@getConfirmation']);
+Route::post('verification/remind', ['as' => 'verification/remind', 'uses' => 'RemindersController@postConfirmation']);
 
 //Annotation Routes
 Route::get('annotation/{annotation}', 'AnnotationController@getIndex');
 
 //Dashboard Routes
 Route::controller('dashboard', 'DashboardController');
+Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@getIndex']);
 
 //Api Routes
 	// Document API Routes
@@ -120,7 +129,7 @@ Route::controller('dashboard', 'DashboardController');
 
     //Annotation Routes
     Route::get('api/annotations/search', 'AnnotationApiController@getSearch');
-    Route::get('api/docs/{doc}/annotations/{annotation?}', 'AnnotationApiController@getIndex');
+    Route::get('api/docs/{doc}/annotations/{annotation?}', ['as' => 'getAnnotation', 'uses' => 'AnnotationApiController@getIndex']);
     Route::post('api/docs/{doc}/annotations', 'AnnotationApiController@postIndex');
     Route::put('api/docs/{doc}/annotations/{annotation}', 'AnnotationApiController@putIndex');
     Route::delete('api/docs/{doc}/annotations/{annotation}', 'AnnotationApiController@deleteIndex');
@@ -181,16 +190,20 @@ Route::controller('dashboard', 'DashboardController');
     Route::post('api/groups/verify/', 'GroupsApiController@postVerify');
     
     // User Login / Signup AJAX requests
-    Route::get('api/user/login', 'UserManageApiController@getLogin');
-    Route::post('api/user/login', 'UserManageApiController@postLogin');
-    Route::get('api/user/signup', 'UserManageApiController@getSignup');
-    Route::post('api/user/signup', 'UserManageApiController@postSignup');
+    Route::get('api/user/login', ['as' => 'api/user/login', 'uses' => 'UserManageApiController@getLogin']);
+    Route::post('api/user/login', ['as' => 'api/user/login', 'uses' => 'UserManageApiController@postLogin']);
+    Route::get('api/user/signup', ['as' => 'api/user/signup', 'uses' => 'UserManageApiController@getSignup']);
+    Route::post('api/user/signup', ['as' => 'api/user/signup', 'uses' => 'UserManageApiController@postSignup']);
 
 
 
 //Logout Route
-Route::get('logout', function(){
+Route::get('logout', ['as' => 'logout', function(){
 	Auth::logout();	//Logout the current user
 	Session::flush(); //delete the session
-	return Redirect::to('/')->with('message', 'Has salido exitosamente.');
+	return Redirect::route('home')->with('message', 'Has salido exitosamente.');
+}]);
+
+
 });
+

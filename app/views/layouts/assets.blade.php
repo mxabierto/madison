@@ -7,10 +7,10 @@
 
 
 <!-- Stylesheets -->
-{{ HTML::style('build/app.css') }}
+<link type="text/css" rel="stylesheet" href="/participa-assets/build/app.css">
 
 <!-- Scripts -->
-{{ HTML::script('build/app.js') }}
+<script src="/participa-assets/build/app.js"></script>
 
 <?php
 $fs = new Illuminate\Filesystem\Filesystem();
