@@ -29,6 +29,7 @@
 		@include('layouts.assets')
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <script src="/participa-assets/bower_components/angular-i18n/angular-locale_es-mx.js"></script>
+	<script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
 	</head>
 	<body>
     <div class="alert alert-info">Esta es una plataforma de prueba. La información en este sitio no refleja una postura o información oficial.</div>
@@ -47,5 +48,21 @@
 			</main>
 			@include('layouts.footer')
 		</tour>
+			<script type="text/javascript"> 
+			var _sf_async_config = { uid: 43659, domain: 'www.gob.mx', useCanonical: true }; 
+			(function() { 
+			  function loadChartbeat() { 
+				window._sf_endpt = (new Date()).getTime(); 
+				var e = document.createElement('script'); 
+				e.setAttribute('language', 'javascript'); 
+				e.setAttribute('type', 'text/javascript'); 
+				e.setAttribute('src','//static.chartbeat.com/js/chartbeat.js'); 
+				document.body.appendChild(e); 
+			  }; 
+			  var oldonload = window.onload; 
+			  window.onload = (typeof window.onload != 'function') ? 
+				loadChartbeat : function() { oldonload(); loadChartbeat(); }; 
+			})(); 
+		</script>
 	</body>
 </html>
