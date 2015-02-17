@@ -23,10 +23,10 @@
 					<br><br>
 					<ul class="list-unstyled">
 						<li>
-							<a class="forgot-password" href="{{ URL::to('password/remind') }}">{{ trans('messages.forgotpassword') }}</a>
+							<a class="forgot-password" href="{{ URL::route('password/remind') }}">{{ trans('messages.forgotpassword') }}</a>
 						</li>
 						<li>
-							<a class="forgot-password" href="{{ URL::to('verification/remind') }}">{{ trans('messages.resend') }}</a>
+							<a class="forgot-password" href="{{ URL::route('verification/remind') }}">{{ trans('messages.resend') }}</a>
 						</li>
 						<li>
 							<a class="forgot-password" href="{{ URL::route('user/signup') }}" target="_self">{{ trans('messages.signup') }}</a>

@@ -6,7 +6,7 @@
 			<div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3">
 				<div class="content">
 					<h1>{{ trans('messages.signup') }}</h1>
-					{{ Form::open(array('url'=>'user/signup', 'method'=>'post')) }}
+					{{ Form::open(array('url'=>URL::route('user/signup'), 'method'=>'post')) }}
 					<!-- First Name -->
 					<div class="form-group">
 						{{ Form::label('fname', Lang::get('messages.fname')) . Form::text('fname', Input::old('fname'), array('placeholder'=>Lang::get('messages.fname'), 'class'=>'form-control')) }}

@@ -7,7 +7,7 @@
 --}}
 <div class="row">
 	<div class="col-md-10 col-md-offset-1">
-		{{ Form::open(array('url'=>'api/user/signup', 'method'=>'post')) }}
+		{{ Form::open(array('url'=>URL::route('api/user/signup'), 'method'=>'post')) }}
 		<div class="errors"></div>
 		<!-- First Name -->
 		<div class="form-group">

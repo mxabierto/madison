@@ -64,7 +64,7 @@ Route::get('copyright', 'PageController@copyright');
 Route::get('/', array('as' => 'home', 'uses' => 'PageController@home'));
 
 //Document Routes
-Route::get('docs', 'DocController@index');
+Route::get('docs', ['as' => 'docs', 'uses' => 'DocController@index']);
 Route::get('docs/{slug}', 'DocController@index');
 Route::get('docs/embed/{slug}', 'DocController@getEmbedded');
 Route::get('docs/{slug}/feed', 'DocController@getFeed');
@@ -87,15 +87,17 @@ Route::get('user/edit/{user}/notifications', ['as' => 'editNotifications', 'uses
 Route::controller('user', 'UserController');
 Route::get('user/login', ['as' => 'user/login', 'uses' => 'UserController@getLogin']);
 Route::get('user/signup', ['as' => 'user/signup', 'uses' => 'UserController@getSignup']);
+Route::post('user/login', ['as' => 'user/login', 'uses' => 'UserController@postLogin']);
+Route::post('user/signup', ['as' => 'user/signup', 'uses' => 'UserController@postSignup']);
 
 //Password Routes
-Route::get( 'password/remind', 'RemindersController@getRemind');
+Route::get( 'password/remind', ['as' => 'password/remind', 'uses' => 'RemindersController@getRemind']);
 Route::post('password/remind', 'RemindersController@postRemind');
 Route::get( 'password/reset/{token}',  'RemindersController@getReset');
 Route::post('password/reset',  'RemindersController@postReset');
 
 // Confirmation email resend
-Route::get('verification/remind',  'RemindersController@getConfirmation');
+Route::get('verification/remind',  ['as' => 'verification/remind', 'uses' => 'RemindersController@getConfirmation']);
 Route::post('verification/remind',  'RemindersController@postConfirmation');
 
 //Annotation Routes
@@ -188,10 +190,10 @@ Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@get
     Route::post('api/groups/verify/', 'GroupsApiController@postVerify');
     
     // User Login / Signup AJAX requests
-    Route::get('api/user/login', 'UserManageApiController@getLogin');
-    Route::post('api/user/login', 'UserManageApiController@postLogin');
-    Route::get('api/user/signup', 'UserManageApiController@getSignup');
-    Route::post('api/user/signup', 'UserManageApiController@postSignup');
+    Route::get('api/user/login', ['as' => 'api/user/login', 'uses' => 'UserManageApiController@getLogin']);
+    Route::post('api/user/login', ['as' => 'api/user/login', 'uses' => 'UserManageApiController@postLogin']);
+    Route::get('api/user/signup', ['as' => 'api/user/signup', 'uses' => 'UserManageApiController@getSignup']);
+    Route::post('api/user/signup', ['as' => 'api/user/signup', 'uses' => 'UserManageApiController@postSignup']);
 
 
 

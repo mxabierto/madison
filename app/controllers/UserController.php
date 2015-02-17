@@ -337,19 +337,19 @@ class UserController extends BaseController{
 
 		//Validate input against rules
 		if($validation->fails()){
-			return Redirect::to('user/login')->withInput()->withErrors($validation);
+			return Redirect::route('user/login')->withInput()->withErrors($validation);
 		}
 
 		//Check that the user account exists
 		$user = User::where('email', $email)->first();
 
 		if(!isset($user)){
-			return Redirect::to('user/login')->with('error', 'Ese email no existe.');
+			return Redirect::route('user/login')->with('error', 'Ese email no existe.');
 		}
 
 		//If the user's token field isn't blank, he/she hasn't confirmed their account via email
 		if($user->token != ''){
-			return Redirect::to('user/login')->with('error', 'Por favor, haz click en el enlace enviado a tu email para verificar la cuenta.');
+			return Redirect::route('user/login')->with('error', 'Por favor, haz click en el enlace enviado a tu email para verificar la cuenta.');
 		}
 
 		//Attempt to log user in
@@ -361,11 +361,11 @@ class UserController extends BaseController{
 			if(isset($previous_page)){
 				return Redirect::to($previous_page)->with('message', 'Has ingresado exitosamente.');
 			}else{
-				return Redirect::to('/docs/')->with('message', 'Has ingresado exitosamente.');
+				return Redirect::route('docs')->with('message', 'Has ingresado exitosamente.');
 			}
 		}
 		else{
-			return Redirect::to('user/login')->with('error', 'Datos incorrectos')->withInput(array('previous_page' => $previous_page));
+			return Redirect::route('user/login')->with('error', 'Datos incorrectos')->withInput(array('previous_page' => $previous_page));
 		}
 	}
 
@@ -413,7 +413,7 @@ class UserController extends BaseController{
 		$user->lname = $lname;
 		$user->token = $token;
 		if( ! $user->save() ){
-			return Redirect::to('user/signup')->withInput()->withErrors($user->getErrors());
+			return Redirect::route('user/signup')->withInput()->withErrors($user->getErrors());
 		}
 			
 		Event::fire(MadisonEvent::NEW_USER_SIGNUP, $user);
@@ -425,7 +425,7 @@ class UserController extends BaseController{
 			$message->to($email); // Recipient address
 		});
 
-		return Redirect::to('user/login')->with('message', trans('messages.confirmationresent'));
+		return Redirect::route('user/login')->with('message', trans('messages.confirmationresent'));
 	}
 
 	/**
