@@ -82,7 +82,7 @@ Route::post('/documents/sponsor/request', ['as' => 'sponsorRequest', 'uses' => '
 //User Routes
 Route::get('user/{user}', 'UserController@getIndex');
 Route::get('user/edit/{user}', ['as' => 'editUser', 'uses' => 'UserController@getEdit']);
-Route::put('user/edit/{user}', 'UserController@putEdit');
+Route::put('user/edit/{user}', ['as' => 'editUser', 'uses' => 'UserController@putEdit']);
 Route::get('user/edit/{user}/notifications', ['as' => 'editNotifications', 'uses' => 'UserController@editNotifications']);
 Route::controller('user', 'UserController');
 Route::get('user/login', ['as' => 'user/login', 'uses' => 'UserController@getLogin']);
