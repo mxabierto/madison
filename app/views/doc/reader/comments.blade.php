@@ -4,7 +4,7 @@
   </div>
   @else
   <div id="participate-comment" class="participate-comment">
-  	<p>{{ trans('messages.please') }} <a href="{{ url('/user/login', $parameters = array(), $secure = null) }}" target="_self">{{ trans('messages.login') }}</a> {{ trans('messages.tocomment') }}.</p>
+  	<p>{{ trans('messages.please') }} <a href="{{ url('/participa/user/login', $parameters = array(), $secure = null) }}" target="_self">{{ trans('messages.login') }}</a> {{ trans('messages.tocomment') }}.</p>
   </div>
   @endif
   <div id="participate-activity" class="participate-activity">
