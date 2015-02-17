@@ -98,7 +98,7 @@ Route::post('password/reset',  'RemindersController@postReset');
 
 // Confirmation email resend
 Route::get('verification/remind',  ['as' => 'verification/remind', 'uses' => 'RemindersController@getConfirmation']);
-Route::post('verification/remind',  'RemindersController@postConfirmation');
+Route::post('verification/remind', ['as' => 'verification/remind', 'uses' => 'RemindersController@postConfirmation']);
 
 //Annotation Routes
 Route::get('annotation/{annotation}', 'AnnotationController@getIndex');

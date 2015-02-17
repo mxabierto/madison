@@ -115,15 +115,15 @@ class RemindersController extends BaseController {
 		$user = User::where('email', $email)->first();
 		
 		if(!isset($user)){
-			return Redirect::to('verification/remind')->with('error', 'That email was not registered.');
+			return Redirect::route('verification/remind')->with('error', 'Ese correo no fue registrado.');
 		}
 
 		if(empty($user->token)) {
-			return Redirect::to('user/login')->with('error', 'That user was already confirmed.');
+			return Redirect::route('user/login')->with('error', 'El usuario ya estaba confirmado.');
 		}
 
 		if (!Hash::check($password, $user->password)) {
-			return Redirect::to('verification/remind')->with('error', 'The password for that email is incorrect.');
+			return Redirect::route('verification/remind')->with('error', 'La contraseña para ese correo es incorrecta.');
 		} 
 		
 		$token = $user->token;
