@@ -52,9 +52,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface{
 	*	Custom error messages for certain validation requirements
 	*/
 	protected static $customMessages = array(
-		'fname.required' => 'The first name field is required.',
-		'lname.required' => 'The last name field is required.',
-		'phone.required' => 'A phone number is required to request verified status.'
+		'fname.required' => 'El campo de nombre es obligatorio.',
+		'lname.required' => 'El campo de apellido es obligatorio.',
+		'phone.required' => 'El campo de número de teléfono es requerido para solicitar la verificación de estado.'
 	);
 
 	/**
