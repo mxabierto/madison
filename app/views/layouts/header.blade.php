@@ -17,8 +17,8 @@
     </div>
     <div class="collapse navbar-collapse" id="navbarMainCollapse">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="http://www.gob.mx/presidencia">{{ trans('messages.government') }}</a></li>
         <li><a href="http://www.gob.mx/tramites">{{ trans('messages.services') }}</a></li>
+        <li><a href="http://www.gob.mx/presidencia">{{ trans('messages.government') }}</a></li>
         <li class="dropdown">
           <a class="dropdown-trigger" href="#" data-toggle="dropdown">{{ trans('messages.sitename') }}<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
