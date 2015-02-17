@@ -29,11 +29,20 @@ app.config(function ($httpProvider) {
   $httpProvider.interceptors.push(function ($q) {
     return {
       request: function (request) {
-        if (request.url.indexOf("template/") > -1) {
-          // e.g. the ones included by angular-bootstrap
-          // angular.module("template/tabs/tabset.html",[])
-        } else if (request.url.indexOf("templates/") < 0 &&
-                   request.url.indexOf("tour/") < 0) {
+        var doNotPrefix = [
+          'subcomment_renderer.html',
+          'template/',
+          'tour/'
+        ];
+        var shouldWeAvoidPrefix = function(element, index) {
+          return request.url.indexOf(element) > -1;
+        };
+
+        if ($.grep(doNotPrefix, shouldWeAvoidPrefix).length > 0) {
+          // templates included in angular-bootstrap
+          // e.g. angular.module("template/tabs/tabset.html",[])
+          // or defined as ng-templates
+        } else if (request.url.indexOf("templates/") < 0) {
           request.url = "/participa/" + request.url;
           request.url = request.url.replace(/\/\//g, "/");
         } else {
@@ -83,3 +92,4 @@ app.config(['$translateProvider', function ($translateProvider) {
 
 window.console = window.console || {};
 window.console.log = window.console.log || function () {};
+
