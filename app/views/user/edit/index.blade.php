@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<h2>{{ trans('messages.editprofile') }}</h2>
-				{{ Form::open(array('url'=>'user/edit/' . $user->id, 'method'=>'PUT' )) }}
+				{{ Form::open(array('url'=> URL::route('editUser', $user->id), 'method'=>'PUT' )) }}
 					<!-- First Name -->
 					<div class="form-group">
 						<label for="fname">{{ trans('messages.fname') }}:</label>
