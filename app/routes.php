@@ -76,8 +76,8 @@ Route::put('documents/edit/{documentId}', ['as' => 'saveDocumentEdits', 'uses' =
 Route::post('documents/create', 'DocumentsController@createDocument');
 Route::post('documents/save', 'DocumentsController@saveDocument');
 Route::delete('/documents/delete/{slug}', 'DocumentsController@deleteDocument');
-Route::get('/documents/sponsor/request', 'SponsorController@getRequest');
-Route::post('/documents/sponsor/request', 'SponsorController@postRequest');
+Route::get('/documents/sponsor/request', ['as' => 'sponsorRequest', 'uses' => 'SponsorController@getRequest']);
+Route::post('/documents/sponsor/request', ['as' => 'sponsorRequest', 'uses' => 'SponsorController@postRequest']);
 
 //User Routes
 Route::get('user/{user}', 'UserController@getIndex');

@@ -19,7 +19,7 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          {{ Form::open(array('url' => 'documents/sponsor/request', 'method'=>'POST' )) }}
+          {{ Form::open(array('url' => URL::route('sponsorRequest'), 'method'=>'POST' )) }}
           <div class="form-group">
             <label for="address1">{{ trans('messages.address1') }}:</label>
             <input type="text" class="form-control" name="address1" id="address1" placeholder="{{ trans('messages.enteraddress1') }}" value="{{ Auth::user()->address1 }}"/>

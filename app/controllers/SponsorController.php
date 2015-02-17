@@ -37,7 +37,7 @@ class SponsorController extends Controller
     );
     $validation = Validator::make($all_input, $rules);
     if($validation->fails()){
-      return Redirect::to('/documents/sponsor/request')->withInput()->withErrors($validation);
+      return Redirect::route('sponsorRequest')->withInput()->withErrors($validation);
     }
 
     //Add new user information to their record
@@ -57,7 +57,7 @@ class SponsorController extends Controller
     $request->user_id = $user->id;
     $request->save();
 
-    return Redirect::to('/user/edit/' . $user->id)->with('message', 'Your request has been received.');
+    return Redirect::route('editUser', $user->id)->with('message', 'Your request has been received.');
   }
 	
 }
