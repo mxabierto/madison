@@ -28,19 +28,19 @@
 	<div class="col-md-12 social-login-wrapper">
 	  <div class="row">
 	    <div class="col-md-12">
-	      <a href="participa/user/facebook-login" class="btn social-login-btn facebook-login-btn">
+	      <a href="/participa/user/facebook-login" class="btn social-login-btn facebook-login-btn">
 	        <img src="/participa-assets/img/icon-facebook.png" alt="facebook icon" />
 	        {{ trans('messages.loginwith') }} Facebook
 	      </a>
 	    </div> 
 	    <div class="col-md-12">
-	      <a href="participa/user/twitter-login" class="btn social-login-btn twitter-login-btn">
+	      <a href="/participa/user/twitter-login" class="btn social-login-btn twitter-login-btn">
 	        <img src="/participa-assets/img/icon-twitter.png" alt="twitter icon" />
 	        {{ trans('messages.loginwith') }} Twitter
 	      </a>
 	    </div>
 	    <div class="col-md-12">
-	      <a href="participa/user/linkedin-login" class="btn social-login-btn linkedin-login-btn">
+	      <a href="/participa/user/linkedin-login" class="btn social-login-btn linkedin-login-btn">
 	        <img src="/participa-assets/img/icon-linkedin.png" alt="linkedin icon" />
 	        {{ trans('messages.loginwith') }} LinkedIn
 	      </a>
