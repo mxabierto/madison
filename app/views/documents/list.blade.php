@@ -39,7 +39,7 @@
 				</div>
 				<div class="col-md-4 admin-add-documents">
 					<h3>{{ trans('messages.createdoc') }}</h3>
-					{{ Form::open(array('url' => 'documents/create', 'method' => 'post', 'id' => 'create-document-form')) }}
+					{{ Form::open(array('url' => URL::route('documents/create'), 'method' => 'post', 'id' => 'create-document-form')) }}
 					<div class="form-group">
 						{{ Form::label('title', Lang::get('messages.title')) . Form::text('title', Input::old('title'), array('placeholder' =>  Lang::get('messages.doctitle'), 'class'=>'form-control')) }}
 					</div>

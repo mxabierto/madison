@@ -52,7 +52,7 @@
 		<div class="col-md-4 admin-add-documents">
 			<div class="row">
 				<h2>{{ trans('messages.createdoc')}}</h2>
-				{{ Form::open(array('url' => 'dashboard/docs', 'method' => 'post', 'id' => 'create-document-form')) }}
+				{{ Form::open(array('url' => URL::route('dashboard/docs'), 'method' => 'post', 'id' => 'create-document-form')) }}
 				<div class="form-group">
 					{{ Form::label('title', 'Title:') . Form::text('title', Input::old('title'), array('placeholder' => 'Document Title', 'class'=>'form-control')) }}
 				</div>

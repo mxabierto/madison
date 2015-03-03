@@ -218,7 +218,7 @@ class DashboardController extends BaseController{
 		$user = Auth::user();
 	
 		if(!$user->can('admin_manage_documents')) {
-			return Redirect::to('/dashboard')->with('message', "You do not have permission");
+			return Redirect::route('/dashboard')->with('message', "You do not have permission");
 		}
 	
 		//Creating new document
@@ -231,7 +231,7 @@ class DashboardController extends BaseController{
 			$validation = Validator::make($doc_details, $rules);
 			if($validation->fails()){
 				die($validation);
-				return Redirect::to('dashboard/docs')->withInput()->withErrors($validation);
+				return Redirect::route('dashboard/docs')->withInput()->withErrors($validation);
 			}
 	
 			try{
@@ -249,9 +249,9 @@ class DashboardController extends BaseController{
 				$doc->init_section = $starter->id;
 				$doc->save();
 	
-				return Redirect::to('dashboard/docs/' . $doc->id)->with('success_message', 'Document created successfully');
+				return Redirect::route('dashboardShowsDoc', [$doc->id])->with('success_message', 'Document created successfully');
 			}catch(Exception $e){
-				return Redirect::to('dashboard/docs')->withInput()->with('error', $e->getMessage());
+				return Redirect::route('dashboard/docs')->withInput()->with('error', $e->getMessage());
 			}
 		}
 		else{

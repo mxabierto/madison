@@ -73,7 +73,7 @@ Route::get('documents', ['as' => 'documents', 'uses' => 'DocumentsController@lis
 Route::get('documents/view/{documentId}', 'DocumentsController@viewDocument');
 Route::get('documents/edit/{documentId}', 'DocumentsController@editDocument');
 Route::put('documents/edit/{documentId}', ['as' => 'saveDocumentEdits', 'uses' => 'DocumentsController@saveDocumentEdits']);
-Route::post('documents/create', 'DocumentsController@createDocument');
+Route::post('documents/create', ['as' => 'documents/create', 'uses' => 'DocumentsController@createDocument']);
 Route::post('documents/save', 'DocumentsController@saveDocument');
 Route::delete('/documents/delete/{slug}', 'DocumentsController@deleteDocument');
 Route::get('/documents/sponsor/request', ['as' => 'sponsorRequest', 'uses' => 'SponsorController@getRequest']);
@@ -106,6 +106,11 @@ Route::get('annotation/{annotation}', 'AnnotationController@getIndex');
 //Dashboard Routes
 Route::controller('dashboard', 'DashboardController');
 Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@getIndex']);
+
+//Dashboard's Doc Routes
+Route::get('dashboard/docs', ['as' => 'dashboard/docs', 'uses' => 'DashboardController@getDocs']);
+Route::post('dashboard/docs', ['as' => 'dashboard/docs', 'uses' => 'DashboardController@postDocs']);
+Route::get('dashboard/docs/{doc}', ['as' => 'dashboardShowsDoc', 'uses' => 'DashboardController@getDocs']);
 
 //Api Routes
 	// Document API Routes
