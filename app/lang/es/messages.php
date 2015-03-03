@@ -180,5 +180,6 @@ return array(
 'emailfrom' => 'hola@datos.gob.mx',
 'emailfromname' => 'México Abierto',
 'confirmationresent' => 'Un email ha sido enviado a tu correo electrónico. Por favor, sigue las instrucciones en el correo para confirmar tu cuenta antes de ingresar.',
-'email' => 'Correo electrónico'
+'email' => 'Correo electrónico',
+'invalidcredentials' => 'El correo electrónico o contraseña es incorrecto.'
 );

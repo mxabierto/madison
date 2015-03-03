@@ -49,7 +49,7 @@ class UserManageApiController extends ApiController{
 		}
 		else {
 			return Response::json( array( 'status' => 'error',
-				'errors' => array('The email address or password is incorrect.') ) );
+				'errors' => array(Lang::get('messages.invalidcredentials')) ) );
 		}
 	}
 
