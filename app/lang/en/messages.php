@@ -178,5 +178,6 @@ return array(
 'confirmationcontact' => '<p>You can also check us out on <a href="https://www.facebook.com/opengovfoundation">Facebook</a>, <a href="https://twitter.com/foundopengov">Twitter</a>, <a href="http://opengovfoundation.tumblr.com">Tumblr</a>, and <a href="http://www.linkedin.com/company/opengov-foundation">LinkedIn</a></p>',
 'emailfrom' => 'sayhello@opengovfoundation.org',
 'emailfromname' => 'Madison',
-'confirmationresent' => 'An email has been sent to your email address.  Please follow the instructions in the email to confirm your email address before logging in.'
+'confirmationresent' => 'An email has been sent to your email address.  Please follow the instructions in the email to confirm your email address before logging in.',
+'invalidcredentials' => 'The email address or password is incorrect.'
 );
