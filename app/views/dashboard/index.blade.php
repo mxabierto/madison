@@ -9,7 +9,7 @@
 				<div class="content">
 					<ul class="list-unstyled">
 						<li>{{ HTML::link('dashboard/settings', Lang::get('messages.settings')) }}</li>
-						<li>{{ HTML::link('dashboard/docs', Lang::get('messages.createeditdocs')) }}</li>
+						<li>{{ HTML::linkRoute('dashboard/docs', Lang::get('messages.createeditdocs')) }}</li>
 						<li>{{ HTML::link('dashboard/verifications', Lang::get('messages.verifyaccounts')) }}</li>
 						<li>{{ HTML::link('dashboard/groupverifications', Lang::get('messages.verifygroups')) }}</li>
 						<li>{{ HTML::link('dashboard/userverifications', Lang::get('messages.verifyindiesponsors')) }}</li>
