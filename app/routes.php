@@ -142,6 +142,7 @@ Route::get('dashboard/docs/{doc}', ['as' => 'dashboardShowsDoc', 'uses' => 'Dash
     //Document Comment Routes
     Route::post('api/docs/{doc}/comments', 'CommentApiController@postIndex');
     Route::get('api/docs/{doc}/comments', 'CommentApiController@getIndex');
+    Route::post('api/docs/{doc}/visible/', 'CommentApiController@visible');
     Route::get('api/docs/{doc}/comments/{comment?}', 'CommentApiController@getIndex');
     Route::post('api/docs/{doc}/comments/{comment}/likes', 'CommentApiController@postLikes');
     Route::post('api/docs/{doc}/comments/{comment}/dislikes', 'CommentApiController@postDislikes');
