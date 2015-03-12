@@ -9,14 +9,14 @@
 				@endif
 
 				{{ Form::open(array('url' => 'groups/edit', 'method'=>'PUT' )) }}
-					
+
 					@if($group->id > 0)
 					<div class="form-group">
 						<b>{{ trans('messages.groupstatus') }}: {{ $group->status }}</b>
 					</div>
 					<input type="hidden" name="groupId" value="{{ $group->id }}"/>
 					@endif
-					
+
 					<div class="form-group">
 						<label for="gname">{{ trans('messages.groupname') }}:</label>
 						<input type="text" class="form-control" name="gname" id="gname" placeholder="{{ trans('messages.entergroupname') }}" value="{{ $group->name }}"/>
@@ -50,7 +50,7 @@
 						<input type="text" class="form-control" name="phone" id="phone" placeholder="{{ trans('messages.entercontactphone') }}" value="{{ $group->phone_number }}"/>
 					</div>
 					<button type="submit" class="btn btn-default">{{ trans('messages.submit') }}</button>
-					
+
 					{{ Form::token() }}
 				{{ Form::close() }}
 			</div>

@@ -29,7 +29,3 @@ $fs = new Illuminate\Filesystem\Filesystem();
 @if($fs->exists(public_path() . '/js/ga.js'))
     {{ HTML::script('js/ga.js') }}
 @endif
-
-
-
-

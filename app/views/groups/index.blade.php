@@ -20,10 +20,10 @@
 						<th>{{ trans('messages.status') }}</th>
 					</thead>
 					<tbody>
-					<?php foreach($userGroups as $groupMember): ?>
+					<?php foreach ($userGroups as $groupMember): ?>
 					<?php $group = $groupMember->group()->first(); ?>
 						<tr>
-							<?php if($group->isGroupOwner(Auth::user()->id)): ?>
+							<?php if ($group->isGroupOwner(Auth::user()->id)): ?>
 							<td><a href="/groups/edit/{{ $group->id }}">{{ $group->display_name ? $group->display_name : "N/A" }}</a></td>
 							<td><a href="/groups/edit/{{ $group->id }}">{{ $group->name }}</a></td>
 							<?php else: ?>

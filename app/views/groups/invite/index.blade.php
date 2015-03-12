@@ -5,7 +5,7 @@
 			<div class="col-md-12">
 				<h1>{{ trans('messages.addmemberto') }} '{{ $group->name }}'</h1>
 				<p>{{ trans('messages.useremail') }}</p>
-				
+
 				{{ Form::open(array('method' => 'PUT')) }}
 					<div class="form-group">
 						<label for="email">Email:</label>

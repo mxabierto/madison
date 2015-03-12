@@ -11,7 +11,7 @@
 		<p>{{ trans('messages.selectnotif') }}</p>
 		<form action="/dashboard/notifications" method="post">
 			<div class="form-group">
-				<?php echo Form::select('notifications[]', $validNotifications, $selectedNotifications, array('multiple' => '', 'class' => 'form-control')); ?>
+				<?php echo Form::select('notifications[]', $validNotifications, $selectedNotifications, ['multiple' => '', 'class' => 'form-control']); ?>
 				{{ Form::token() }}
 				<input type="submit" class="btn btn-default" value="{{ trans('message.savesettings') }}">
 			</div>

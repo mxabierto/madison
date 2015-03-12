@@ -7,7 +7,7 @@
 					<div class="user-info">
 						<img ng-src="http://www.gravatar.com/avatar/@{{ user.email | gravatar }}" class="img-rounded img-responsive user-gravatar" alt="" />
 						<h1 class="user-name">@{{ user.fname }} @{{ user.lname }}</h1>
-						<span class="user-verified" ng-show="verified">Verified</span>	
+						<span class="user-verified" ng-show="verified">Verified</span>
 						<span class="user-created-date" ng-if="user.created_at">Member since @{{ user.created_at | parseDate | date:'mediumDate'  }}</span>
 					</div>
 					<tabset>

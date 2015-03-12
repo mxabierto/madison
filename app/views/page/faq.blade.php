@@ -47,11 +47,11 @@
         <dt>How can I support the growth and improvement of the Madison community?</dt>
         <dd>
           <p><a href="/user/signup">Join the Madison community!</a> Contribute your suggestions to policy documents, interact with other users, and suggest improvements and changes to the site itself.</p>
-      
+
           <p>Keep in touch--<a href="http://opengovfoundation.us6.list-manage.com/subscribe?u=9d450bf68b3df1185fc9f62b2&id=697ad42ab6" target="_blank">sign up for news and updates on Madison</a>.</p>
-      
+
           <p>Contact <a href="http://www.usa.gov/Contact/Elected.shtml" target="_blank">your elected officials</a>. Madison is built for democracies everywhere, at any level of government. Spread the word!</p>
-      
+
           <p>If you’re a developer, fork <a href="https://github.com/opengovfoundation/madison" target="_blank">Madison on Github.</a></p>
         </dd>
       </dl>

@@ -45,7 +45,7 @@
             <input type="text" class="form-control" name="phone" id="phone" placeholder="{{ trans('messages.entercontactphone') }}" value="{{ Auth::user()->phone_number }}"/>
           </div>
           <button type="submit" class="btn btn-default">{{ trans('messages.submit') }}</button>
-          
+
           {{ Form::token() }}
           {{ Form::close() }}
         </div>

@@ -1,5 +1,5 @@
 <?php
-	$message = Session::get('message');
+    $message = Session::get('message');
 ?>
 @if($message)
 	<div class="alert alert-info">

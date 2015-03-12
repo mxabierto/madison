@@ -18,7 +18,7 @@
 							{{ trans('messages.indiedocs') }}:
 							@foreach($documents['independent'] as $doc)
 								<li>
-									<?php echo HTML::link('documents/edit/' . $doc->id, $doc->title); ?>
+									<?php echo HTML::link('documents/edit/'.$doc->id, $doc->title); ?>
 								</li>
 							@endforeach
 							@foreach($documents['group'] as $groupname=>$groupdocuments)
@@ -30,7 +30,7 @@
 								@endif
 								@foreach($groupdocuments as $doc)
 									<li>
-										<?php echo HTML::link('documents/edit/' . $doc->id, $doc->title); ?>
+										<?php echo HTML::link('documents/edit/'.$doc->id, $doc->title); ?>
 									</li>
 								@endforeach
 							@endforeach

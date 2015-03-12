@@ -1,18 +1,15 @@
 <?php
 
-Route::group(array('prefix' => 'participa'), function()
-{
+Route::group(['prefix' => 'participa'], function () {
 
-
-/**
+/*
 *   Include all partials in app/routes/
 */
-foreach (File::allFiles(__DIR__ . '/routes') as $partial)
-{
-    require_once($partial->getPathname());
+foreach (File::allFiles(__DIR__.'/routes') as $partial) {
+    require_once $partial->getPathname();
 }
 
-/**
+/*
 *   Global Route Patterns
 */
 
@@ -22,7 +19,7 @@ Route::pattern('doc', '[0-9]+');
 Route::pattern('user', '[0-9]+');
 Route::pattern('date', '[0-9]+');
 
-/**
+/*
 *   Route - Model bindings
 */
 Route::model('user', 'User');
@@ -37,13 +34,12 @@ Route::model('user/edit', 'User');
 Route::get('/dev/event/test', 'DevController@testEvent');
 
 // Modal Routes
-Route::get('modals/annotation_thanks', array(
-	'uses' => 'ModalController@getAnnotationThanksModal',
-	'before' => 'disable profiler'
-));
+Route::get('modals/annotation_thanks', [
+    'uses'   => 'ModalController@getAnnotationThanksModal',
+    'before' => 'disable profiler',
+]);
 
 Route::post('modals/annotation_thanks', 'ModalController@seenAnnotationThanksModal');
-
 
 Route::get('groups', ['as' => 'groups', 'uses' => 'GroupsController@getIndex']);
 Route::put('groups/edit', 'GroupsController@putEdit');
@@ -61,7 +57,7 @@ Route::get('faq', 'PageController@faq');
 Route::get('privacy-policy', 'PageController@privacyPolicy');
 Route::get('terms-and-conditions', 'PageController@terms');
 Route::get('copyright', 'PageController@copyright');
-Route::get('/', array('as' => 'home', 'uses' => 'PageController@home'));
+Route::get('/', ['as' => 'home', 'uses' => 'PageController@home']);
 
 //Document Routes
 Route::get('docs', ['as' => 'docs', 'uses' => 'DocController@index']);
@@ -91,9 +87,9 @@ Route::post('user/login', ['as' => 'user/login', 'uses' => 'UserController@postL
 Route::post('user/signup', ['as' => 'user/signup', 'uses' => 'UserController@postSignup']);
 
 //Password Routes
-Route::get( 'password/remind', ['as' => 'password/remind', 'uses' => 'RemindersController@getRemind']);
+Route::get('password/remind', ['as' => 'password/remind', 'uses' => 'RemindersController@getRemind']);
 Route::post('password/remind', 'RemindersController@postRemind');
-Route::get( 'password/reset/{token}',  'RemindersController@getReset');
+Route::get('password/reset/{token}',  'RemindersController@getReset');
 Route::post('password/reset',  'RemindersController@postReset');
 
 // Confirmation email resend
@@ -113,10 +109,10 @@ Route::post('dashboard/docs', ['as' => 'dashboard/docs', 'uses' => 'DashboardCon
 Route::get('dashboard/docs/{doc}', ['as' => 'dashboardShowsDoc', 'uses' => 'DashboardController@getDocs']);
 
 //Api Routes
-	// Document API Routes
-	Route::get('api/user/sponsors/all', 'DocumentApiController@getAllSponsorsForUser');
-	Route::get('api/sponsors/all', 'SponsorApiController@getAllSponsors');
-	
+    // Document API Routes
+    Route::get('api/user/sponsors/all', 'DocumentApiController@getAllSponsorsForUser');
+    Route::get('api/sponsors/all', 'SponsorApiController@getAllSponsors');
+
     //Annotation Action Routes
     Route::post('api/docs/{doc}/annotations/{annotation}/likes', 'AnnotationApiController@postLikes');
     Route::post('api/docs/{doc}/annotations/{annotation}/dislikes', 'AnnotationApiController@postDislikes');
@@ -125,7 +121,6 @@ Route::get('dashboard/docs/{doc}', ['as' => 'dashboardShowsDoc', 'uses' => 'Dash
     Route::get('api/docs/{doc}/annotations/{annotation}/likes', 'AnnotationApiController@getLikes');
     Route::get('api/docs/{doc}/annotations/{annotation}/dislikes', 'AnnotationApiController@getDislikes');
     Route::get('api/docs/{doc}/annotations/{annotation}/flags', 'AnnotationApiController@getFlags');
-
 
     //Annotation Comment Routes
     Route::get('api/docs/{doc}/annotations/{annotation}/comments', 'AnnotationApiController@getComments');
@@ -189,26 +184,22 @@ Route::get('dashboard/docs/{doc}', ['as' => 'dashboardShowsDoc', 'uses' => 'Dash
     Route::put('api/user/{user}/edit/email', 'UserController@editEmail');
     Route::get('api/user/{user}/notifications', 'UserController@getNotifications');
     Route::put('api/user/{user}/notifications', 'UserController@putNotifications');
-    
+
     // Group Routes
     Route::get('api/groups/verify/', 'GroupsApiController@getVerify');
     Route::post('api/groups/verify/', 'GroupsApiController@postVerify');
-    
+
     // User Login / Signup AJAX requests
     Route::get('api/user/login', ['as' => 'api/user/login', 'uses' => 'UserManageApiController@getLogin']);
     Route::post('api/user/login', ['as' => 'api/user/login', 'uses' => 'UserManageApiController@postLogin']);
     Route::get('api/user/signup', ['as' => 'api/user/signup', 'uses' => 'UserManageApiController@getSignup']);
     Route::post('api/user/signup', ['as' => 'api/user/signup', 'uses' => 'UserManageApiController@postSignup']);
 
-
-
 //Logout Route
-Route::get('logout', ['as' => 'logout', function(){
-	Auth::logout();	//Logout the current user
-	Session::flush(); //delete the session
-	return Redirect::route('home')->with('message', 'Has salido exitosamente.');
+Route::get('logout', ['as' => 'logout', function () {
+    Auth::logout();    //Logout the current user
+    Session::flush(); //delete the session
+    return Redirect::route('home')->with('message', 'Has salido exitosamente.');
 }]);
 
-
 });
-

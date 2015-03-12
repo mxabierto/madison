@@ -6,7 +6,7 @@
       <p>You do NOT have to ask permission to post original Madison and OpenGov Foundation material on a mailing list or newsgroup, to use an OpenGov logo as a pointer to us on your web site, or to reprint an OpenGov Foundation statement in a newspaper article. <strong>Permission to do such things is explicitly granted.</strong> Please do <strong>not</strong> write to us asking for permission, as this wastes our time and yours.</p>
       <p>If you redistribute something you got from the Madison and OpenGov Foundation websites, it is appreciated if you make it known where the file originated, so people can get more info or updated versions.</p>
       <p><strong>Copyright Infringement Notification</strong>
-      <p>If you believe there is content on the Madison website that violates copyright law, let us know. Specifically, send us an email or letter that includes substantially the following:</p></p>  
+      <p>If you believe there is content on the Madison website that violates copyright law, let us know. Specifically, send us an email or letter that includes substantially the following:</p></p>
       <p>A physical or electronic signature of a person authorized to act on behalf of the owner of an exclusive right that is allegedly infringed.</p>
       <ul>
         <li>Identification of the copyrighted work claimed to have been infringed, or, if multiple copyrighted works at a single online site are covered by a single notification, a representative list of such works at that site.</li>

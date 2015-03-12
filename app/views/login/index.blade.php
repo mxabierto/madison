@@ -32,7 +32,7 @@
 							<a class="forgot-password" href="{{ URL::route('user/signup') }}" target="_self">{{ trans('messages.signup') }}</a>
 						</li>
 					</ul>
-			
+
 					{{ Form::hidden('previous_page', $previous_page) }}
 					{{ Form::token() . Form::close() }}
 				</div>

@@ -5,5 +5,5 @@
       <input ng-model="comment.text" id="doc-comment-field" type="text" class="form-control centered" placeholder="{{ trans('messages.addacomment') }}" required />
     </div>
     <hr>
-  </form>    
+  </form>
 </div>

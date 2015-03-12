@@ -102,7 +102,7 @@
             </ol>
             <img src="/participa-assets/img/como-comentar.gif" class="how-to-annotate-img img-responsive" />
           </div>
-          
+
           <div class="sidebar-unit" ng-controller="DocumentTocController" ng-show="headings.length > 0">
             <h4>{{ trans('messages.tableofcontents') }}</h4>
             <hr class="red">

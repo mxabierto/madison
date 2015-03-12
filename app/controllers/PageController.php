@@ -1,72 +1,75 @@
 <?php
 
-class PageController extends BaseController 
+class PageController extends BaseController
 {
-	public $restful = true;
+    public $restful = true;
 
-	/**
-	 * Home Page
-	 */
-	public function home()
-	{
-		$data = array(
-			'page_id'		=> 'home',
-			'page_title'	=> 'gob.mx/participa',
-		);
+    /**
+     * Home Page.
+     */
+    public function home()
+    {
+        $data = [
+            'page_id'        => 'home',
+            'page_title'     => 'gob.mx/participa',
+        ];
 
-		return View::make('page.index', $data);
-	}
+        return View::make('page.index', $data);
+    }
 
-	/**
-	 * About Page
-	 */
-	public function getAbout()
-	{
-		$data = array(
-			'page_id'		=> 'about',
-			'page_title'	=> 'gob.mx/participa - Acerca de',
-		);
+    /**
+     * About Page.
+     */
+    public function getAbout()
+    {
+        $data = [
+            'page_id'        => 'about',
+            'page_title'     => 'gob.mx/participa - Acerca de',
+        ];
 
-		return View::make('page.index', $data);
-	}
+        return View::make('page.index', $data);
+    }
 
-	/**
-	 * FAQ Page
-	 */
-	public function faq()
-	{
-		$data = array(
-			'page_id'		=> 'faq',
-			'page_title'	=> 'gob.mx/participa - Pregunstas Frecuentes',
-		);
+    /**
+     * FAQ Page.
+     */
+    public function faq()
+    {
+        $data = [
+            'page_id'        => 'faq',
+            'page_title'     => 'gob.mx/participa - Pregunstas Frecuentes',
+        ];
 
-		return View::make('page.index', $data);
-	}
+        return View::make('page.index', $data);
+    }
 
-	public function privacyPolicy(){
-		$data = array(
-			'page_id'	=> 'privacy',
-			'page_title'	=> 'gob.mx/participa - Privacidad'
-		);
+    public function privacyPolicy()
+    {
+        $data = [
+            'page_id'       => 'privacy',
+            'page_title'    => 'gob.mx/participa - Privacidad',
+        ];
 
-		return View::make('page.index', $data);
-	}
+        return View::make('page.index', $data);
+    }
 
-	public function terms(){
-		$data = array(
-			'page_id'	=> 'terms',
-			'page_title'	=> 'gob.mx/participa - Términos y condiciones'
-		);
+    public function terms()
+    {
+        $data = [
+            'page_id'       => 'terms',
+            'page_title'    => 'gob.mx/participa - Términos y condiciones',
+        ];
 
-		return View::make('page.index', $data);
-	}
+        return View::make('page.index', $data);
+    }
 
-	public function copyright(){
-		$data = array(
-			'page_id' => 'copyright',
-			'page_title' => 'gob.mx/participa - Licencia'
-		);
+    public function copyright()
+    {
+        $data = [
+            'page_id'    => 'copyright',
+            'page_title' => 'gob.mx/participa - Licencia',
+        ];
 
-		return View::make('page.index', $data);
-	}
+        return View::make('page.index', $data);
+    }
 }
