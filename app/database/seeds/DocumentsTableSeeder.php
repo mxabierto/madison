@@ -6,12 +6,11 @@ class DocumentsTableSeeder extends Seeder
 {
 	public function run()
 	{
-		if(file_exists(app_path() . '/config/creds.yml')) {
-			$creds = yaml_parse_file(app_path() . '/config/creds.yml');
-		}
+		$adminEmail = Config::get('madison.seeder.admin_email');
+		$adminPassword = Config::get('madison.seeder.admin_password');
 
     // Login as admin to create docs
-		$credentials = array('email' => $creds['admin_email'], 'password' => $creds['admin_password']);
+		$credentials = array('email' => $adminEmail, 'password' => $adminPassword);
     Auth::attempt($credentials);
     $admin = Auth::user();
     $mx_a = Group::where('id', '=', 1)->first();
