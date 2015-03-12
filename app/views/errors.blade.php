@@ -6,7 +6,7 @@
 	@endforeach
 @endif
 <?php
-	$error = Session::get('error');
+    $error = Session::get('error');
 ?>
 @if($error)
 	<div class="alert alert-danger">

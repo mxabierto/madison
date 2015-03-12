@@ -9,7 +9,7 @@
 					<li class="active">{{ trans('messages.groupmembers') }}</li>
 				</ol>
 				<h2>{{ trans('messages.membersof') }} '{{ $group->name }}'</h2>
-				<?php if($group->status == Group::STATUS_ACTIVE): ?>
+				<?php if ($group->status == Group::STATUS_ACTIVE): ?>
 				<p><a href="/groups/invite/{{ $group->id }}">{{ trans('messages.addnewmember') }}</a></p>
 				<?php endif; ?>
 				<table class="table table-striped" id="groupsTable">
@@ -20,7 +20,7 @@
 						<th>&nbsp;</th>
 					</thead>
 					<tbody>
-					<?php foreach($groupMembers as $member) : ?>
+					<?php foreach ($groupMembers as $member) : ?>
 						<tr>
 							<td>{{ $member->getUserName() }}</td>
 							<td>
@@ -37,7 +37,7 @@
 	</div>
 	<script language="javascript">
 		$('.memberRoleSelect').change(function() {
-			
+
 			var newRole = $(this).val();
 			var memberId = $(this).data('member-id');
 
@@ -51,9 +51,9 @@
 
 				alert(data.message);
 				location.reload(true);
-				
+
 			}, 'json');
-			
+
 		});
 	</script>
 @endsection

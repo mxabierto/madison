@@ -36,15 +36,15 @@
                 <li><a href="{{ URL::route('dashboard') }}" target="_self">{{ trans('messages.admin') }}</a></li>
               @endif
               <?php $userGroups = Auth::user()->groups(); ?>
-              <?php if($userGroups->count() > 0): ?>
+              <?php if ($userGroups->count() > 0): ?>
                 <li class="dropdown-submenu pull-left">
                   <a class="dropdown-trigger" href="#" data-toggle="dropdown">{{ trans('messages.useas') }}</a>
                   <ul class="dropdown-menu" role="menu">
-                    <?php if($activeGroupId !== 0): ?>
+                    <?php if ($activeGroupId !== 0): ?>
                       <li class="link-settings"><a href="./groups/active/0" target="_self">{{ Auth::user()->fname }} {{ Auth::user()->lname }}</a></li>
                     <?php endif; ?>
                     <li class="divider"></li>
-                    <?php foreach($userGroups->get() as $group): ?>
+                    <?php foreach ($userGroups->get() as $group): ?>
                       <li class="link-settings"><a href="./groups/active/{{ $group->id }}" target="_self">{{ $group->getDisplayName() }} {{ $group->id == $activeGroupId ? '(active)' : '' }}</a></li>
                     <?php endforeach;?>
                   </ul>
@@ -61,4 +61,3 @@
     </div>
   </div>
 </nav>
-

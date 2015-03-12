@@ -2,9 +2,9 @@
 
 class DatabaseSeeder extends Seeder
 {
-	/**
-	 * Tables to truncate.
-	 *
+    /**
+     * Tables to truncate.
+     *
      * @var array
      */
     private $tables = [
@@ -40,33 +40,33 @@ class DatabaseSeeder extends Seeder
         'users',
     ];
 
-	/**
-	 * Run the database seeds.
-	 *
-	 * @return void
-	 */
-	public function run()
-	{
-		if (app('env') == 'production') {
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        if (app('env') == 'production') {
             return;
         }
 
         $this->cleanDatabase();
 
-		Eloquent::unguard();
+        Eloquent::unguard();
 
-		$this->call('UsersTableSeeder');
-		$this->call('RbacSeeder');
-		$this->call('GroupsTableSeeder');
-		$this->call('DocumentsTableSeeder');
+        $this->call('UsersTableSeeder');
+        $this->call('RbacSeeder');
+        $this->call('GroupsTableSeeder');
+        $this->call('DocumentsTableSeeder');
 
-		if (App::environment() === 'testing') {
-			$this->call('TestSeeder');
-		}
-	}
+        if (App::environment() === 'testing') {
+            $this->call('TestSeeder');
+        }
+    }
 
     /**
-     * Clean database tables removing foreign keys
+     * Clean database tables removing foreign keys.
      *
      * @return void
      */
@@ -80,5 +80,4 @@ class DatabaseSeeder extends Seeder
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
     }
-
 }

@@ -1,4 +1,4 @@
-{{-- 
+{{--
 <div class="row">
 	<div class="md-col-12">
 		<h1>Login</h1>
@@ -32,7 +32,7 @@
 	        <img src="/participa-assets/img/icon-facebook.png" alt="facebook icon" />
 	        {{ trans('messages.loginwith') }} Facebook
 	      </a>
-	    </div> 
+	    </div>
 	    <div class="col-md-12">
 	      <a href="/participa/user/twitter-login" class="btn social-login-btn twitter-login-btn">
 	        <img src="/participa-assets/img/icon-twitter.png" alt="twitter icon" />

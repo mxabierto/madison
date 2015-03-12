@@ -1,11 +1,11 @@
 <?php
 
-return array(
- 
+return [
+
     'default' => 'mysql',
- 
-    'connections' => array(
-        'mysql' => array(
+
+    'connections' => [
+        'mysql' => [
         'driver'    => 'mysql',
         'host'      => getenv('DB_HOST'),
         'database'  => getenv('DB_NAME'),
@@ -14,6 +14,6 @@ return array(
         'charset'   => 'utf8',
         'collation' => 'utf8_unicode_ci',
         'prefix'    => '',
-      )
-    )
-);
+      ],
+    ],
+];

@@ -13,7 +13,7 @@
 
 
       <a href="/docs/{{ $doc->slug }}" style="float:right" class="public-link" target="_self"><span class="glyphicon glyphicon-eye-open"></span> {{ trans('messages.publicview') }}</a>
-      
+
       {{ Form::open(array('url' => URL::route('saveDocumentEdits', $doc->id), 'method' => 'put', 'id'=>'doc_content_form', 'style' => 'style="padding: 0 50px; border: 1px dotted lightgray;"')) }}
         <tabset>
           <tab heading="Document Content">
@@ -84,7 +84,7 @@
               </div>
               <div class="col-md-4">
                 <div class="mt" ng-if="dates.length > 0">
-                  <h6>{{ trans('messages.existingdates') }}:</h6> 
+                  <h6>{{ trans('messages.existingdates') }}:</h6>
                 </div>
                 <div class="existing-date" ng-repeat="date in dates">
                   <form class="form-horizontal">
