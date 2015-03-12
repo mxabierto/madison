@@ -1,18 +1,5 @@
 <?php
 
-	if(file_exists(app_path() . '/config/smtp.php')){
-		require_once(app_path() . '/config/smtp.php');
-	}else{
-		//Laravel defaults
-		$smtp_config = array(
-			'host'=> 'smtp.mailgun.org',
-			'from' => array('address' => null, 'name' => null),
-			'username' => null,
-			'password' => null,
-			'port' => 587
-		);
-	}
-
 return array(
 
 	/*
@@ -41,7 +28,7 @@ return array(
 	|
 	*/
 
-	'host' => $smtp_config['host'],
+	'host' => getenv('MAIL_HOST') ?: 'smtp.mailgun.org',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -54,7 +41,7 @@ return array(
 	|
 	*/
 
-	'port' => $smtp_config['port'],
+	'port' => getenv('MAIL_PORT') ?: 587,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -67,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => $smtp_config['from'],
+	'from' => array('address' => getenv('MAIL_FROM_ADDRESS') ?: null, 'name' => getenv('MAIL_FROM_NAME') ?: null),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +80,7 @@ return array(
 	|
 	*/
 
-	'username' => $smtp_config['username'],
+	'username' => getenv('MAIL_USERNAME') ?: null,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -106,7 +93,7 @@ return array(
 	|
 	*/
 
-	'password' => $smtp_config['password'],
+	'password' => getenv('MAIL_PASSWORD') ?: null,
 
 	/*
 	|--------------------------------------------------------------------------

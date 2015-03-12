@@ -1,12 +1,5 @@
 <?php
 
-if(file_exists(app_path() . '/config/creds.php')){
-	require_once(app_path() . '/config/creds.php');
-}else{
-	$creds = array('database'=> $_ENV['DB_NAME'], 'username'=> $_ENV['DB_USER'], 'password'=> $_ENV['DB_PASS']);
-}
-
-
 return array(
 
 	/*
@@ -53,30 +46,29 @@ return array(
 
 	'connections' => array(
 
-		/*'sqlite' => array(
-			'driver'   => 'sqlite',
-			'database' => __DIR__.'/../database/production.sqlite',
-			'prefix'   => '',
-		),
-		*/
+		'sqlite' => [
+            'driver'   => 'sqlite',
+            'database' => app_path('database').'/'.getenv('DB_DATABASE') ?: null,
+            'prefix'   => '',
+        ],
+
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'localhost',
-			'database'  => $creds['database'],
-			'username'  => $creds['username'],
-			'password'  => $creds['password'],
+			'host'      => getenv('DB_HOST') ?: null,
+			'database'  => getenv('DB_DATABASE') ?: null,
+			'username'  => getenv('DB_USERNAME') ?: null,
+			'password'  => getenv('DB_PASSWORD') ?: null,
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
-		)
-		/*,
+		),
 
 		'pgsql' => array(
 			'driver'   => 'pgsql',
-			'host'     => 'localhost',
-			'database' => 'database',
-			'username' => 'root',
-			'password' => '',
+			'host'     => getenv('DB_HOST') ?: null,
+			'database' => getenv('DB_DATABASE') ?: null,
+			'username' => getenv('DB_USERNAME') ?: null,
+			'password' => getenv('DB_PASSWORD') ?: null,
 			'charset'  => 'utf8',
 			'prefix'   => '',
 			'schema'   => 'public',
@@ -84,13 +76,13 @@ return array(
 
 		'sqlsrv' => array(
 			'driver'   => 'sqlsrv',
-			'host'     => 'localhost',
-			'database' => 'database',
-			'username' => 'root',
-			'password' => '',
+			'host'     => getenv('DB_HOST') ?: null,
+			'database' => getenv('DB_DATABASE') ?: null,
+			'username' => getenv('DB_USERNAME') ?: null,
+			'password' => getenv('DB_PASSWORD') ?: null,
 			'prefix'   => '',
 		),
-		*/
+
 	),
 
 	/*

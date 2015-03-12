@@ -18,16 +18,10 @@ class RbacSeeder extends Seeder
 			'display_name' => "Verify Users"
 		),
 	);
-	
+
 	public function run()
 	{
-		if(file_exists(app_path() . '/config/creds.yml')){
-			$creds = yaml_parse_file(app_path() . '/config/creds.yml');
-		}else{
-			$creds = array(
-			  'admin_email' => 'admin@example.com',
-			);
-		}
+		$adminEmail = Config::get('madison.seeder.admin_email');
 
 		$admin = new Role();
 		$admin->name = 'Admin';
@@ -36,7 +30,7 @@ class RbacSeeder extends Seeder
 		$independent_sponsor = new Role();
 		$independent_sponsor->name = 'Independent Sponsor';
 		$independent_sponsor->save();
-		
+
 		$permIds = array();
 		foreach($this->adminPermissions as $permClass => $data) {
 			$perm = new Permission();
@@ -44,22 +38,22 @@ class RbacSeeder extends Seeder
 			foreach($data as $key => $val) {
 				$perm->$key = $val;
 			}
-				
+
 			$perm->save();
-				
+
 			$permIds[] = $perm->id;
 		}
-		
+
 		$admin->perms()->sync($permIds);
-		
-		$user = User::where('email', '=', $creds['admin_email'])->first();
+
+		$user = User::where('email', '=', $adminEmail)->first();
 		$user->attachRole($admin);
-		
+
 		$createDocPerm = new Permission();
 		$createDocPerm->name = "independent_sponsor_create_doc";
 		$createDocPerm->display_name = "Independent Sponsoring";
 		$createDocPerm->save();
-		
+
 		$independent_sponsor->perms()->sync(array($createDocPerm->id));
 	}
 }

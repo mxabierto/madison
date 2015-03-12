@@ -27,7 +27,7 @@ $app->forgetMiddleware('Illuminate\Http\FrameGuard');
 */
 
 $env = $app->detectEnvironment(function () {
-  return getenv('ENV') ?: 'production';
+  return getenv('ENV') ?: 'local';
 });
 
 /*

@@ -2,24 +2,11 @@
 
 use Illuminate\Database\Seeder;
 
-class UsersTableSeeder extends Seeder 
+class UsersTableSeeder extends Seeder
 {
 	public function run()
 	{
-		if(file_exists(app_path() . '/config/creds.yml')){
-			$creds = yaml_parse_file(app_path() . '/config/creds.yml');
-		}else{
-			$creds = array(
-			  'admin_email' => 'admin@example.com',
-			  'admin_fname' => 'Venustiano',
-			  'admin_lname' => 'Carranza',
-			  'admin_password' => 'password',
-			  'user_email' => 'user@example.com',
-			  'user_fname' => 'John',
-			  'user_lname' => 'Appleseed',
-			  'user_password' => 'password'
-			);
-		}
+		$creds = Config::get('madison.seeder');
 
 		DB::table('users')->insert(array(
 			'email' => $creds['admin_email'],
@@ -28,6 +15,7 @@ class UsersTableSeeder extends Seeder
 			'lname' => $creds['admin_lname'],
 			'token' => '',
 		));
+
     DB::table('users')->insert(array(
       'email' => $creds['user_email'],
       'password' => Hash::make($creds['user_password']),
