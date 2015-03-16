@@ -11,10 +11,11 @@
     ],
     "require": {
         "laravel/framework": "4.1.25",
-        "caouecs/laravel4-lang": "0.12.*",
         "anahkiasen/rocketeer": "1.2.*",
         "artdarek/oauth-4-laravel": "~1.0",
-        "elasticsearch/elasticsearch": "~0.4",
+        "doctrine/dbal": "2.5.*",
+        "caouecs/laravel4-lang": "0.12.*",
+        "elasticsearch/elasticsearch": "0.4.*",
         "graham-campbell/markdown": "1.0.0",
         "illuminate/remote": "4.1.25",
         "illuminate/support": "4.1.25",
@@ -24,8 +25,7 @@
         "zizaco/entrust": "1.2.*"
     },
     "require-dev": {
-        "doctrine/dbal": "2.3.*",
-        "mockery/mockery": "0.9.0",
+        "mockery/mockery": "~9.0",
         "phpunit/phpunit": "~4.0"
     },
     "autoload": {
