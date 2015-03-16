@@ -75,6 +75,11 @@ class DocController extends BaseController
                 'showAnnotationThanks' => $showAnnotationThanks,
             ];
 
+            //Render the votes view and return
+            if (in_array('votos', $doc->categories->lists('name', 'id'))) {
+                return View::make('doc.reader.votes.index', $data);
+            }
+
             //Render view and return
             return View::make('doc.reader.index', $data);
         } catch (Exception $e) {

@@ -117,7 +117,7 @@ class DocumentsController extends Controller
     public function createDocument()
     {
         if (!Auth::check()) {
-            return Redirect::to('/')->with('error', 'You must be logged in');
+            return Redirect::route('home')->with('error', 'You must be logged in');
         }
 
         $input = Input::all();
@@ -129,7 +129,7 @@ class DocumentsController extends Controller
         $validator = Validator::make($input, $rules);
 
         if ($validator->fails()) {
-            return Redirect::to('documents')->withInput()->withErrors($validator);
+            return Redirect::route('documents')->withInput()->withErrors($validator);
         }
 
         try {
@@ -145,18 +145,18 @@ class DocumentsController extends Controller
                 $group = Group::where('id', '=', $activeGroup)->first();
 
                 if (!$group) {
-                    return Redirect::to('documents')->withInput()->with('error', 'Invalid Group');
+                    return Redirect::route('documents')->withInput()->with('error', 'Invalid Group');
                 }
 
                 if (!$group->userHasRole($user, Group::ROLE_EDITOR) && !$group->userHasRole($user, Group::ROLE_OWNER)) {
-                    return Redirect::to('documents')->withInput()->with('error', 'You do not have permission to create a document for this group');
+                    return Redirect::route('documents')->withInput()->with('error', 'You do not have permission to create a document for this group');
                 }
 
                 $docOptions['sponsor'] = $activeGroup;
                 $docOptions['sponsorType'] = Doc::SPONSOR_TYPE_GROUP;
             } else {
                 if (!$user->hasRole(Role::ROLE_INDEPENDENT_SPONSOR)) {
-                    return Redirect::to('documents')->withInput()->with('error', 'You do not have permission to create a document as an individual');
+                    return Redirect::route('documents')->withInput()->with('error', 'You do not have permission to create a document as an individual');
                 }
 
                 $docOptions['sponsor'] = Auth::user()->id;
