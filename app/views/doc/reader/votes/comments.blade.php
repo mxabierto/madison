@@ -8,7 +8,8 @@
   </div>
   @endif
   <div id="participate-activity" class="participate-activity">
-  	<h3>Propuestas</h3>
+  	<h3>Categorías de Datos Abiertos Propuestos</h3>
+    <p>Vota por los conjuntos de datos que te interesan</p>
   	<div class="activity-thread">
       <div id="@{{ 'comment_' + comment.id }}" class="activity-item" ng-repeat="comment in comments | orderBy:activityOrder:true track by $id(comment)" ng-class="comment.label">
         <div comment-item activity-item-link="@{{ comment.link }}"></div>

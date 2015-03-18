@@ -10,7 +10,7 @@ var howManySupport = function(howMany, doesSupport) {
 angular.module('madisonApp.controllers', [])
   /**
   * Global controller, attached to the <body> tag
-  * 
+  *
   * Handles global scope variables
   */
   .controller('AppController', ['$rootScope', '$scope', 'ipCookie', 'UserService',
@@ -49,7 +49,7 @@ angular.module('madisonApp.controllers', [])
 
     }])
   .controller('UserNotificationsController', ['$scope', '$http', 'UserService', function ($scope, $http, UserService) {
-    
+
     //Wait for AppController controller to load user
     UserService.exists.then(function () {
       $http.get('/api/user/' + $scope.user.id + '/notifications')
@@ -214,7 +214,7 @@ angular.module('madisonApp.controllers', [])
         if(undefined !== $scope.doc.introtext[0]){
           var converter = new Markdown.Converter();
 
-          $scope.introtext = $sce.trustAsHtml(converter.makeHtml($scope.doc.introtext[0].meta_value));  
+          $scope.introtext = $sce.trustAsHtml(converter.makeHtml($scope.doc.introtext[0].meta_value));
         }
       });
     }
@@ -252,7 +252,7 @@ angular.module('madisonApp.controllers', [])
           } else {
             $scope.doc.sponsor = $scope.doc.user_sponsor;
             $scope.doc.sponsor[0].display_name = $scope.doc.sponsor[0].fname + ' ' + $scope.doc.sponsor[0].lname;
-          }  
+          }
         } catch (err) {
           console.error(err);
         }
@@ -487,10 +487,11 @@ angular.module('madisonApp.controllers', [])
         $scope.subCommentId = subCommentId[2];
       }
 
-      $scope.init = function (docId) {
+      $scope.init = function (docId, disableAuthor) {
         $scope.getDocComments(docId);
         $scope.user = user;
         $scope.doc = doc;
+        $scope.disableAuthor = (typeof disableAuthor !== 'undefined');
       };
 
       $scope.isSponsor = function () {
@@ -508,7 +509,7 @@ angular.module('madisonApp.controllers', [])
 
       $scope.notifyAuthor = function (activity) {
 
-        // If the current user is a sponsor and the activity hasn't been seen yet, 
+        // If the current user is a sponsor and the activity hasn't been seen yet,
         // post to API route depending on comment/annotation label
         $http.post('/api/docs/' + doc.id + '/' + 'comments/' + activity.id + '/' + 'seen')
           .success(function (data) {
@@ -564,7 +565,7 @@ angular.module('madisonApp.controllers', [])
                   $scope.collapsed_comment = $scope.collapsed_comment.parentpointer;
                 } else {
                   // We have reached the first sublevel of comments, so set the top level
-                  // parent to expand and exit 
+                  // parent to expand and exit
                   not_parent = false;
                 }
               } while (not_parent === true);
@@ -578,7 +579,7 @@ angular.module('madisonApp.controllers', [])
 
       $scope.parentSearch = function (arr, val) {
         for (var i=0; i<arr.length; i++)
-          if (arr[i].id === val)                    
+          if (arr[i].id === val)
             return i;
         return false;
       };

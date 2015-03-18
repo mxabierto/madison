@@ -75,7 +75,7 @@
 
         <div class="tab-content">
           <div id="tab-discussion" ng-class="{'active': secondtab == false}" class="tab-pane">
-            <div class="doc-forum" ng-controller="CommentController" ng-init="init({{ $doc->id }})">
+            <div class="doc-forum" ng-controller="CommentController" ng-init="init({{ $doc->id }}, false)">
               @include('doc.reader.votes.comments')
             </div>
           </div>
