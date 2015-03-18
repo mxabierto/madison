@@ -51,17 +51,6 @@
           <div class="doc-extract" ng-if="introtext">
             <div class="markdown" data-ng-bind-html="introtext"></div>
           </div>
-          <div>
-              <p>
-                  <strong>Te invitamos a 1) votar si los datos propuestos son de tu interés, y 2) proponer otros conjuntos de datos específicos que te gustaría encontrar en datos.gob.mx</strong>
-              </p>
-              <p>
-                  Este ejercicio permanecerá abierto a comentarios y recomendaciones del 3 de marzo al 1 de abril de 2015. Los comentarios serán analizados por el Consejo Consultivo de Datos Abiertos, un órgano independiente de representación multisectorial, para definir cómo mejorar este documento rector de acuerdo a tu participación.
-              </p>
-              <p>
-                  <strong>Participa, tu opinión ayudará a definir los siguientes pasos y procesos de la iniciativa de Datos Abiertos en México.  </strong>
-              </p>
-          </div>
         </div>
       </div>
     </div>
