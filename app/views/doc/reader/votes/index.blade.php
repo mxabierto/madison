@@ -83,7 +83,7 @@
 
       </div>
       <div class="col-md-4">
-        <div class="doc-content-sidebar">
+        <div class="doc-content-sidebar hide">
           <div class="sidebar-unit">
             <h4>{{ trans('messages.howtoparticipate'); }}</h4>
             <hr class="red">

@@ -547,6 +547,12 @@ angular.module('madisonApp.controllers', [])
               comment.commentsCollapsed = true;
               comment.label = 'comment';
               comment.link = 'comment_' + comment.id;
+              comment.placeholder  = 'Agregar un comentario';
+
+              // We set the place holder text
+              if ($scope.disableAuthor) {
+                comment.placeholder  = 'Sugiere otro conjunto';
+              }
 
               // We only want to push top-level comments, they will include
               // subcomments in their comments array(s)
