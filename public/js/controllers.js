@@ -636,6 +636,22 @@ angular.module('madisonApp.controllers', [])
       };
 
       $scope.subcommentSubmit = function (activity, subcomment) {
+
+        if ($scope.user.id === '') {
+          var focused = document.activeElement;
+
+          if (document.activeElement == document.body) {
+            pageY = $(window).scrollTop() + 300;
+            clientX = $(window).width() / 2 - 100;
+          }else{
+            pageY = $(focused).offset().top;
+            clientX = $(focused).offset().left;
+          }
+
+          createLoginPopup(jQuery.Event( "click", { clientX: clientX, pageY: pageY } ));
+          return;
+        }
+
         subcomment.user = $scope.user;
 
         $.post('/participa/api/docs/' + $scope.doc.id + '/' + activity.label + 's/' + activity.id + '/comments', {

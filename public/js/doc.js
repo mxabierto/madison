@@ -27,7 +27,7 @@ $(document).ready(function () {
           var error_html = $('<ul></ul>');
 
           /*jslint unparam: true*/
-          angular.forEach(response.errors, function(value, key) {
+          angular.forEach(response.errors, function (value, key) {
             error_html.append('<li>' + value + '</li>');
           });
           /*jslint unparam: false*/
@@ -61,7 +61,7 @@ $(document).ready(function () {
   });
 
   if (user.id === '') {
-    
+
     Annotator.prototype.checkForEndSelection = function (event) {
 
       // This is what normally happens.

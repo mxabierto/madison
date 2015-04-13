@@ -102,7 +102,7 @@ angular.module('madisonApp.services', [])
         body.append(popup);
 
         var position = {
-          'top': event.clientY - popup.height(),
+          'top': event.pageY - popup.height(),
           'left': event.clientX
         };
         popup.css(position).css('position', 'absolute');
