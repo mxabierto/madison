@@ -57,10 +57,15 @@
 
 		.subcomment-field {
 			padding-top: 20px;
+
+            + .activity-reply {
+                margin-top: 10px;
+            }
 		}
 
 		.activity-reply {
-			margin-top: 20px;
+			padding-top: 10px;
+            padding-bottom: 10px;
 		}
 	}
 }

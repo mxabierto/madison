@@ -101,6 +101,12 @@ angular.module('madisonApp.directives', [])
                 growl.addSuccessMessage("Link copied to clipboard.");
               });
             });
+
+            var $span = $(element).find('.activity-icon > span.ng-binding');
+            $span.on("click", function() {
+              $(element).parent().effect( "highlight",
+                { color: "#2276d7" }, 1000 );
+            });
           }
         };
       }
@@ -129,6 +135,13 @@ angular.module('madisonApp.directives', [])
             $timeout(function () {
               $anchorScroll();
             }, 0);
+
+            var $span = $(element).closest('.activity-icon').children('span.ng-binding');
+            $span.on("click", function() {
+              $(element).closest('.activity-reply').effect( "highlight",
+                { color: "#2276d7" }, 1000 );
+            });
+
           }
         };
       }

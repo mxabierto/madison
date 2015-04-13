@@ -48,6 +48,8 @@ module.exports = function (grunt) {
         files: {
           'public/build/app.js': [
             'public/vendor/jquery/jquery-1.10.2.js',
+            'public/vendor/jquery/jquery.ui.effect.js',
+            'public/vendor/jquery/jquery.ui.effect-highlight.js',
             'public/vendor/select2/select2.js',
             'public/vendor/underscore.min.js',
             'public/bower_components/google-diff-match-patch-js/diff_match_patch.js',

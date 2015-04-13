@@ -457,6 +457,21 @@ angular.module('madisonApp.controllers', [])
       };
 
       $scope.subcommentSubmit = function (activity, subcomment) {
+        if ($scope.user.id === '') {
+          var focused = document.activeElement;
+
+          if (document.activeElement == document.body) {
+            pageY = $(window).scrollTop() + 300;
+            clientX = $(window).width() / 2 - 100;
+          }else{
+            pageY = $(focused).offset().top;
+            clientX = $(focused).offset().left;
+          }
+
+          createLoginPopup(jQuery.Event( "click", { clientX: clientX, pageY: pageY } ));
+          return;
+        }
+
         subcomment.user = $scope.user;
 
         $.post('/participa/api/docs/' + $scope.doc.id + '/' + activity.label + 's/' + activity.id + '/comments', {
@@ -603,6 +618,8 @@ angular.module('madisonApp.controllers', [])
             data[0].label = 'comment';
             $scope.comments.push(data[0]);
             $scope.comment.text = '';
+
+            feedbackMessage('<b>¡Gracias!</b> Acabas de agregar un comentario', 'success', '#participate-comment-message');
           })
           .error(function (data) {
             console.error("Error posting comment: %o", data);
@@ -664,6 +681,9 @@ angular.module('madisonApp.controllers', [])
             subcomment.text = '';
             subcomment.user = '';
             $scope.$apply();
+
+            feedbackMessage('<b>¡Gracias!</b> Acabas de agregar un comentario', 'success', '#participate-comment-message');
+
           }).error(function (data) {
             console.error(data);
           });
