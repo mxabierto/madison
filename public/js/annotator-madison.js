@@ -40,7 +40,7 @@ $.extend(Annotator.Plugin.Madison.prototype, new Annotator.Plugin(), {
       annotationService.addAnnotation(annotation);
       if ($.showAnnotationThanks) {
         $('#annotationThanks').modal({
-          remote: '/modals/annotation_thanks',
+          remote: '/participa/modals/annotation_thanks',
           keyboard: true
         });
       }
@@ -85,7 +85,7 @@ $.extend(Annotator.Plugin.Madison.prototype, new Annotator.Plugin(), {
     this.annotator.editor.submit = function (e) {
       //Clear previous errors
       this.annotation._error = false;
-      
+
       var field, _i, _len, _ref;
       Annotator.Util.preventEventDefault(e);
 
@@ -120,7 +120,7 @@ $.extend(Annotator.Plugin.Madison.prototype, new Annotator.Plugin(), {
             annotation._error = true;
             return false;
           }
-          
+
           annotation.explanation = explanation;
         }
       },
