@@ -509,8 +509,8 @@ angular.module('madisonApp.controllers', [])
         $scope.disableAuthor = (typeof disableAuthor !== 'undefined');
       };
 
-      $scope.isSponsor = function () {
-        var currentId = $scope.user.id;
+      $scope.isSponsor = function (userId) {
+        var currentId = userId || $scope.user.id;
         var sponsored = false;
 
         angular.forEach($scope.doc.sponsor, function (sponsor) {
