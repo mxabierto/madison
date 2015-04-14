@@ -507,10 +507,11 @@ angular.module('madisonApp.controllers', [])
         $scope.user = user;
         $scope.doc = doc;
         $scope.disableAuthor = (typeof disableAuthor !== 'undefined');
+        $scope.getLayoutTexts();
       };
 
-      $scope.isSponsor = function () {
-        var currentId = $scope.user.id;
+      $scope.isSponsor = function (userId) {
+        var currentId = userId || $scope.user.id;
         var sponsored = false;
 
         angular.forEach($scope.doc.sponsor, function (sponsor) {
@@ -534,6 +535,36 @@ angular.module('madisonApp.controllers', [])
           });
       };
 
+      $scope.getLayoutTexts = function() {
+        var texts = {
+          common: {
+            header: '',
+            callToAction: '',
+            commentLabel: 'Agrega un comentario:',
+            commentPlaceholder: 'Agregar un comentario',
+            subCommentPlaceholder: 'Agregar un comentario'
+          },
+          ieda: {
+            header: 'Categorías de Datos Abiertos propuestos',
+            callToAction: 'Vota por los conjuntos de datos que te interesan',
+            commentLabel: 'Sugiere otra categoría:',
+            commentPlaceholder: 'Sugiere otra categoría',
+            subCommentPlaceholder: 'Sugiere otro conjunto'
+          },
+          planAGA: {
+            header: 'Temas para el Tercer Plan de Acción de la Alianza para el Gobierno Abierto',
+            callToAction: 'Vota y comenta los temas que más te interesan.',
+            commentLabel: 'Sugiere otro tema:',
+            commentPlaceholder: 'Sugiere otro tema',
+            subCommentPlaceholder: 'Sugiere otro subtema'
+          }
+        };
+        $scope.layoutTexts = texts.common;
+        angular.forEach($scope.doc.categories, function (category) {
+          if (texts[category.name] !== undefined)
+            $scope.layoutTexts = texts[category.name];
+        });
+      };
 
       $scope.getDocComments = function (docId) {
 
@@ -562,12 +593,6 @@ angular.module('madisonApp.controllers', [])
               comment.commentsCollapsed = true;
               comment.label = 'comment';
               comment.link = 'comment_' + comment.id;
-              comment.placeholder  = 'Agregar un comentario';
-
-              // We set the place holder text
-              if ($scope.disableAuthor) {
-                comment.placeholder  = 'Sugiere otro conjunto';
-              }
 
               // We only want to push top-level comments, they will include
               // subcomments in their comments array(s)
