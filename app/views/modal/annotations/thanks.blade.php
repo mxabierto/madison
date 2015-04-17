@@ -13,7 +13,7 @@
 
 		$.ajax({
 			type : "POST",
-			url : "/modals/annotation_thanks",
+			url : "/participa/modals/annotation_thanks",
 			error : function(xhr, status) {
 				alert("There was a small error - you may see the thank you message again");
 			}

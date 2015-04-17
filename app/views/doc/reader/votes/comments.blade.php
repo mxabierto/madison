@@ -1,3 +1,4 @@
+<div id="participate-comment-message" class="participate-vote-message message-box"></div>
 @if(Auth::check())
   <div id="participate-comment" class="participate-comment">
   	@include('doc.reader.votes.comment')

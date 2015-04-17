@@ -424,6 +424,8 @@ angular.module('madisonApp.controllers', [])
             comment.user.fname = comment.user.name;
             $scope.stream.push(comment);
             $scope.comment.text = '';
+
+            feedbackMessage('<b>¡Gracias!</b> Acabas de agregar un comentario', 'success', '#participate-activity-message');
           })
           .error(function (data) {
             console.error("Error posting comment: %o", data);
@@ -457,6 +459,7 @@ angular.module('madisonApp.controllers', [])
       };
 
       $scope.subcommentSubmit = function (activity, subcomment) {
+
         if ($scope.user.id === '') {
           var focused = document.activeElement;
 
@@ -482,6 +485,8 @@ angular.module('madisonApp.controllers', [])
             subcomment.text = '';
             subcomment.user = '';
             $scope.$apply();
+
+            feedbackMessage('<b>¡Gracias!</b> Acabas de agregar un comentario', 'success', '#participate-activity-message');
           }).error(function (data) {
             console.error(data);
           });
@@ -542,21 +547,27 @@ angular.module('madisonApp.controllers', [])
             callToAction: '',
             commentLabel: 'Agrega un comentario:',
             commentPlaceholder: 'Agregar un comentario',
-            subCommentPlaceholder: 'Agregar un comentario'
+            subCommentPlaceholder: 'Agregar un comentario',
+            commentfeedbackMessage: '<b>¡Gracias!</b> Acabas de agregar un comentario',
+            subCommentfeedbackMessage: '<b>¡Gracias!</b> Acabas de agregar un comentario'
           },
           ieda: {
             header: 'Categorías de Datos Abiertos propuestos',
             callToAction: 'Vota por los conjuntos de datos que te interesan',
             commentLabel: 'Sugiere otra categoría:',
             commentPlaceholder: 'Sugiere otra categoría',
-            subCommentPlaceholder: 'Sugiere otro conjunto'
+            subCommentPlaceholder: 'Sugiere otro conjunto',
+            commentfeedbackMessage: '<b>¡Gracias!</b> Acabas de sugerir una categoría',
+            subCommentfeedbackMessage: '<b>¡Gracias!</b> Acabas de sugerir un conjunto de datos'
           },
           planAGA: {
             header: 'Temas para el Tercer Plan de Acción de la Alianza para el Gobierno Abierto',
             callToAction: 'Vota y comenta los temas que más te interesan.',
             commentLabel: 'Sugiere otro tema:',
             commentPlaceholder: 'Sugiere otro tema',
-            subCommentPlaceholder: 'Sugiere otro subtema'
+            subCommentPlaceholder: 'Sugiere otro subtema',
+            commentfeedbackMessage: '<b>¡Gracias!</b> Acabas de sugerir un tema',
+            subCommentfeedbackMessage: '<b>¡Gracias!</b> Acabas de sugerir un subtema'
           }
         };
         $scope.layoutTexts = texts.common;
@@ -644,7 +655,7 @@ angular.module('madisonApp.controllers', [])
             $scope.comments.push(data[0]);
             $scope.comment.text = '';
 
-            feedbackMessage('<b>¡Gracias!</b> Acabas de agregar un comentario', 'success', '#participate-comment-message');
+            feedbackMessage($scope.layoutTexts.commentfeedbackMessage, 'success', '#participate-comment-message');
           })
           .error(function (data) {
             console.error("Error posting comment: %o", data);
@@ -707,7 +718,7 @@ angular.module('madisonApp.controllers', [])
             subcomment.user = '';
             $scope.$apply();
 
-            feedbackMessage('<b>¡Gracias!</b> Acabas de agregar un comentario', 'success', '#participate-comment-message');
+            feedbackMessage($scope.layoutTexts.subCommentfeedbackMessage, 'success', '#participate-comment-message');
 
           }).error(function (data) {
             console.error(data);

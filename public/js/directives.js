@@ -76,6 +76,16 @@ angular.module('madisonApp.directives', [])
                 growl.addSuccessMessage("Link copied to clipboard.");
               });
             });
+
+            var $span = $(element).find('.activity-actions > span.ng-binding');
+            $span.on("click", function() {
+              var $feedbackElement = $(this).closest('.activity-item');
+              var prevBackground = $feedbackElement.css('background');
+              $feedbackElement.css( "background", "#2276d7");
+              setTimeout(function(){
+                $feedbackElement.css( "background", prevBackground);
+              }, 500);
+            });
           }
         };
       }
