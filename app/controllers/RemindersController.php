@@ -86,7 +86,7 @@ class RemindersController extends BaseController
                 return Redirect::back()->with('error', Lang::get($response));
 
             case Password::PASSWORD_RESET:
-                return Redirect::to('/')->with('message', 'Password successfully changed.');
+                return Redirect::to('/participa')->with('message', trans('messages.passresetsuccess'));
         }
     }
 
@@ -137,6 +137,6 @@ class RemindersController extends BaseController
             $message->to($email);
         });
 
-        return Redirect::to('user/login')->with('message', trans('messages.confirmationresent'));
+        return Redirect::route('user/login')->with('message', trans('messages.confirmationresent'));
     }
 }

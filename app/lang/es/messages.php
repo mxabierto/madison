@@ -167,6 +167,7 @@ return [
 'premindpass'               => 'Por favor ingresa tu dirección de correo electrónico para enviarte instrucciones para restablecer tu contraseña.',
 'resetpass'                 => 'Restablecer contraseña',
 'sendpassreset'             => 'Enviar correo para restablecer contraseña',
+'passresetsuccess'          => 'Tu contraseña ha sido actualizada exitosamente',
 'resendconfemail'           => 'Reenviar correo de confirmación',
 'resendmyconfemail'         => 'Reenviar mi correo de confirmación',
 'resetemailtitle'           => 'Restablecimiento de contraseña para gob.mx/participa',

@@ -16,7 +16,7 @@
 				    	<input id="password" type="password" name="password" class="form-control">
 				    </div>
 				    <div class="form-group">
-				    	<label for="password_confirmation">{{ trans('messages.cnfpas') }}</label>
+				    	<label for="password_confirmation">{{ trans('messages.cnfpass') }}</label>
 				    	<input id="password_confirmation" type="password" name="password_confirmation" class="form-control">
 				    </div>
 				    <input type="submit" value="{{ trans('messages.resetpass') }}">
