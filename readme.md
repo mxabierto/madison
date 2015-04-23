@@ -4,6 +4,8 @@
 
 ## Madison
 
+[![Join the chat at https://gitter.im/mxabierto/madison](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mxabierto/madison?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Madison is an open-source, collaborative document editing platform.  While Madison can be used to collaborate on many different kinds of documents, the official version is being built with legislative and policy documents in mind.
 
 If you have questions about Madison, please open an issue and we will try to respond as soon as possible.
