@@ -166,6 +166,7 @@ return [
 'premindpass'               => 'Please fill out your email address below, and a reset password email will be sent to you.',
 'resetpass'                 => 'Reset Password',
 'sendpassreset'             => 'Send Password Reset',
+'passresetsuccess'          => 'Password successfully changed',
 'resendconfemail'           => 'Resend confirmation email',
 'resendmyconfemail'         => 'Resend my confirmation email',
 'resetemailtitle'           => 'Madison Password Reset',

@@ -7,7 +7,7 @@
     <h2>{{ trans('messages.resetemailtitle') }}</h2>
 
     <div>
-      {{ trans('messages.resetemailmessage') }}{{ URL::to('password/reset', array($token)) }}.
+      {{ trans('messages.resetemailmessage') }}{{ URL::to('participa/password/reset', array($token)) }}.
     </div>
   </body>
 </html>
