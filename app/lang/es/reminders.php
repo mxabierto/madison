@@ -21,6 +21,6 @@ return [
 
     "sent"     => "¡Recordatorio de contraseña enviado!",
 
-    "reset"    => "Su contraseña ha sido restablecida!",
+    "reset"    => "¡Su contraseña ha sido restablecida!",
 
 ];

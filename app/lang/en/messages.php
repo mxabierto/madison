@@ -19,6 +19,7 @@ return [
 'services'                  => 'Services',
 'sitename'                  => 'Madison',
 'sitetitle'                 => 'Madison',
+'tagline'                   => '',
 'filter'                    => 'Filter document titles',
 'category'                  => 'Category',
 'sponsor'                   => 'Sponsor',
@@ -180,5 +181,6 @@ return [
 'emailfrom'                 => 'sayhello@opengovfoundation.org',
 'emailfromname'             => 'Madison',
 'confirmationresent'        => 'An email has been sent to your email address.  Please follow the instructions in the email to confirm your email address before logging in.',
+'email'                     => 'Email',
 'invalidcredentials'        => 'The email address or password is incorrect.',
 ];
