@@ -191,8 +191,11 @@ return [
 'notauthorized'             => 'You are not authorized',
 'nopermission'              => 'You do not have permission',
 'toviewpage'                => 'to view that page',
+'tocreate'                  => 'to create a',
 'tomark'                    => 'to mark this',
 'asseen'                    => 'as seen',
+'asindividual'              => 'as an individual',
+'forgroup'                  => 'for this group',
 'saving'                    => 'saving',
 'feedbackviewedbysponsor'   => 'Your feedback on Madison was viewed by a sponsor!',
 ];

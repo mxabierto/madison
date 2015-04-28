@@ -191,8 +191,11 @@ return [
 'notauthorized'             => 'No estás autorizado',
 'nopermission'              => 'No tienes permiso',
 'toviewpage'                => 'para ver esa página',
+'tocreate'                  => 'para crear un',
 'tomark'                    => 'para marcar éste',
 'asseen'                    => 'como visto',
+'asindividual'              => 'como individuo',
+'forgroup'                  => 'para este grupo',
 'saving'                    => 'guardando',
 'feedbackviewedbysponsor'   => '¡Tu participación en Madison ha sido vista por el promotor!',
 ];
