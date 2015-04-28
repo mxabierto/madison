@@ -52,6 +52,8 @@
             <div class="markdown" data-ng-bind-html="introtext"></div>
           </div>
           <div class="doc-actions">
+            <br>
+            <p>{{ trans('messages.supportdoctext') }}</p>
             <a id="doc-support" href="#" class="btn btn-primary" ng-click="support(true, $event)" ng-class="{'btn-success': supported}">
               <span class="glyphicon glyphicon-ok"></span>
               {{ trans('messages.supportdoc') }}

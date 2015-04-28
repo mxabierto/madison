@@ -159,6 +159,7 @@ return [
 'signupwith'                => 'Sign up with',
 'annotations'               => 'Annotations',
 'howtoparticipate'          => 'How to Participate',
+'supportdoctext'            => 'What is your opinion on this document?',
 'supportdoc'                => 'Support This Document',
 'opposedoc'                 => 'Oppose This Document',
 'presetpass'                => 'Please fill out the form below to reset your password.',
