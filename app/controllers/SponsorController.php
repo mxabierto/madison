@@ -59,6 +59,6 @@ class SponsorController extends Controller
       $request->user_id = $user->id;
       $request->save();
 
-      return Redirect::route('editUser', $user->id)->with('message', 'Your request has been received.');
+      return Redirect::route('editUser', $user->id)->with('message', trans('messages.reqreceived'));
   }
 }

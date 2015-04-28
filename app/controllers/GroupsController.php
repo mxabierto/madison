@@ -51,7 +51,7 @@ class GroupsController extends Controller
         });
 
         return Redirect::to('groups/members/'.(int) $group->id)
-                        ->with('success_message', 'User added successfully!');
+                        ->with('success_message', trans('messages.addednewmember'));
     }
 
     public function inviteMember($groupId)

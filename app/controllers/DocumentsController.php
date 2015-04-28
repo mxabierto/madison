@@ -87,7 +87,7 @@ class DocumentsController extends Controller
             return Redirect::route('documents')->with('error', "Document saved, but there was an error with Elasticsearch: {$e->getMessage()}");
         }
 
-        return Redirect::route('documents')->with('success_message', 'Document Saved Successfully');
+        return Redirect::route('documents')->with('success_message', trans('messages.saveddoc'));
     }
 
     public function editDocument($documentId)
@@ -149,14 +149,14 @@ class DocumentsController extends Controller
                 }
 
                 if (!$group->userHasRole($user, Group::ROLE_EDITOR) && !$group->userHasRole($user, Group::ROLE_OWNER)) {
-                    return Redirect::route('documents')->withInput()->with('error', 'You do not have permission to create a document for this group');
+                    return Redirect::route('documents')->withInput()->with('error', ucfirst(strtolower(trans('messages.nopermission').' '.trans('messages.tocreate').' '.trans('messages.document').' '.trans('messages.forgroup'))));
                 }
 
                 $docOptions['sponsor'] = $activeGroup;
                 $docOptions['sponsorType'] = Doc::SPONSOR_TYPE_GROUP;
             } else {
                 if (!$user->hasRole(Role::ROLE_INDEPENDENT_SPONSOR)) {
-                    return Redirect::route('documents')->withInput()->with('error', 'You do not have permission to create a document as an individual');
+                    return Redirect::route('documents')->withInput()->with('error', ucfirst(strtolower(trans('messages.nopermission').' '.trans('messages.tocreate').' '.trans('messages.document').' '.trans('messages.asindividual'))));
                 }
 
                 $docOptions['sponsor'] = Auth::user()->id;
@@ -169,7 +169,7 @@ class DocumentsController extends Controller
                 Event::fire(MadisonEvent::NEW_GROUP_DOCUMENT, ['document' => $document, 'group' => $group]);
             }
 
-            return Redirect::to("documents/edit/{$document->id}")->with('success_message', "Document Created Successfully");
+            return Redirect::to("documents/edit/{$document->id}")->with('success_message', trans('messages.saveddoc'));
         } catch (\Exception $e) {
             return Redirect::to("documents")->withInput()->with('error', "Sorry there was an error processing your request - {$e->getMessage()}");
         }

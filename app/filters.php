@@ -42,7 +42,7 @@ Route::filter('admin', function () {
     $user = Auth::user();
 
     if (Auth::guest() || !$user->hasRole('Admin')) {
-        return Redirect::home()->with('message', 'You are not authorized to view that page');
+        return Redirect::home()->with('message', trans('messages.notauthorized').' '.trans('messages.toviewpage'));
     }
 });
 
