@@ -32,7 +32,7 @@
 	<script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
 	</head>
 	<body>
-    <div class="alert alert-info">Esta es una plataforma de prueba. La información en este sitio no refleja una postura o información oficial.</div>
+    <div class="alert alert-info">Esta es una plataforma de prueba. El contenido en este sitio no refleja una postura o información oficial.</div>
 		<!--[if lt IE 8]>
 			<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/" target="_blank">upgrade your browser</a> to improve your experience.</p>
 		<![endif]-->
