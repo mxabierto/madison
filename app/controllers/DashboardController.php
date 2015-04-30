@@ -38,7 +38,7 @@ class DashboardController extends BaseController
         $user = Auth::user();
 
         if (!$user->can('admin_verify_users')) {
-            return Redirect::to('/dashboard')->with('message', "You do not have permission");
+            return Redirect::to('/dashboard')->with('message', trans('messages.nopermission'));
         }
 
         $groups = Group::where('status', '!=', Group::STATUS_ACTIVE)->get();
@@ -57,7 +57,7 @@ class DashboardController extends BaseController
         $user = Auth::user();
 
         if (!$user->can('admin_verify_users')) {
-            return Redirect::to('/dashboard')->with('message', "You do not have permission");
+            return Redirect::to('/dashboard')->with('message', trans('messages.nopermission'));
         }
 
         $users = UserMeta::where('meta_key', '=', UserMeta::TYPE_INDEPENDENT_SPONSOR)
@@ -120,7 +120,7 @@ class DashboardController extends BaseController
         $user = Auth::user();
 
         if (!$user->can('admin_verify_users')) {
-            return Redirect::to('/dashboard')->with('message', "You do not have permission");
+            return Redirect::to('/dashboard')->with('message', trans('messages.nopermission'));
         }
 
         $requests = UserMeta::where('meta_key', 'verify')->with('user')->get();
@@ -147,7 +147,7 @@ class DashboardController extends BaseController
         $user = Auth::user();
 
         if (!$user->can('admin_manage_settings')) {
-            return Redirect::to('/dashboard')->with('message', "You do not have permission");
+            return Redirect::to('/dashboard')->with('message', trans('messages.nopermission'));
         }
 
         return View::make('dashboard.settings', $data);
@@ -158,7 +158,7 @@ class DashboardController extends BaseController
         $user = Auth::user();
 
         if (!$user->can('admin_manage_settings')) {
-            return Redirect::to('/dashboard')->with('message', "You do not have permission");
+            return Redirect::to('/dashboard')->with('message', trans('messages.nopermission'));
         }
 
         $adminEmail = Input::get('contact-email');
@@ -178,7 +178,7 @@ class DashboardController extends BaseController
         $user = Auth::user();
 
         if (!$user->can('admin_manage_documents')) {
-            return Redirect::to('/dashboard')->with('message', "You do not have permission");
+            return Redirect::to('/dashboard')->with('message', trans('messages.nopermission'));
         }
 
         if ($id == '') {
@@ -217,7 +217,7 @@ class DashboardController extends BaseController
         $user = Auth::user();
 
         if (!$user->can('admin_manage_documents')) {
-            return Redirect::route('/dashboard')->with('message', "You do not have permission");
+            return Redirect::route('/dashboard')->with('message', trans('messages.nopermission'));
         }
 
         //Creating new document
@@ -249,7 +249,7 @@ class DashboardController extends BaseController
                 $doc->init_section = $starter->id;
                 $doc->save();
 
-                return Redirect::route('dashboardShowsDoc', [$doc->id])->with('success_message', 'Document created successfully');
+                return Redirect::route('dashboardShowsDoc', [$doc->id])->with('success_message', trans('messages.createddoc'));
             } catch (Exception $e) {
                 return Redirect::route('dashboard/docs')->withInput()->with('error', $e->getMessage());
             }
@@ -266,7 +266,7 @@ class DashboardController extends BaseController
         $user = Auth::user();
 
         if (!$user->can('admin_manage_documents')) {
-            return Redirect::to('/dashboard')->with('message', "You do not have permission");
+            return Redirect::to('/dashboard')->with('message', trans('messages.nopermission'));
         }
 
         $content = Input::get('content');
@@ -276,7 +276,7 @@ class DashboardController extends BaseController
             try {
                 $doc_content = DocContent::find($content_id);
             } catch (Exception $e) {
-                return Redirect::to('dashboard/docs/'.$id)->with('error', 'Error saving the document: '.$e->getMessage());
+                return Redirect::to('dashboard/docs/'.$id)->with('error', ucfirst(strtolower('Error '.trans('messages.saving').' '.trans('messages.document'))).': '.$e->getMessage());
             }
         } else {
             $doc_content = new DocContent();
@@ -291,6 +291,6 @@ class DashboardController extends BaseController
         $doc = Doc::find($id);
         $doc->indexContent($doc_content);
 
-        return Redirect::to('dashboard/docs/'.$id)->with('success_message', 'Document Saved Successfully');
+        return Redirect::to('dashboard/docs/'.$id)->with('success_message', trans('messages.saveddoc'));
     }
 }

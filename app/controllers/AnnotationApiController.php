@@ -144,7 +144,7 @@ class AnnotationApiController extends ApiController
         }
 
         if (!$allowed) {
-            throw new Exception("You are not authorized to mark this annotation as seen.");
+            throw new Exception(ucfirst(strtolower(trans('messages.notauthorized').' '.trans('messages.tomark').' '.trans('messages.annotation').' '.trans('messages.asseen').'.')));
         }
 
         //The user is allowed to make this action
@@ -157,7 +157,7 @@ class AnnotationApiController extends ApiController
         $email = $annotation->user->email;
 
         Mail::queue('email.read', $vars, function ($message) use ($email) {
-            $message->subject('Your feedback on Madison was viewed by a sponsor!');
+            $message->subject(trans('messages.feedbackviewedbysponsor'));
             $message->from('sayhello@opengovfoundation.org', 'Madison');
             $message->to($email); // Recipient address
         });
