@@ -175,7 +175,7 @@ class AnnotationApiController extends ApiController
 
         //If no id requested, return 404
         if ($id === null) {
-            App::abort(404, trans('messages.noannotationid'));
+            App::abort(404, trans('messages.notreceivedannotationid'));
         }
 
         $body = Input::all();
@@ -196,7 +196,7 @@ class AnnotationApiController extends ApiController
     {
         //If no id requested, return 404
         if ($annotation === null) {
-            App::abort(404, trans('messages.noannotationid'));
+            App::abort(404, trans('messages.notreceivedannotationid'));
         }
 
         $annotation = Annotation::find($annotation);
@@ -217,7 +217,7 @@ class AnnotationApiController extends ApiController
     public function getLikes($doc, $annotation = null)
     {
         if ($annotation === null) {
-            App::abort(404, trans('messages.noannotationid'));
+            App::abort(404, trans('messages.notreceivedannotationid'));
         }
 
         $likes = Annotation::getMetaCount($annotation, 'likes');
@@ -228,7 +228,7 @@ class AnnotationApiController extends ApiController
     public function getDislikes($doc, $annotation = null)
     {
         if ($annotation === null) {
-            App::abort(404, trans('messages.noannotationid'));
+            App::abort(404, trans('messages.notreceivedannotationid'));
         }
 
         $dislikes = Annotation::getMetaCount($annotation, 'dislikes');
@@ -239,7 +239,7 @@ class AnnotationApiController extends ApiController
     public function getFlags($doc, $annotation = null)
     {
         if ($annotation === null) {
-            App::abort(404, trans('messages.noannotationid'));
+            App::abort(404, trans('messages.notreceivedannotationid'));
         }
 
         $flags = Annotation::getMetaCount($annotation, 'flags');
@@ -250,7 +250,7 @@ class AnnotationApiController extends ApiController
     public function postLikes($doc, $annotation = null)
     {
         if ($annotation === null) {
-            App::abort(404, trans('messages.nonoteid'));
+            App::abort(404, trans('messages.notreceivednoteid'));
         }
 
         $annotation = Annotation::find($annotation);
@@ -269,7 +269,7 @@ class AnnotationApiController extends ApiController
     public function postDislikes($doc, $annotation = null)
     {
         if ($annotation === null) {
-            App::abort(404, trans('messages.nonoteid'));
+            App::abort(404, trans('messages.notreceivednoteid'));
         }
 
         $annotation = Annotation::find($annotation);
@@ -288,7 +288,7 @@ class AnnotationApiController extends ApiController
     public function postFlags($doc, $annotation = null)
     {
         if ($annotation === null) {
-            App::abort(404, trans('messages.nonoteid'));
+            App::abort(404, trans('messages.notreceivednoteid'));
         }
 
         $annotation = Annotation::find($annotation);

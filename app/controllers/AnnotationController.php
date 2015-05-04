@@ -22,7 +22,7 @@ class AnnotationController extends BaseController
     {
         //Return 404 if no id is passed
         if ($id == null) {
-            App::abort(404, 'No se encontró el id de la nota');
+            App::abort(404, trans('messages.noteidnotfound'));
         }
 
         //Invalid note id
@@ -30,7 +30,7 @@ class AnnotationController extends BaseController
         $user = $annotation->user()->first();
 
         if (!isset($annotation)) {
-            App::abort(404, 'No fue posible obtener la nota');
+            App::abort(404, ucfirst(strtolower(trans('messages.unable').' '.trans('messages.toretrieve').' '.trans('messages.the').' '.trans('messages.note'))));
         }
 
         //Retrieve note information

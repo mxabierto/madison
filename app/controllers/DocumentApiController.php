@@ -26,7 +26,7 @@ class DocumentApiController extends ApiController
         $doc->title = Input::get('title');
         $doc->save();
 
-        $response['messages'][0] = ['text' => 'Título del documento guardado', 'severity' => 'info'];
+        $response['messages'][0] = ['text' => ucfirst(strtolower(trans('messages.title').' '.trans('messages.ofmale').' '.trans('messages.document').' '.trans('messages.saved'))), 'severity' => 'info'];
 
         return Response::json($response);
     }
@@ -40,11 +40,11 @@ class DocumentApiController extends ApiController
         if ($old_slug != Input::get('slug')) {
             $doc->slug = Input::get('slug');
             $doc->save();
-            $response['messages'][0] = ['text' => 'Slug del documento guardado', 'severity' => 'info'];
+            $response['messages'][0] = ['text' => ucfirst(strtolower(trans('messages.docslug').' '.trans('messages.saved'))), 'severity' => 'info'];
         } else {
             // If the slugs are identical, the only way this could have happened is if the sanitize
             // function took out an invalid character and tried to submit an identical slug
-            $response['messages'][0] = ['text' => 'Caracter de slug inválido', 'severity' => 'error'];
+            $response['messages'][0] = ['text' => trans('messages.invalidslugcharacter'), 'severity' => 'error'];
         }
 
         return Response::json($response);
@@ -61,7 +61,7 @@ class DocumentApiController extends ApiController
 
         Event::fire(MadisonEvent::DOC_EDITED, $doc);
 
-        $response['messages'][0] = ['text' => 'Contenido del documento guardado', 'severity' => 'info'];
+        $response['messages'][0] = ['text' => ucfirst(strtolower(trans('messages.doccontent').' '.trans('messages.saved'))), 'severity' => 'info'];
 
         return Response::json($response);
     }
@@ -140,7 +140,7 @@ class DocumentApiController extends ApiController
         }
 
         $doc->categories()->sync($categoryIds);
-        $response['messages'][0] = ['text' => 'Categorías guardadas', 'severity' => 'info'];
+        $response['messages'][0] = ['text' => ucfirst(strtolower(trans('messages.categories').' '.trans('messages.savedfemaleplural'))), 'severity' => 'info'];
 
         return Response::json($response);
     }
@@ -167,7 +167,7 @@ class DocumentApiController extends ApiController
 
         $introText->save();
 
-        $response['messages'][0] = ['text' => 'Texto introductiorio guardado.', 'severity' => 'info'];
+        $response['messages'][0] = ['text' => ucfirst(strtolower(trans('messages.docintrotext').' '.trans('messages.saved'))), 'severity' => 'info'];
 
         return Response::json($response);
     }
@@ -221,7 +221,7 @@ class DocumentApiController extends ApiController
             }
         }
 
-        $response['messages'][0] = ['text' => 'Promotor guardado', 'severity' => 'info'];
+        $response['messages'][0] = ['text' => ucfirst(strtolower(trans('messages.sponsor').' '.trans('messages.saved'))), 'severity' => 'info'];
 
         return Response::json($response);
     }
@@ -257,7 +257,7 @@ class DocumentApiController extends ApiController
             $doc->statuses()->sync([$toAdd->id]);
         }
 
-        $response['messages'][0] = ['text' => 'Documento guardado', 'severity' => 'info'];
+        $response['messages'][0] = ['text' => ucfirst(strtolower(trans('messages.document').' '.trans('messages.saved'))), 'severity' => 'info'];
 
         return Response::json($response);
     }
@@ -291,7 +291,7 @@ class DocumentApiController extends ApiController
         $date = Date::find($date);
 
         if (!isset($date)) {
-            throw new Exception("No fue posible eliminar la fecha.  El id de la fecha $date no se encontró.");
+            throw new Exception(ucfirst(strtolower(trans('messages.unable').' '.trans('messages.todelete').' '.trans('messages.thefemale').' '.trans('messages.date').'. '.trans('messages.the').' '.trans('messages.dateid').' $date '.trans('messages.notfound'))));
         }
 
         $date->delete();
@@ -305,7 +305,7 @@ class DocumentApiController extends ApiController
         $date = Date::find($date);
 
         if (!isset($date)) {
-            throw new Exception("No fue posible actualizar la fecha.  El id de la fecha $date no se encontró.");
+            throw new Exception(ucfirst(strtolower(trans('messages.unable').' '.trans('messages.toupdate').' '.trans('messages.thefemale').' '.trans('messages.date').'. '.trans('messages.the').' '.trans('messages.dateid').' $date '.trans('messages.notfound'))));
         }
 
         $newDate = date("Y-m-d H:i:s", strtotime((string) $input['date']));
@@ -315,7 +315,7 @@ class DocumentApiController extends ApiController
 
         $date->save();
 
-        $response['messages'][0] = ['text' => 'Documento guardado', 'severity' => 'info'];
+        $response['messages'][0] = ['text' => ucfirst(strtolower(trans('messages.document').' '.trans('messages.saved'))), 'severity' => 'info'];
 
         return Response::json($response);
     }
@@ -329,7 +329,7 @@ class DocumentApiController extends ApiController
         ];
 
         if (!Auth::check()) {
-            $retval['message'] = trans('messages.needlogin')." para realizar ésta acción";
+            $retval['message'] = ucfirst(strtolower(trans('messages.needlogin').' '.trans('messages.toperformcall')));
 
             return Response::json($retval);
         }

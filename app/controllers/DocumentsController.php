@@ -43,7 +43,7 @@ class DocumentsController extends Controller
         $contentId = Input::get('content_id');
 
         if (empty($content)) {
-            return Redirect::route('documents')->with('error', "Debe incluír contenido para guardar");
+            return Redirect::route('documents')->with('error', ucfirst(strtolower(trans('messages.needtoinclude').' '.trans('messages.content').' '.trans('messages.to').' '.trans('messages.save'))));
         }
 
         if (!empty($contentId)) {
@@ -53,13 +53,13 @@ class DocumentsController extends Controller
         }
 
         if (!$docContent instanceof DocContent) {
-            return Redirect::route('documents')->with('error', 'No se pudo localizar el documento para guardar');
+            return Redirect::route('documents')->with('error', ucfirst(strtolower(trans('messages.unable').' '.trans('messages.tolocate').' '.trans('messages.the').' '.trans('messages.document').' '.trans('messages.to').' '.trans('messages.save'))));
         }
 
         $document = Doc::find($documentId);
 
         if (!$document instanceof Doc) {
-            return Redirect::route('documents')->with('error', "No se pudo localizar el documento");
+            return Redirect::route('documents')->with('error', ucfirst(strtolower(trans('messages.unable').' '.trans('messages.tolocate').' '.trans('messages.the').' '.trans('messages.document'))));
         }
 
         if (!$document->canUserEdit(Auth::user())) {
@@ -74,7 +74,7 @@ class DocumentsController extends Controller
                 $docContent->save();
             });
         } catch (\Exception $e) {
-            return Redirect::route('documents')->with('error', "Ocurrió un error al guardar el documento: {$e->getMessage()}");
+            return Redirect::route('documents')->with('error', ucfirst(strtolower(trans('messages.therewaserror').' '.trans('messages.saving').' '.trans('messages.the').' '.trans('messages.document'))).": {$e->getMessage()}");
         }
 
         //Fire document edited event for admin notifications
@@ -84,7 +84,7 @@ class DocumentsController extends Controller
         try {
             $document->indexContent($docContent);
         } catch (\Exception $e) {
-            return Redirect::route('documents')->with('error', "Documento guardado, pero ha ocurrido un error con Elasticsearch: {$e->getMessage()}");
+            return Redirect::route('documents')->with('error', ucfirst(strtolower(trans('messages.document').' '.trans('messages.saved').' '.trans('messages.but').' '.trans('messages.therewaserror').' '.trans('messages.with')))." Elasticsearch: {$e->getMessage()}");
         }
 
         return Redirect::route('documents')->with('success_message', trans('messages.saveddoc'));
@@ -99,7 +99,7 @@ class DocumentsController extends Controller
         $doc = Doc::find($documentId);
 
         if (is_null($doc)) {
-            return Redirect::route('documents')->with('error', 'Documento no encontrado.');
+            return Redirect::route('documents')->with('error', trans('messages.documentnotfound'));
         }
 
         if (!$doc->canUserEdit(Auth::user())) {
@@ -145,7 +145,7 @@ class DocumentsController extends Controller
                 $group = Group::where('id', '=', $activeGroup)->first();
 
                 if (!$group) {
-                    return Redirect::route('documents')->withInput()->with('error', 'Grupo inválido');
+                    return Redirect::route('documents')->withInput()->with('error', trans('messages.invalidgroup'));
                 }
 
                 if (!$group->userHasRole($user, Group::ROLE_EDITOR) && !$group->userHasRole($user, Group::ROLE_OWNER)) {
@@ -171,7 +171,7 @@ class DocumentsController extends Controller
 
             return Redirect::to("documents/edit/{$document->id}")->with('success_message', trans('messages.saveddoc'));
         } catch (\Exception $e) {
-            return Redirect::to("documents")->withInput()->with('error', "Disculpa, ocurrió un error procesando tu solicitud - {$e->getMessage()}");
+            return Redirect::to("documents")->withInput()->with('error', ucfirst(strtolower(trans('messages.sorry').', '.trans('messages.therewaserror')))." - {$e->getMessage()}");
         }
     }
 }
