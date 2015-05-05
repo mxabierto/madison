@@ -232,7 +232,7 @@ class GroupsController extends Controller
     {
         if (!Auth::check()) {
             return Redirect::to('user/login')
-                        ->with('error', 'Please log in to edit a group');
+                        ->with('error', 'Por favor ingresa para editar un grupo');
         }
 
         $group_details = Input::all();

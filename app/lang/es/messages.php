@@ -192,11 +192,18 @@ return [
 'notauthorized'             => 'No estás autorizado',
 'nopermission'              => 'No tienes permiso',
 'toviewpage'                => 'para ver esa página',
+'toviewdocument'            => 'para ver ese documento',
 'tocreate'                  => 'para crear un',
+'tosave'                    => 'para guardar ese',
 'tomark'                    => 'para marcar éste',
 'asseen'                    => 'como visto',
 'asindividual'              => 'como individuo',
 'forgroup'                  => 'para este grupo',
 'saving'                    => 'guardando',
 'feedbackviewedbysponsor'   => '¡Tu participación en Madison ha sido vista por el promotor!',
+
+'explanationrequired'       => 'La explicación es obligatoria',
+'noannotationid'            => 'No se recibió el id del comentario',
+'nonoteid'                  => 'No se recibió el id de la nota',
+'needlogin'                 => 'Debe iniciar sesión',
 ];

@@ -26,7 +26,7 @@ class DocumentApiController extends ApiController
         $doc->title = Input::get('title');
         $doc->save();
 
-        $response['messages'][0] = ['text' => 'Document title saved', 'severity' => 'info'];
+        $response['messages'][0] = ['text' => 'Título del documento guardado', 'severity' => 'info'];
 
         return Response::json($response);
     }
@@ -40,11 +40,11 @@ class DocumentApiController extends ApiController
         if ($old_slug != Input::get('slug')) {
             $doc->slug = Input::get('slug');
             $doc->save();
-            $response['messages'][0] = ['text' => 'Document slug saved', 'severity' => 'info'];
+            $response['messages'][0] = ['text' => 'Slug del documento guardado', 'severity' => 'info'];
         } else {
             // If the slugs are identical, the only way this could have happened is if the sanitize
             // function took out an invalid character and tried to submit an identical slug
-            $response['messages'][0] = ['text' => 'Invalid slug character', 'severity' => 'error'];
+            $response['messages'][0] = ['text' => 'Caracter de slug inválido', 'severity' => 'error'];
         }
 
         return Response::json($response);
@@ -61,7 +61,7 @@ class DocumentApiController extends ApiController
 
         Event::fire(MadisonEvent::DOC_EDITED, $doc);
 
-        $response['messages'][0] = ['text' => 'Document content saved', 'severity' => 'info'];
+        $response['messages'][0] = ['text' => 'Contenido del documento guardado', 'severity' => 'info'];
 
         return Response::json($response);
     }
@@ -140,7 +140,7 @@ class DocumentApiController extends ApiController
         }
 
         $doc->categories()->sync($categoryIds);
-        $response['messages'][0] = ['text' => 'Categories saved', 'severity' => 'info'];
+        $response['messages'][0] = ['text' => 'Categorías guardadas', 'severity' => 'info'];
 
         return Response::json($response);
     }
@@ -167,7 +167,7 @@ class DocumentApiController extends ApiController
 
         $introText->save();
 
-        $response['messages'][0] = ['text' => 'Intro Text Saved.', 'severity' => 'info'];
+        $response['messages'][0] = ['text' => 'Texto introductiorio guardado.', 'severity' => 'info'];
 
         return Response::json($response);
     }
@@ -221,7 +221,7 @@ class DocumentApiController extends ApiController
             }
         }
 
-        $response['messages'][0] = ['text' => 'Sponsor saved', 'severity' => 'info'];
+        $response['messages'][0] = ['text' => 'Promotor guardado', 'severity' => 'info'];
 
         return Response::json($response);
     }
@@ -257,7 +257,7 @@ class DocumentApiController extends ApiController
             $doc->statuses()->sync([$toAdd->id]);
         }
 
-        $response['messages'][0] = ['text' => 'Document saved', 'severity' => 'info'];
+        $response['messages'][0] = ['text' => 'Documento guardado', 'severity' => 'info'];
 
         return Response::json($response);
     }
@@ -291,7 +291,7 @@ class DocumentApiController extends ApiController
         $date = Date::find($date);
 
         if (!isset($date)) {
-            throw new Exception("Unable to delete date.  Date id $date not found.");
+            throw new Exception("No fue posible eliminar la fecha.  El id de la fecha $date no se encontró.");
         }
 
         $date->delete();
@@ -305,7 +305,7 @@ class DocumentApiController extends ApiController
         $date = Date::find($date);
 
         if (!isset($date)) {
-            throw new Exception("unable to update date.  Date id $date not found.");
+            throw new Exception("No fue posible actualizar la fecha.  El id de la fecha $date no se encontró.");
         }
 
         $newDate = date("Y-m-d H:i:s", strtotime((string) $input['date']));
@@ -315,7 +315,7 @@ class DocumentApiController extends ApiController
 
         $date->save();
 
-        $response['messages'][0] = ['text' => 'Document saved', 'severity' => 'info'];
+        $response['messages'][0] = ['text' => 'Documento guardado', 'severity' => 'info'];
 
         return Response::json($response);
     }
@@ -329,7 +329,7 @@ class DocumentApiController extends ApiController
         ];
 
         if (!Auth::check()) {
-            $retval['message'] = "You must be logged in to perform this call";
+            $retval['message'] = trans('messages.needlogin')." para realizar ésta acción";
 
             return Response::json($retval);
         }

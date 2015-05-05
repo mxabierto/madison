@@ -39,7 +39,7 @@ class UserApiController extends ApiController
         $user = User::find($request['user_id']);
 
         if (!isset($user)) {
-            throw new Exception('User ('.$user->id.') not found.');
+            throw new Exception('Usuario ('.$user->id.') no encontrado.');
         }
 
         $accepted = ['verified', 'denied'];
@@ -53,7 +53,7 @@ class UserApiController extends ApiController
                         ->first();
 
         if (!$meta) {
-            throw new Exception("Invalid ID {$user->id}");
+            throw new Exception("ID inválido {$user->id}");
         }
 
         switch ($status) {
@@ -129,7 +129,7 @@ class UserApiController extends ApiController
         $user = User::find($admin['id']);
 
         if (!isset($user)) {
-            throw new Exception('User with id '.$admin['id'].' could not be found.');
+            throw new Exception('El usuario con el id '.$admin['id'].' no pudo ser encontrado');
         }
 
         $user->admin_contact($admin['admin_contact']);

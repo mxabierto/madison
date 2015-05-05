@@ -96,7 +96,7 @@ class DashboardController extends BaseController
             Notification::addNotificationForUser($n, Auth::user()->id);
         }
 
-        return Redirect::to('/participa/dashboard/notifications')->with('success_message', "Your notifications have been updated");
+        return Redirect::to('/participa/dashboard/notifications')->with('success_message', trans('messages.updatednotif'));
     }
 
     public function getNotifications()
@@ -166,7 +166,7 @@ class DashboardController extends BaseController
         $adminContact = User::where('email', '$adminEmail');
 
         if (!isset($adminContact)) {
-            return Redirect::back()->with('error', 'The admin account with this email was not found.  Please try a different email.');
+            return Redirect::back()->with('error', trans('messages.noadminaccountwithemail'));
         }
     }
 
@@ -276,7 +276,7 @@ class DashboardController extends BaseController
             try {
                 $doc_content = DocContent::find($content_id);
             } catch (Exception $e) {
-                return Redirect::to('dashboard/docs/'.$id)->with('error', ucfirst(strtolower('Error '.trans('messages.saving').' '.trans('messages.document'))).': '.$e->getMessage());
+                return Redirect::to('/participa/dashboard/docs/'.$id)->with('error', ucfirst(strtolower('Error '.trans('messages.saving').' '.trans('messages.the').' '.trans('messages.document'))).': '.$e->getMessage());
             }
         } else {
             $doc_content = new DocContent();

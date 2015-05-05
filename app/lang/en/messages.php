@@ -192,11 +192,18 @@ return [
 'notauthorized'             => 'You are not authorized',
 'nopermission'              => 'You do not have permission',
 'toviewpage'                => 'to view that page',
+'toviewdocument'            => 'to view that document',
 'tocreate'                  => 'to create a',
+'tosave'                    => 'to save that',
 'tomark'                    => 'to mark this',
 'asseen'                    => 'as seen',
 'asindividual'              => 'as an individual',
 'forgroup'                  => 'for this group',
 'saving'                    => 'saving',
 'feedbackviewedbysponsor'   => 'Your feedback on Madison was viewed by a sponsor!',
+
+'explanationrequired'       => 'Explanation required for edits',
+'noannotationid'            => 'No annotation id passed',
+'nonoteid'                  => 'No note id passed',
+'needlogin'                 => 'You must be logged in',
 ];
