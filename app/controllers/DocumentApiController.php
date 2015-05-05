@@ -140,7 +140,7 @@ class DocumentApiController extends ApiController
         }
 
         $doc->categories()->sync($categoryIds);
-        $response['messages'][0] = ['text' => ucfirst(strtolower(trans('messages.categories').' '.trans('messages.savedfemaleplural'))), 'severity' => 'info'];
+        $response['messages'][0] = ['text' => ucfirst(strtolower(trans('messages.categories').' '.trans('messages.savedfeminineplural'))), 'severity' => 'info'];
 
         return Response::json($response);
     }
@@ -291,7 +291,7 @@ class DocumentApiController extends ApiController
         $date = Date::find($date);
 
         if (!isset($date)) {
-            throw new Exception(ucfirst(strtolower(trans('messages.unable').' '.trans('messages.todelete').' '.trans('messages.thefemale').' '.trans('messages.date').'. '.trans('messages.the').' '.trans('messages.dateid').' $date '.trans('messages.notfound'))));
+            throw new Exception(ucfirst(strtolower(trans('messages.unable').' '.trans('messages.todelete').' '.trans('messages.thefeminine').' '.trans('messages.date').'. '.trans('messages.the').' '.trans('messages.dateid').' $date '.trans('messages.notfound'))));
         }
 
         $date->delete();
@@ -305,7 +305,7 @@ class DocumentApiController extends ApiController
         $date = Date::find($date);
 
         if (!isset($date)) {
-            throw new Exception(ucfirst(strtolower(trans('messages.unable').' '.trans('messages.toupdate').' '.trans('messages.thefemale').' '.trans('messages.date').'. '.trans('messages.the').' '.trans('messages.dateid').' $date '.trans('messages.notfound'))));
+            throw new Exception(ucfirst(strtolower(trans('messages.unable').' '.trans('messages.toupdate').' '.trans('messages.thefeminine').' '.trans('messages.date').'. '.trans('messages.the').' '.trans('messages.dateid').' $date '.trans('messages.notfound'))));
         }
 
         $newDate = date("Y-m-d H:i:s", strtotime((string) $input['date']));
