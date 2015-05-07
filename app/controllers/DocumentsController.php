@@ -5,7 +5,7 @@ class DocumentsController extends Controller
     public function listDocuments()
     {
         if (!Auth::check()) {
-            return Redirect::to('/')->with('error', 'You must be logged in');
+            return Redirect::to('/')->with('error', trans('messages.needlogin'));
         }
 
         $raw_docs = Doc::allOwnedBy(Auth::user()->id);
@@ -36,14 +36,14 @@ class DocumentsController extends Controller
     public function saveDocumentEdits($documentId)
     {
         if (!Auth::check()) {
-            return Redirect::route('documents')->with('error', 'You must be logged in');
+            return Redirect::route('documents')->with('error', trans('messages.needlogin'));
         }
 
         $content = Input::get('content');
         $contentId = Input::get('content_id');
 
         if (empty($content)) {
-            return Redirect::route('documents')->with('error', "You must provide content to save");
+            return Redirect::route('documents')->with('error', ucfirst(strtolower(trans('messages.needtoinclude').' '.trans('messages.content').' '.trans('messages.to').' '.trans('messages.save'))));
         }
 
         if (!empty($contentId)) {
@@ -53,17 +53,17 @@ class DocumentsController extends Controller
         }
 
         if (!$docContent instanceof DocContent) {
-            return Redirect::route('documents')->with('error', 'Could not locate document to save');
+            return Redirect::route('documents')->with('error', ucfirst(strtolower(trans('messages.unable').' '.trans('messages.tolocate').' '.trans('messages.the').' '.trans('messages.document').' '.trans('messages.to').' '.trans('messages.save'))));
         }
 
         $document = Doc::find($documentId);
 
         if (!$document instanceof Doc) {
-            return Redirect::route('documents')->with('error', "Could not locate the document");
+            return Redirect::route('documents')->with('error', ucfirst(strtolower(trans('messages.unable').' '.trans('messages.tolocate').' '.trans('messages.the').' '.trans('messages.document'))));
         }
 
         if (!$document->canUserEdit(Auth::user())) {
-            return Redirect::route('documents')->with('error', 'You are not authorized to save that document.');
+            return Redirect::route('documents')->with('error', ucfirst(strtolower(trans('messages.notauthorized').' '.trans('messages.tosave').' '.trans('messages.document'))));
         }
 
         $docContent->doc_id = $documentId;
@@ -74,7 +74,7 @@ class DocumentsController extends Controller
                 $docContent->save();
             });
         } catch (\Exception $e) {
-            return Redirect::route('documents')->with('error', "There was an error saving the document: {$e->getMessage()}");
+            return Redirect::route('documents')->with('error', ucfirst(strtolower(trans('messages.therewaserror').' '.trans('messages.saving').' '.trans('messages.the').' '.trans('messages.document'))).": {$e->getMessage()}");
         }
 
         //Fire document edited event for admin notifications
@@ -84,7 +84,7 @@ class DocumentsController extends Controller
         try {
             $document->indexContent($docContent);
         } catch (\Exception $e) {
-            return Redirect::route('documents')->with('error', "Document saved, but there was an error with Elasticsearch: {$e->getMessage()}");
+            return Redirect::route('documents')->with('error', ucfirst(strtolower(trans('messages.document').' '.trans('messages.saved').' '.trans('messages.but').' '.trans('messages.therewaserror').' '.trans('messages.with')))." Elasticsearch: {$e->getMessage()}");
         }
 
         return Redirect::route('documents')->with('success_message', trans('messages.saveddoc'));
@@ -93,17 +93,17 @@ class DocumentsController extends Controller
     public function editDocument($documentId)
     {
         if (!Auth::check()) {
-            return Redirect::route('home')->with('error', 'You must be logged in');
+            return Redirect::route('home')->with('error', trans('messages.needlogin'));
         }
 
         $doc = Doc::find($documentId);
 
         if (is_null($doc)) {
-            return Redirect::route('documents')->with('error', 'Document not found.');
+            return Redirect::route('documents')->with('error', trans('messages.documentnotfound'));
         }
 
         if (!$doc->canUserEdit(Auth::user())) {
-            return Redirect::route('documents')->with('error', 'You are not authorized to view that document.');
+            return Redirect::route('documents')->with('error', ucfirst(strtolower(trans('messages.notauthorized').' '.trans('messages.toviewdocument'))));
         }
 
         return View::make('documents.edit', [
@@ -117,7 +117,7 @@ class DocumentsController extends Controller
     public function createDocument()
     {
         if (!Auth::check()) {
-            return Redirect::route('home')->with('error', 'You must be logged in');
+            return Redirect::route('home')->with('error', trans('messages.needlogin'));
         }
 
         $input = Input::all();
@@ -145,7 +145,7 @@ class DocumentsController extends Controller
                 $group = Group::where('id', '=', $activeGroup)->first();
 
                 if (!$group) {
-                    return Redirect::route('documents')->withInput()->with('error', 'Invalid Group');
+                    return Redirect::route('documents')->withInput()->with('error', trans('messages.invalidgroup'));
                 }
 
                 if (!$group->userHasRole($user, Group::ROLE_EDITOR) && !$group->userHasRole($user, Group::ROLE_OWNER)) {
@@ -171,7 +171,7 @@ class DocumentsController extends Controller
 
             return Redirect::to("documents/edit/{$document->id}")->with('success_message', trans('messages.saveddoc'));
         } catch (\Exception $e) {
-            return Redirect::to("documents")->withInput()->with('error', "Sorry there was an error processing your request - {$e->getMessage()}");
+            return Redirect::to("documents")->withInput()->with('error', ucfirst(strtolower(trans('messages.sorry').', '.trans('messages.therewaserror')))." - {$e->getMessage()}");
         }
     }
 }
