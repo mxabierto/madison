@@ -83,7 +83,7 @@ class DocController extends BaseController
             //Render view and return
             return View::make('doc.reader.index', $data);
         } catch (Exception $e) {
-            return Redirect::to('/')->with('error', $e->getMessage());
+            return Redirect::to('/participa')->with('error', $e->getMessage());
         }
         App::abort('404');
     }

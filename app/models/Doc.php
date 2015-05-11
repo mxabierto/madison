@@ -60,8 +60,7 @@ class Doc extends Eloquent
 
         switch (true) {
             case $sponsor instanceof User:
-                return $sponsor->hasRole('Independent Sponsor');
-                break;
+                return $sponsor->id == $user->id && $sponsor->hasRole('Independent Sponsor');
             case $sponsor instanceof Group:
                 return $sponsor->userHasRole($user, Group::ROLE_EDITOR) || $sponsor->userHasRole($user, Group::ROLE_OWNER);
                 break;
