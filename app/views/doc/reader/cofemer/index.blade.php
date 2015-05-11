@@ -42,7 +42,7 @@
           <h1>{{ $doc->title }}</h1>
           <ul class="list-unstyled">
             <li>
-              <small>{{ trans('messages.dependency') }}: @{{ doc.sponsor[0].name }}</small>
+              <small>{{ trans('messages.dependency') }}: {{ $doc->sponsorName() }}</small>
             </li>
             <li>
               <small>@{{ 'POSTED' | translate }}: @{{ doc.created_at | date: 'longDate' }}, @{{ doc.created_at | date: 'HH:mm:ss' }}</small>
