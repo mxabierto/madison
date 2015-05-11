@@ -285,10 +285,10 @@ angular.module('madisonApp.dashboardControllers', [])
           // We don't control the pagedown CSS, and this DIV needs to be scrollable
           $("#wmd-preview").css("overflow", "scroll");
 
-          // Resizing dynamically according to the textarea is hard, 
+          // Resizing dynamically according to the textarea is hard,
           // so just set the height once (22 is padding)
           $("#wmd-preview").css("height", ($("#wmd-input").height() + 22));
-          $("#wmd-input").scroll(function () { 
+          $("#wmd-input").scroll(function () {
             $("#wmd-preview").scrollTop($("#wmd-input").scrollTop());
           });
 
@@ -360,7 +360,7 @@ angular.module('madisonApp.dashboardControllers', [])
                 // Changing doc.slug in-place will trigger the $watch
                 var safe_slug = $scope.doc.slug;
                 var sanitized_slug = clean_slug(safe_slug);
-                // If cleaning the slug didn't change anything, we have a valid NEW slug, 
+                // If cleaning the slug didn't change anything, we have a valid NEW slug,
                 // and we can save it
                 if (safe_slug == sanitized_slug) {
                   $scope.saveSlug();
@@ -381,7 +381,7 @@ angular.module('madisonApp.dashboardControllers', [])
                 initContent = false;
               });
             } else {
-                if (timeout) { 
+                if (timeout) {
                     $timeout.cancel(timeout);
                 }
                 timeout = $timeout(function () { $scope.saveContent(); }, 5000);
@@ -455,7 +455,7 @@ angular.module('madisonApp.dashboardControllers', [])
         $scope.statusOptions = {
           placeholder: "Select Document Status",
           ajax: {
-            url: "/api/docs/statuses",
+            url: "/participa/api/docs/statuses",
             dataType: 'json',
             data: function (term, page) {
               return;
@@ -495,22 +495,22 @@ angular.module('madisonApp.dashboardControllers', [])
           placeholder: "Select Document Sponsor",
           allowClear: true,
           ajax: {
-            url: "/api/user/sponsors/all",
+            url: "/participa/api/user/sponsors/all",
             dataType: 'json',
             data: function () {
               return;
             },
             results: function (data) {
               var returned = [];
-              
+
               if(!data.success) {
                   alert(data.message);
                   return;
               }
-              
+
               angular.forEach(data.sponsors, function (sponsor) {
                 var text = "";
-                
+
                 switch(sponsor.sponsorType) {
                     case 'group':
                         text = "[Group] " + sponsor.name;
@@ -519,13 +519,13 @@ angular.module('madisonApp.dashboardControllers', [])
                         text = sponsor.fname + " " + sponsor.lname + " - " + sponsor.email;
                         break;
                 }
-                
+
                 returned.push({
                     id : sponsor.id,
                     type :  sponsor.sponsorType,
                     text : text
                 });
-                
+
               });
 
               return {
