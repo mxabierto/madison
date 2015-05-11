@@ -1,8 +1,11 @@
 <div id="participate-comment-message" class="participate-vote-message message-box"></div>
-@if($doc->canUserEdit(Auth::user()))
-  <div id="participate-comment" class="participate-comment">
-  	@include('doc.reader.cofemer.comment')
-  </div>
+@if(Auth::check())
+    @if($doc->canUserEdit(Auth::user()))
+      <div ng-init="caneditdocument=true"></div>
+      <div id="participate-comment" class="participate-comment">
+      	@include('doc.reader.cofemer.comment')
+      </div>
+    @endif
 @endif
   <div id="participate-activity" class="participate-activity">
   	<h3>@{{ layoutTexts.header }}</h3>
