@@ -574,7 +574,18 @@ angular.module('madisonApp.controllers', [])
             subCommentfeedbackMessage: '<b>¡Gracias!</b> Acabas de sugerir un subtema',
             privateComment: 'Tema privado',
             sendComment: 'Enviar'
-          }
+          },
+          cofemer: {
+            header: '',
+            callToAction: '',
+            commentLabel: 'Agrega tu comentario:',
+            commentPlaceholder: 'Agrega tu comentario',
+            subCommentPlaceholder: 'Agrega tu comentario',
+            commentfeedbackMessage: '<b>¡Gracias!</b> Acabas de agregar un comentario',
+            subCommentfeedbackMessage: '<b>¡Gracias!</b> Acabas de agregar un comentario',
+            privateComment: 'Comentario privado',
+            sendComment: 'Enviar'
+          },
         };
         $scope.layoutTexts = texts.common;
         angular.forEach($scope.doc.categories, function (category) {

@@ -1,0 +1,15 @@
+<div id="participate-comment-message" class="participate-vote-message message-box"></div>
+@if(Auth::check() && Auth::user()->hasRole('Admin'))
+  <div id="participate-comment" class="participate-comment">
+  	@include('doc.reader.cofemer.comment')
+  </div>
+@endif
+  <div id="participate-activity" class="participate-activity">
+  	<h3>@{{ layoutTexts.header }}</h3>
+    <p>@{{ layoutTexts.callToAction }}</p>
+  	<div class="activity-thread">
+      <div id="@{{ 'comment_' + comment.id }}" class="activity-item" ng-repeat="comment in comments | orderBy:activityOrder:true track by $id(comment)" ng-class="comment.label">
+        <div cofemer-comment-item activity-item-link="@{{ comment.link }}"></div>
+      </div>
+  	</div>
+  </div>
