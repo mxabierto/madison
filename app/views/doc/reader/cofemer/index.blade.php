@@ -71,7 +71,7 @@
 
         <div class="tab-content">
           <div id="tab-discussion" ng-class="{'active': secondtab == false}" class="tab-pane">
-            <div class="doc-forum" ng-controller="CommentController" ng-init="init({{ $doc->id }}, false)">
+            <div class="doc-forum" ng-controller="CommentController" ng-init="init({{ $doc->id }}, false, false)">
               @include('doc.reader.cofemer.comments')
             </div>
           </div>

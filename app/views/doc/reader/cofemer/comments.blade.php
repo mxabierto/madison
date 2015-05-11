@@ -9,7 +9,7 @@
     <p>@{{ layoutTexts.callToAction }}</p>
   	<div class="activity-thread">
       <div id="@{{ 'comment_' + comment.id }}" class="activity-item" ng-repeat="comment in comments | orderBy:activityOrder:true track by $id(comment)" ng-class="comment.label">
-        <div cofemer-comment-item activity-item-link="@{{ comment.link }}"></div>
+        <div comment-item activity-item-link="@{{ comment.link }}"></div>
       </div>
   	</div>
   </div>

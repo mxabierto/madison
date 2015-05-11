@@ -507,11 +507,12 @@ angular.module('madisonApp.controllers', [])
         $scope.subCommentId = subCommentId[2];
       }
 
-      $scope.init = function (docId, disableAuthor) {
+      $scope.init = function (docId, disableAuthor, disableCommentAction) {
         $scope.getDocComments(docId);
         $scope.user = user;
         $scope.doc = doc;
         $scope.disableAuthor = (typeof disableAuthor !== 'undefined');
+        $scope.disableCommentAction = (typeof disableCommentAction !== 'undefined');
         $scope.getLayoutTexts();
       };
 
