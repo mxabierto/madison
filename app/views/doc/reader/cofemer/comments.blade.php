@@ -1,5 +1,5 @@
 <div id="participate-comment-message" class="participate-vote-message message-box"></div>
-@if(Auth::check() && Auth::user()->hasRole('Admin'))
+@if($doc->canUserEdit(Auth::user()))
   <div id="participate-comment" class="participate-comment">
   	@include('doc.reader.cofemer.comment')
   </div>
