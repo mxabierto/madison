@@ -70,6 +70,8 @@ class Group extends Eloquent
     {
         $groupMember = GroupMember::where('group_id', '=', $this->id)->where('user_id', '=', $user->id)->first();
 
+        if(!$groupMember) return false;
+
         return $groupMember->role === $role;
     }
 
