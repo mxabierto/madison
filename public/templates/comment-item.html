@@ -56,6 +56,8 @@
       <span class="glyphicon glyphicon-thumbs-up" ng-click="addAction(comment, 'likes', $event)">{{ comment.likes || '0' }}</span>
       <span class="glyphicon glyphicon-thumbs-down" ng-click="addAction(comment, 'dislikes', $event)">{{ comment.dislikes || '0' }}</span>
       <span class="glyphicon glyphicon-flag" ng-click="addAction(comment, 'flags', $event)">{{ comment.flags || '0' }}</span>
+      <span ng-show="caneditdocument && !comment.deleted_at" class="glyphicon glyphicon-ban-circle" style="cursor: pointer;" ng-click="addAction(comment, 'hide', $event)"></span>
+      <span ng-show="caneditdocument && comment.deleted_at" class="glyphicon glyphicon-ban-circle" style="color:red; cursor: pointer;" ng-click="addAction(comment, 'hide', $event)"></span>
     </div>
   </div>
 </div>
