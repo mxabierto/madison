@@ -549,7 +549,9 @@ angular.module('madisonApp.controllers', [])
             commentPlaceholder: 'Agregar un comentario',
             subCommentPlaceholder: 'Agregar un comentario',
             commentfeedbackMessage: '<b>¡Gracias!</b> Acabas de agregar un comentario',
-            subCommentfeedbackMessage: '<b>¡Gracias!</b> Acabas de agregar un comentario'
+            subCommentfeedbackMessage: '<b>¡Gracias!</b> Acabas de agregar un comentario',
+            privateComment: 'Comentario privado',
+            sendComment: 'Enviar'
           },
           ieda: {
             header: 'Categorías de Datos Abiertos propuestos',
@@ -558,7 +560,9 @@ angular.module('madisonApp.controllers', [])
             commentPlaceholder: 'Sugiere otra categoría',
             subCommentPlaceholder: 'Sugiere otro conjunto',
             commentfeedbackMessage: '<b>¡Gracias!</b> Acabas de sugerir una categoría',
-            subCommentfeedbackMessage: '<b>¡Gracias!</b> Acabas de sugerir un conjunto de datos'
+            subCommentfeedbackMessage: '<b>¡Gracias!</b> Acabas de sugerir un conjunto de datos',
+            privateComment: 'Categoría privada',
+            sendComment: 'Enviar'
           },
           planAGA: {
             header: 'Temas para el Tercer Plan de Acción de la Alianza para el Gobierno Abierto',
@@ -567,7 +571,9 @@ angular.module('madisonApp.controllers', [])
             commentPlaceholder: 'Sugiere otro tema',
             subCommentPlaceholder: 'Sugiere otro subtema',
             commentfeedbackMessage: '<b>¡Gracias!</b> Acabas de sugerir un tema',
-            subCommentfeedbackMessage: '<b>¡Gracias!</b> Acabas de sugerir un subtema'
+            subCommentfeedbackMessage: '<b>¡Gracias!</b> Acabas de sugerir un subtema',
+            privateComment: 'Tema privado',
+            sendComment: 'Enviar'
           }
         };
         $scope.layoutTexts = texts.common;

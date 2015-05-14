@@ -105,10 +105,13 @@ class Comment extends Eloquent implements ActivityInterface
      */
     public function addOrUpdateComment(array $comment)
     {
+        $comment['private'] = (!empty($comment['private'])) ? 1 : 0;
+
         $obj = new Comment();
         $obj->text = $comment['text'];
         $obj->user_id = $comment['user']['id'];
         $obj->doc_id = $this->doc_id;
+        $obj->private = $comment['private'];
 
         if (isset($comment['id'])) {
             $obj->id = $comment['id'];
@@ -158,10 +161,19 @@ class Comment extends Eloquent implements ActivityInterface
 
     public static function loadComments($docId, $commentId, $userId)
     {
-        if(static::canUserEdit(Auth::user(), $docId)) {
+        $user = Auth::user();
+        if(static::canUserEdit($user, $docId)) {
             $comments = static::withTrashed()->where('doc_id', '=', $docId)->with('user');
         }else {
             $comments = static::where('doc_id', '=', $docId)->with('user');
+
+            $comments->where(function($query) use ($user)
+            {
+                $user_id = ($user) ? $user->id : 0;
+
+                $query->where('private', 0)
+                ->orWhere('user_id', $user_id);
+            });
         }
 
         if (!is_null($commentId)) {
