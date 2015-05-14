@@ -152,13 +152,15 @@ class CommentApiController extends ApiController
             }
         }
 
-        if($comment->deleted_at) {
+        $doc = Doc::find($docId);
+
+        if($comment->deleted_at && $doc->canUserEdit($user)) {
             $comment->restore();
-        } else {
+        } elseif(!$comment->deleted_at) {
             $comment->delete();
         }
 
-        return Response::json($comment);
+        return Response::json($comment->loadArray());
 
     }
 }
