@@ -158,7 +158,11 @@ class Comment extends Eloquent implements ActivityInterface
 
     public static function loadComments($docId, $commentId, $userId)
     {
-        $comments = static::where('doc_id', '=', $docId)->with('user');
+        if(static::canUserEdit(Auth::user(), $docId)) {
+            $comments = static::withTrashed()->where('doc_id', '=', $docId)->with('user');
+        }else {
+            $comments = static::where('doc_id', '=', $docId)->with('user');
+        }
 
         if (!is_null($commentId)) {
             $comments->where('id', '=', $commentId);
@@ -186,5 +190,18 @@ class Comment extends Eloquent implements ActivityInterface
         $this->link = $this->getLink();
 
         return parent::toArray();
+    }
+
+
+    public static function canUserEdit($user, $docId)
+    {
+        if(!$user) return false;
+
+        $doc = Doc::find($docId);
+        $comment = (empty($this)) ? new Comment : $this;
+
+        if($comment->user_id == $user->id || $doc->canUserEdit($user)) return true;
+
+        return false;
     }
 }

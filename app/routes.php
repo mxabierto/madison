@@ -143,6 +143,16 @@ Route::get('dashboard/docs/{doc}', ['as' => 'dashboardShowsDoc', 'uses' => 'Dash
     Route::post('api/docs/{doc}/comments/{comment}/flags', 'CommentApiController@postFlags');
     Route::post('api/docs/{doc}/comments/{comment}/comments', 'CommentApiController@postComments');
     Route::post('api/docs/{doc}/comments/{comment}/seen', 'CommentApiController@postSeen');
+    Route::post('api/docs/{doc}/comments/{comment}/hide',
+        [
+            'as' => 'comment/hide',
+            'uses' => 'CommentApiController@destroy'
+        ]);
+    Route::delete('api/docs/{doc}/comments/{comment}/delete',
+        [
+            'as' => 'comment/delete',
+            'uses' => 'CommentApiController@destroy'
+        ]);
 
     //Document Support / Oppose routes
     Route::post('api/docs/{doc}/support/', 'DocController@postSupport');
