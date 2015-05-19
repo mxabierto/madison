@@ -32,10 +32,13 @@ class CommentApiController extends ApiController
     {
         $comment = Input::get('comment');
 
+        $comment['private'] = (!empty($comment['private'])) ? 1 : 0;
+
         $newComment = new Comment();
         $newComment->user_id = Auth::user()->id;
         $newComment->doc_id = $comment['doc']['id'];
         $newComment->text = $comment['text'];
+        $newComment->private = $comment['private'];
         $newComment->save();
 
         Event::fire(MadisonEvent::DOC_COMMENTED, $newComment);

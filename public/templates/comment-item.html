@@ -26,6 +26,9 @@
       <span ng-show="caneditdocument && !comment.deleted_at" class="glyphicon glyphicon-ban-circle ng-binding" style="cursor: pointer;" ng-click="addAction(comment, 'hide', $event)"></span>
       <span ng-show="caneditdocument && comment.deleted_at" class="glyphicon glyphicon-ban-circle ng-binding" style="color:red; cursor: pointer;" ng-click="addAction(comment, 'hide', $event)"></span>
     </div>
+    <div class="activity-icon pull-right">
+        <span ng-show="(caneditdocument || comment.user.id == user.id) && comment.private" class="glyphicon glyphicon-eye-close" title="{{ layoutTexts.privateComment }}"></span>
+    </div>
   </div>
 </div>
 
@@ -59,13 +62,30 @@
       <span ng-show="caneditdocument && !comment.deleted_at" class="glyphicon glyphicon-ban-circle ng-binding" style="cursor: pointer;" ng-click="addAction(comment, 'hide', $event)"></span>
       <span ng-show="caneditdocument && comment.deleted_at" class="glyphicon glyphicon-ban-circle ng-binding" style="color:red; cursor: pointer;" ng-click="addAction(comment, 'hide', $event)"></span>
     </div>
+    <div class="activity-icon pull-right">
+        <span ng-show="(caneditdocument || comment.user.id == user.id) && comment.private" class="glyphicon glyphicon-eye-close" title="{{ layoutTexts.privateComment }}"></span>
+    </div>
   </div>
 </div>
 
   <div class="activity-replies row" collapse="comment.commentsCollapsed">
     <div class="subcomment-field col-md-12">
       <form name="add-subcomment-form" ng-submit="subcommentSubmit(comment, comment.subcomment)">
-        <input ng-model="comment.subcomment.text" type="text" class="form-control centered" placeholder="{{ layoutTexts.subCommentPlaceholder }}" required />
+        <div class="form-group">
+          <input ng-model="comment.subcomment.text" type="text" class="form-control centered" placeholder="{{ layoutTexts.subCommentPlaceholder }}" required />
+        </div>
+        <div class="row">
+          <div class="col-xs-7 col-sm-9">
+            <div class="checkbox">
+              <label>
+                <input ng-model="comment.subcomment.private" type="checkbox" name="private"> {{ layoutTexts.privateComment }}
+              </label>
+            </div>
+          </div>
+          <div class="col-xs-5 col-sm-3">
+            <button type="submit" class="btn btn-default btn-block">{{ layoutTexts.sendComment }}</button>
+          </div>
+        </div>
       </form>
     </div>
     <div id="subcomment_{{ comment.id }}" class="activity-reply col-md-12" ng-repeat="comment in comment.comments" ng-include="'subcomment_renderer.html'">
@@ -78,7 +98,21 @@
 <div class="activity-replies row" collapse="comment.commentsCollapsed">
   <div class="subcomment-field col-md-12">
     <form name="add-subcomment-form" ng-submit="subcommentSubmit(comment, subcomment)">
-      <input ng-model="subcomment.text" type="text" class="form-control centered" placeholder="{{ layoutTexts.subCommentPlaceholder }}" required />
+      <div class="form-group">
+        <input ng-model="subcomment.text" type="text" class="form-control centered" placeholder="{{ layoutTexts.subCommentPlaceholder }}" required />
+      </div>
+      <div class="row">
+        <div class="col-xs-7 col-sm-9">
+          <div class="checkbox">
+            <label>
+              <input ng-model="subcomment.private" type="checkbox" name="private"> {{ layoutTexts.privateComment }}
+            </label>
+          </div>
+        </div>
+        <div class="col-xs-5 col-sm-3">
+          <button type="submit" class="btn btn-default btn-block">{{ layoutTexts.sendComment }}</button>
+        </div>
+      </div>
     </form>
   </div>
   <div id="subcomment_{{ comment.id }}" class="activity-reply col-md-12" ng-repeat="comment in comment.comments" ng-include="'subcomment_renderer.html'">
