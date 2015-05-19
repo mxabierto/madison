@@ -32,7 +32,7 @@ class CommentApiController extends ApiController
     {
         $comment = Input::get('comment');
 
-        $comment['private'] = (!empty($comment['private'])) ? 1 : 0;
+        $comment['private'] = (!empty($comment['private']) && $comment['private'] != 'false') ? 1 : 0;
 
         $newComment = new Comment();
         $newComment->user_id = Auth::user()->id;

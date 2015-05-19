@@ -105,7 +105,7 @@ class Comment extends Eloquent implements ActivityInterface
      */
     public function addOrUpdateComment(array $comment)
     {
-        $comment['private'] = (!empty($comment['private'])) ? 1 : 0;
+        $comment['private'] = (!empty($comment['private']) && $comment['private'] != 'false') ? 1 : 0;
 
         $obj = new Comment();
         $obj->text = $comment['text'];

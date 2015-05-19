@@ -8,7 +8,7 @@
       <div class="col-xs-8 col-sm-9 col-lg-10">
         <div class="checkbox">
           <label>
-            <input ng-model="comment.private" type="checkbox" name="private"> @{{ layoutTexts.privateComment }}
+            <input ng-model="comment.private" id="doc-private-comment-field" type="checkbox" name="private"> @{{ layoutTexts.privateComment }}
           </label>
         </div>
       </div>
