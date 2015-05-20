@@ -92,6 +92,20 @@ class Doc extends Eloquent
         return $this->belongsToMany('Group');
     }
 
+    public function sponsorName()
+    {
+        $sponsor = $this->sponsor->first();
+        if ($sponsor instanceof User) {
+            $display_name = $sponsor->fname.' '.$sponsor->lname;
+        } elseif ($sponsor instanceof Group) {
+            $display_name = $sponsor->name;
+        } else {
+            $display_name = '';
+        }
+
+        return $display_name;
+    }
+
     public function statuses()
     {
         return $this->belongsToMany('Status');

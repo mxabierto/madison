@@ -19,10 +19,10 @@
   <div class="col-md-12">
     <div class="activity-icon">
       <span class="activity-replies-indicator" ng-class="{'activity-replies-indicator-inactive': comment.comments.length == 0}" ng-click="collapseComments(comment)"><span class="glyphicon glyphicon-comment">{{ comment.comments.length || '0' }}</span></span>
-      <a class="comment-link"><span class="glyphicon glyphicon-link" title="Copy link to clipboard"></span></a>
-      <span class="glyphicon glyphicon-thumbs-up" ng-click="addAction(comment, 'likes', $event)">{{ comment.likes || '0' }}</span>
-      <span class="glyphicon glyphicon-thumbs-down" ng-click="addAction(comment, 'dislikes', $event)">{{ comment.dislikes || '0' }}</span>
-      <span class="glyphicon glyphicon-flag" ng-click="addAction(comment, 'flags', $event)">{{ comment.flags || '0' }}</span>
+      <a class="comment-link" ng-hide="{{ $parent.disableCommentAction }}"><span class="glyphicon glyphicon-link" title="Copy link to clipboard"></span></a>
+      <span class="glyphicon glyphicon-thumbs-up" ng-click="addAction(comment, 'likes', $event)" ng-hide="{{ $parent.disableCommentAction }}">{{ comment.likes || '0' }}</span>
+      <span class="glyphicon glyphicon-thumbs-down" ng-click="addAction(comment, 'dislikes', $event)" ng-hide="{{ $parent.disableCommentAction }}">{{ comment.dislikes || '0' }}</span>
+      <span class="glyphicon glyphicon-flag" ng-click="addAction(comment, 'flags', $event)" ng-hide="{{ $parent.disableCommentAction }}">{{ comment.flags || '0' }}</span>
       <span ng-show="caneditdocument && !comment.deleted_at" class="glyphicon glyphicon-ban-circle ng-binding" style="cursor: pointer;" ng-click="addAction(comment, 'hide', $event)"></span>
       <span ng-show="caneditdocument && comment.deleted_at" class="glyphicon glyphicon-ban-circle ng-binding" style="color:red; cursor: pointer;" ng-click="addAction(comment, 'hide', $event)"></span>
     </div>

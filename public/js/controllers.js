@@ -507,11 +507,12 @@ angular.module('madisonApp.controllers', [])
         $scope.subCommentId = subCommentId[2];
       }
 
-      $scope.init = function (docId, disableAuthor) {
+      $scope.init = function (docId, disableAuthor, disableCommentAction) {
         $scope.getDocComments(docId);
         $scope.user = user;
         $scope.doc = doc;
         $scope.disableAuthor = (typeof disableAuthor !== 'undefined');
+        $scope.disableCommentAction = (typeof disableCommentAction !== 'undefined');
         $scope.getLayoutTexts();
       };
 
@@ -574,7 +575,18 @@ angular.module('madisonApp.controllers', [])
             subCommentfeedbackMessage: '<b>¡Gracias!</b> Acabas de sugerir un subtema',
             privateComment: 'Tema privado',
             sendComment: 'Enviar'
-          }
+          },
+          cofemer: {
+            header: '',
+            callToAction: '',
+            commentLabel: 'Agrega tu comentario:',
+            commentPlaceholder: 'Agrega tu comentario',
+            subCommentPlaceholder: 'Agrega tu comentario',
+            commentfeedbackMessage: '<b>¡Gracias!</b> Acabas de agregar un comentario',
+            subCommentfeedbackMessage: '<b>¡Gracias!</b> Acabas de agregar un comentario',
+            privateComment: 'Comentario privado',
+            sendComment: 'Enviar'
+          },
         };
         $scope.layoutTexts = texts.common;
         angular.forEach($scope.doc.categories, function (category) {

@@ -75,6 +75,11 @@ class DocController extends BaseController
                 'showAnnotationThanks' => $showAnnotationThanks,
             ];
 
+            //Render the cofemer view and return
+            if (in_array('cofemer', $doc->categories->lists('name', 'id'))) {
+                return View::make('doc.reader.cofemer.index', $data);
+            }
+
             //Render the votes view and return
             if (in_array('votos', $doc->categories->lists('name', 'id'))) {
                 return View::make('doc.reader.votes.index', $data);

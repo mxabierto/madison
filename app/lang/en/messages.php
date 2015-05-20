@@ -24,6 +24,7 @@ return [
 'filter'                    => 'Filter document titles',
 'category'                  => 'Category',
 'sponsor'                   => 'Sponsor',
+'dependency'                => 'Dependency',
 'status'                    => 'Status',
 'date'                      => 'Date',
 'posted'                    => 'Date Posted',

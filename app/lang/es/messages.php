@@ -24,6 +24,7 @@ return [
 'filter'                    => 'Título',
 'category'                  => 'Categoría',
 'sponsor'                   => 'Promotor',
+'dependency'                => 'Dependencia',
 'status'                    => 'Estado',
 'date'                      => 'Fecha',
 'posted'                    => 'Fecha de publicación',
