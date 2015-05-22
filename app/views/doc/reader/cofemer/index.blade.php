@@ -58,8 +58,23 @@
           <div class="doc-extract" ng-if="introtext">
             <div class="markdown" data-ng-bind-html="introtext"></div>
           </div>
+
           <div><strong>{{ trans('messages.cofemer-ask-more-info') }}</strong></div>
           <div>{{ trans('messages.cofemer-contact-info') }}</div>
+
+          <div class="doc-actions">
+            <br>
+            <p>{{ trans('messages.supportdoctext') }}</p>
+            <a id="doc-support" href="#" class="btn btn-primary" ng-click="support(true, $event)" ng-class="{'btn-success': supported}">
+              <span class="glyphicon glyphicon-ok"></span>
+              {{ trans('messages.supportdoc') }}
+            </a>
+            <a id="doc-oppose" href="#" class="btn btn-default" ng-click="support(false, $event)" ng-class="{'btn-danger': opposed}">
+              <span class="glyphicon glyphicon-remove"></span>
+              {{ trans('messages.opposedoc') }}
+            </a>
+          </div>
+
         </div>
       </div>
     </div>
