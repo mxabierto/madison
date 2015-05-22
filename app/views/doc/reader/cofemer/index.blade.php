@@ -58,6 +58,8 @@
           <div class="doc-extract" ng-if="introtext">
             <div class="markdown" data-ng-bind-html="introtext"></div>
           </div>
+          <div><strong>{{ trans('messages.cofemer-ask-more-info') }}</strong></div>
+          <div>{{ trans('messages.cofemer-contact-info') }}</div>
         </div>
       </div>
     </div>
