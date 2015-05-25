@@ -50,8 +50,8 @@
             <li>
               <small>@{{ 'UPDATED' | translate }}: @{{ doc.updated_at | date: 'longDate' }}, @{{ doc.updated_at | date: 'HH:mm:ss' }}</small>
             </li>
-            <li ng-repeat="date in doc.dates">
-              <small>@{{ date.label }}: @{{ date.date | parseDate | date: 'longDate' }}, @{{ date.date | parseDate | date: 'HH:mm:ss' }}</small>
+            <li>
+              <small>Fecha de cierre: 8 de junio de 2015, 18:00:00</small>
             </li>
 
           </ul>
