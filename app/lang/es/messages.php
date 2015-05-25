@@ -254,5 +254,6 @@ return [
 'invalidgroup'              => 'Grupo inválido',
 'cofemer-ask-more-info'     => '¿Dónde puedo encontrar más información?',
 'cofemer-contact-info'      => 'Revisa el micrositio de los <a href="http://187.191.71.140/pmr-2015-2016/index.php">Programas de Mejora Regulatoria 2015-2016</a>. Si tienes dudas sobre cómo participar en la consulta puedes comunicarte al teléfono (55)5629-9500 extensiones 22622 y 22689.',
-'cofemer-note-to-users'     => 'Las propuestas forman parte integral de la Consulta Pública de los Programas de Mejora Regulatoria 2015-2016 preliminares de la COFEMER.'
+'cofemer-note-to-users'     => 'Las propuestas forman parte integral de la Consulta Pública de los Programas de Mejora Regulatoria 2015-2016 preliminares de la COFEMER.',
+'cofemer-layout-header'     => 'Propuesta de Mejora Regulatoria'
 ];

@@ -254,5 +254,6 @@ return [
 'invalidgroup'              => 'Invalid group',
 'cofemer-ask-more-info'     => 'messages.cofemer-ask-more-info',
 'cofemer-contact-info'      => 'messages.cofemer-contact-info',
-'cofemer-note-to-users'     => 'messages.cofemer-note-to-users'
+'cofemer-note-to-users'     => 'messages.cofemer-note-to-users',
+'cofemer-layout-header'     => 'messages.cofemer-layout-header'
 ];

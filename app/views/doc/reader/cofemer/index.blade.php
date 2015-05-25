@@ -39,7 +39,7 @@
     <div class="row" ng-controller="ReaderController" ng-init="init({{ $doc->id }})">
       <div class="col-md-8">
         <div class="doc-head">
-          <h1>{{ $doc->title }}</h1>
+          <h1>{{ trans('messages.cofemer-layout-header') }}</h1>
           <ul class="list-unstyled">
             <li>
               <small>{{ trans('messages.dependency') }}: {{ $doc->sponsorName() }}</small>
