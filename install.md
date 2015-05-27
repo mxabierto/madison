@@ -25,6 +25,6 @@ ___
 
 1. Run `composer self-update` and `composer install` to install all composer packages
 
-1. Copy `.env.example` to `.env.local` and add your mysql credentials
- 
+1. Copy `.env.example.php` to `.env.local.php` and add your mysql credentials
+
 1. Run `php artisan migrate` and `php artisan db:seed` from the root directory to set up the database.

@@ -15,7 +15,7 @@
 	* package.json
 * Bower ( Front-end Dependency Manager )
 	* bower.json
-	
+
 ___
 
 1. Make sure your virtual environment is up and running, this can be a Homestead or Vagrant instance or a LAMP installation (Apache, MySQL, PHP).
@@ -31,7 +31,7 @@ ___
 1. Install bower (easiest through npm). Yes, that's 3 package managers we've installed.
 
 1. Run npm install so that it can grab the packages in packages.json.
- 
+
 1. Run `composer self-update` and `composer install` to install all composer packages
 
 1. Run `npm install`
@@ -42,7 +42,7 @@ ___
 
 1. Set up the vhost and database
 
-1. Copy `.env.example` to `.env.local` and add your mysql credentials
+1. Copy `.env.example.php` to `.env.local.php` and add your mysql credentials
 
 1. Run `php artisan migrate` and `php artisan db:seed` from the root directory to set up the database.
 
