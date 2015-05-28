@@ -11,6 +11,7 @@ var imports = [
     'ui',
     'ui.bootstrap',
     'ui.bootstrap.datetimepicker',
+    'ui.bootstrap.pagination',
     'ngAnimate',
     'ngCookies',
     'ngSanitize',

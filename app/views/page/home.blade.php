@@ -42,6 +42,9 @@
 					<div ng-repeat="doc in docs | toArray | filter:docSearch | orderBy:dateSort:reverse" ng-show="docFilter(doc)">
 						<div doc-list-item></div>
 					</div>
+					<div class="docs-pagination">
+						<pagination class="pagination-sm" max-size="10" boundary-links="true" rotate="false" total-items="totalDocs" items-per-page="perPage" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" ng-model="page" ng-change="paginate()"></pagination>
+					</div>
 				</div>
 			</div>
 		</div>
