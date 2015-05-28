@@ -69,8 +69,13 @@ class DocumentApiController extends ApiController
     public function getDocs()
     {
         $perPage = Input::get('per_page', 20);
+        $search = Input::get('q', '');
 
-        $docs = Doc::with('categories', 'sponsor', 'statuses', 'dates')->orderBy('updated_at', 'DESC')->paginate($perPage);
+        if ( $search != '' ) {
+            $docs = Doc::with('categories', 'sponsor', 'statuses', 'dates')->where('title', 'LIKE', '%' . $search . '%')->orderBy('updated_at', 'DESC')->paginate($perPage);
+        } else {
+            $docs = Doc::with('categories', 'sponsor', 'statuses', 'dates')->orderBy('updated_at', 'DESC')->paginate($perPage);
+        }
 
         $response = [];
         $response['results'] = [];
