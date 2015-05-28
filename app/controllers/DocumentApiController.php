@@ -68,9 +68,16 @@ class DocumentApiController extends ApiController
 
     public function getDocs()
     {
-        $docs = Doc::with('categories')->with('sponsor')->with('statuses')->with('dates')->orderBy('updated_at', 'DESC')->get();
+        $perPage = Input::get('per_page', 20);
 
-        $return_docs = [];
+        $docs = Doc::with('categories', 'sponsor', 'statuses', 'dates')->orderBy('updated_at', 'DESC')->paginate($perPage);
+
+        $response = [];
+        $response['results'] = [];
+
+        $response['pagination']['per_page'] = $docs->getPerPage();
+        $response['pagination']['page'] = $docs->getCurrentPage();
+        $response['pagination']['count'] = $docs->getTotal();
 
         foreach ($docs as $doc) {
             // try {
@@ -84,10 +91,10 @@ class DocumentApiController extends ApiController
             $return_doc['updated_at'] = date('c', strtotime($return_doc['updated_at']));
             $return_doc['created_at'] = date('c', strtotime($return_doc['created_at']));
 
-            $return_docs[] = $return_doc;
+            $response['results'][] = $return_doc;
         }
 
-        return Response::json($return_docs);
+        return Response::json($response);
     }
 
     public function getRecent($query = null)
