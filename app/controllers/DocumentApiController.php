@@ -68,7 +68,7 @@ class DocumentApiController extends ApiController
 
     public function getDocs()
     {
-        $perPage = Input::get('per_page', 1);
+        $perPage = Input::get('per_page', 20);
 
         $docs = Doc::with('categories', 'sponsor', 'statuses', 'dates')->orderBy('updated_at', 'DESC')->paginate($perPage);
 
