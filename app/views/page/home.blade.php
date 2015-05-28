@@ -14,7 +14,9 @@
 			<div ng-controller="HomePageController" tourtip="@{{ step_messages.step_0 }}" tourtip-step="0" tourtip-next-label="Siguiente">
 				<div class="home-docs-filters row">
 					<div class="col-sm-6">
-						<input tourtip="@{{ step_messages.step_1 }}" tourtip-step="1" tourtip-next-label="Siguiente" id="doc-text-filter" type="text" ng-model="docSearch" class="form-control" placeholder="{{ trans('messages.filter') }}">
+						<form ng-submit="search()">
+							<input id="doc-text-filter" type="text" ng-model="docSearch" class="form-control" placeholder="{{ trans('messages.filter') }}">
+						</form>
 					</div>
 					<div class="col-sm-4 home-select2-container">
 						<select id="doc-category-filter" ui-select2="select2Config" ng-model="select2">
@@ -40,7 +42,7 @@
 				</div>
 				<div class="docs-list list-unstyled">
 					<p ng-show="updating">Cargando...</p>
-					<div ng-repeat="doc in docs | toArray | filter:docSearch | orderBy:dateSort:reverse" ng-show="docFilter(doc) && !updating">
+					<div ng-repeat="doc in docs | toArray | orderBy:dateSort:reverse" ng-show="docFilter(doc) && !updating">
 						<div doc-list-item></div>
 					</div>
 					<div class="docs-pagination">

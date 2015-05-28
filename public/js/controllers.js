@@ -76,14 +76,16 @@ angular.module('madisonApp.controllers', [])
   }])
   .controller('HomePageController', ['$scope', '$location', '$http', '$filter', '$cookies', 'Doc',
     function ($scope, $location, $http, $filter, $cookies, Doc) {
-      var refEl   = $( '.main-banner' ),
-          search  = $location.search(),
-          page    = ( search.page ) ? search.page : 1,
-          limit   = ( search.limit ) ? search.limit : 20,
-          query   = function () {
+      var refEl     = $( '.main-banner' ),
+          search    = $location.search(),
+          page      = ( search.page ) ? search.page : 1,
+          limit     = ( search.limit ) ? search.limit : 20,
+          docSearch = ( search.q ) ? search.q : '',
+          query     = function () {
             $scope.docs       = Array();
             $scope.updating   = true;
             Doc.query({
+              q         : docSearch,
               page      : page,
               per_page  : limit
             }, function (data) {
@@ -104,10 +106,12 @@ angular.module('madisonApp.controllers', [])
       $scope.dates = [];
       $scope.dateSort = '';
       $scope.select2 = '';
+      $scope.docSearch = '';
       $scope.docSort = "created_at";
       $scope.reverse = true;
       $scope.startStep = 0;
       $scope.updating = false;
+      $scope.docSearch = docSearch;
 
       $scope.select2Config = {
         multiple: true,
@@ -134,6 +138,17 @@ angular.module('madisonApp.controllers', [])
           scrollTop : refEl.offset().top + refEl.height()
         }, 500 );
 
+        query();
+      };
+
+      $scope.search = function () {
+        if ( $scope.docSearch ) {
+          $location.search( "q", $scope.docSearch );
+        } else {
+          $location.search( "q", null );
+        }
+
+        docSearch = $scope.docSearch;
         query();
       };
 
