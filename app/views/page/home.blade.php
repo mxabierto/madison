@@ -39,7 +39,8 @@
 					</div>
 				</div>
 				<div class="docs-list list-unstyled">
-					<div ng-repeat="doc in docs | toArray | filter:docSearch | orderBy:dateSort:reverse" ng-show="docFilter(doc)">
+					<p ng-show="updating">Cargando...</p>
+					<div ng-repeat="doc in docs | toArray | filter:docSearch | orderBy:dateSort:reverse" ng-show="docFilter(doc) && !updating">
 						<div doc-list-item></div>
 					</div>
 					<div class="docs-pagination">

@@ -81,7 +81,8 @@ angular.module('madisonApp.controllers', [])
           page    = ( search.page ) ? search.page : 1,
           limit   = ( search.limit ) ? search.limit : 20,
           query   = function () {
-            $scope.docs = Array();
+            $scope.docs       = Array();
+            $scope.updating   = true;
             Doc.query({
               page      : page,
               per_page  : limit
@@ -89,6 +90,7 @@ angular.module('madisonApp.controllers', [])
               $scope.totalDocs  = data.pagination.count;
               $scope.perPage    = data.pagination.per_page;
               $scope.page       = data.pagination.page;
+              $scope.updating   = false;
               $scope.parseDocs(data.results);
             }).$promise.catch(function (data) {
               console.error("Unable to get documents: %o", data);
@@ -105,6 +107,7 @@ angular.module('madisonApp.controllers', [])
       $scope.docSort = "created_at";
       $scope.reverse = true;
       $scope.startStep = 0;
+      $scope.updating = false;
 
       $scope.select2Config = {
         multiple: true,
