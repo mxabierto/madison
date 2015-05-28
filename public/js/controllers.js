@@ -89,7 +89,7 @@ angular.module('madisonApp.controllers', [])
 
       //Retrieve all docs
       Doc.query(function (data) {
-        $scope.parseDocs(data);
+        $scope.parseDocs(data.results);
       }).$promise.catch(function (data) {
         console.error("Unable to get documents: %o", data);
       });
