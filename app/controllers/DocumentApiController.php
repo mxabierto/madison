@@ -70,7 +70,12 @@ class DocumentApiController extends ApiController
     {
         $perPage = Input::get('per_page', 20);
 
-        $docs = Doc::with('categories', 'sponsor', 'statuses', 'dates')->orderBy('updated_at', 'DESC')->paginate($perPage);
+        $docs = Doc::with('categories', 'sponsor', 'statuses', 'dates');
+
+        if ( Input::has('q') ) {
+            $docs->where('title', 'LIKE', '%' . Input::get('q') . '%');
+        }
+        $docs = $docs->orderBy('updated_at', 'DESC')->paginate($perPage);
 
         $response = [];
         $response['results'] = [];

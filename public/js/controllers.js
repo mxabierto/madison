@@ -74,8 +74,31 @@ angular.module('madisonApp.controllers', [])
     }, true);
 
   }])
-  .controller('HomePageController', ['$scope', '$http', '$filter', '$cookies', 'Doc',
-    function ($scope, $http, $filter, $cookies, Doc) {
+  .controller('HomePageController', ['$scope', '$location', '$http', '$filter', '$cookies', 'Doc',
+    function ($scope, $location, $http, $filter, $cookies, Doc) {
+      var refEl     = $( '.main-banner' ),
+          search    = $location.search(),
+          page      = ( search.page ) ? search.page : 1,
+          limit     = ( search.limit ) ? search.limit : 20,
+          docSearch = ( search.q ) ? search.q : '',
+          query     = function () {
+            $scope.docs       = Array();
+            $scope.updating   = true;
+            Doc.query({
+              q         : docSearch,
+              page      : page,
+              per_page  : limit
+            }, function (data) {
+              $scope.totalDocs  = data.pagination.count;
+              $scope.perPage    = data.pagination.per_page;
+              $scope.page       = data.pagination.page;
+              $scope.updating   = false;
+              $scope.parseDocs(data.results);
+            }).$promise.catch(function (data) {
+              console.error("Unable to get documents: %o", data);
+            });
+          };
+
       $scope.docs = [];
       $scope.categories = [];
       $scope.sponsors = [];
@@ -83,16 +106,12 @@ angular.module('madisonApp.controllers', [])
       $scope.dates = [];
       $scope.dateSort = '';
       $scope.select2 = '';
+      $scope.docSearch = '';
       $scope.docSort = "created_at";
       $scope.reverse = true;
       $scope.startStep = 0;
-
-      //Retrieve all docs
-      Doc.query(function (data) {
-        $scope.parseDocs(data);
-      }).$promise.catch(function (data) {
-        console.error("Unable to get documents: %o", data);
-      });
+      $scope.updating = false;
+      $scope.docSearch = docSearch;
 
       $scope.select2Config = {
         multiple: true,
@@ -105,9 +124,37 @@ angular.module('madisonApp.controllers', [])
         placeholder: "Fecha"
       };
 
+      $scope.paginate = function () {
+        if ( $scope.page > 1 ) {
+          $location.search( "page", $scope.page );
+        } else {
+          $location.search( "page", null );
+        }
+
+        page    = $scope.page;
+
+        // Scroll to the top of the list
+        $( 'html, body' ).animate({
+          scrollTop : refEl.offset().top + refEl.height()
+        }, 500 );
+
+        query();
+      };
+
+      $scope.search = function () {
+        if ( $scope.docSearch ) {
+          $location.search( "q", $scope.docSearch );
+        } else {
+          $location.search( "q", null );
+        }
+
+        docSearch = $scope.docSearch;
+        query();
+      };
+
       $scope.parseDocs = function (docs) {
         angular.forEach(docs, function (doc) {
-          $scope.docs.push(doc);
+          $scope.docs.unshift(doc);
 
           $scope.parseDocMeta(doc.categories, 'categories');
           $scope.parseDocMeta(doc.sponsor, 'sponsors');
@@ -188,6 +235,8 @@ angular.module('madisonApp.controllers', [])
 
         return show;
       };
+
+      query();
     }
     ])
   .controller('DocumentPageController', ['$scope', '$cookies', '$location', 'Doc', '$sce',
