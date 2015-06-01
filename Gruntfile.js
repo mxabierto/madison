@@ -131,7 +131,7 @@ module.exports = function (grunt) {
     },
     watch: {
       scripts: {
-        files: ['public/js/*.js', 'Gruntfile.js'],
+        files: ['public/js/**/*.js', 'Gruntfile.js'],
         tasks: ['jshint', 'uglify', 'notify:uglify']
       },
       sass: {
