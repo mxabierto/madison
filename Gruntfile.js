@@ -34,7 +34,7 @@ module.exports = function (grunt) {
       },
       all: [
         'public/js/bootstrap-tour.js',
-        'public/js/controllers.js',
+        'public/js/controllers/**/*.js',
         'public/js/dashboardControllers.js',
         'public/js/services.js',
         'public/js/directives.js',
@@ -89,7 +89,8 @@ module.exports = function (grunt) {
 
             //Custom JS
             'public/js/bootstrap-tour.js',
-            'public/js/controllers.js',
+            'public/js/controllers/module.js',
+            'public/js/controllers/**/*.js',
             'public/js/resources.js',
             'public/js/dashboardControllers.js',
             'public/js/services.js',
