@@ -37,7 +37,7 @@ module.exports = function (grunt) {
         'public/js/controllers/**/*.js',
         'public/js/dashboard/**/*.js',
         'public/js/services.js',
-        'public/js/directives.js',
+        'public/js/directives/**/*.js',
         'public/js/filters.js',
         'public/js/annotationServiceGlobal.js',
         'public/js/app.js'
@@ -96,7 +96,8 @@ module.exports = function (grunt) {
             'public/js/resources.js',
             'public/js/dashboardControllers.js',
             'public/js/services.js',
-            'public/js/directives.js',
+            'public/js/directives/module.js',
+            'public/js/directives/**/*.js',
             'public/js/filters.js',
             'public/js/annotationServiceGlobal.js',
             'public/js/app.js',
