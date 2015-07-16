@@ -34,11 +34,12 @@ module.exports = function (grunt) {
       },
       all: [
         'public/js/bootstrap-tour.js',
-        'public/js/controllers.js',
-        'public/js/dashboardControllers.js',
-        'public/js/services.js',
-        'public/js/directives.js',
-        'public/js/filters.js',
+        'public/js/controllers/**/*.js',
+        'public/js/dashboard/**/*.js',
+        'public/js/resources/**/*.js',
+        'public/js/services/**/*.js',
+        'public/js/directives/**/*.js',
+        'public/js/filters/**/*.js',
         'public/js/annotationServiceGlobal.js',
         'public/js/app.js'
       ]
@@ -89,12 +90,18 @@ module.exports = function (grunt) {
 
             //Custom JS
             'public/js/bootstrap-tour.js',
-            'public/js/controllers.js',
-            'public/js/resources.js',
-            'public/js/dashboardControllers.js',
-            'public/js/services.js',
-            'public/js/directives.js',
-            'public/js/filters.js',
+            'public/js/controllers/module.js',
+            'public/js/controllers/**/*.js',
+            'public/js/dashboard/module.js',
+            'public/js/dashboard/**/*.js',
+            'public/js/resources/module.js',
+            'public/js/resources/**/*.js',
+            'public/js/services/module.js',
+            'public/js/services/**/*.js',
+            'public/js/directives/module.js',
+            'public/js/directives/**/*.js',
+            'public/js/filters/module.js',
+            'public/js/filters/**/*.js',
             'public/js/annotationServiceGlobal.js',
             'public/js/app.js',
             'public/js/googletranslate.js'
@@ -124,7 +131,7 @@ module.exports = function (grunt) {
     },
     watch: {
       scripts: {
-        files: ['public/js/*.js', 'Gruntfile.js'],
+        files: ['public/js/**/*.js', 'Gruntfile.js'],
         tasks: ['jshint', 'uglify', 'notify:uglify']
       },
       sass: {
