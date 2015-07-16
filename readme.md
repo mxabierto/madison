@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/mxabierto/madison.png?label=ready&title=Ready)](https://waffle.io/mxabierto/madison)
 [![Build Status](https://travis-ci.org/opengovfoundation/madison.svg?branch=master)](https://travis-ci.org/opengovfoundation/madison)
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/opengovfoundation/madison/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/opengovfoundation/madison/?branch=master)
